@@ -75,11 +75,11 @@ tipo novo mexendo o mínimo possível no código que já existe.
 Cada tipo de veículo tem sua tarifa: uma taxa de desbloqueio, cobrada
 uma vez por viagem, mais um valor por minuto de uso.
 
-  Veículo                Desbloqueio   Por minuto
-  -------------------- ------------- ------------
-  Bicicleta mecânica        R\$ 1,00     R\$ 0,15
-  Bicicleta elétrica        R\$ 2,00     R\$ 0,30
-  Patinete elétrico         R\$ 3,00     R\$ 0,40
+  Veículo             |   Desbloqueio |   Por minuto
+  --------------------| ------------- |------------
+  Bicicleta mecânica  |      R\$ 1,00 |    R\$ 0,15
+  Bicicleta elétrica  |      R\$ 2,00 |    R\$ 0,30
+  Patinete elétrico   |      R\$ 3,00 |    R\$ 0,40
 
 ### 3. Usuários, planos e carteira
 
@@ -127,32 +127,13 @@ usuário só consegue iniciar uma nova viagem depois de fazer recargas
 suficientes.
 
 #### Exemplos para conferir as regras
-
-  -----------------------------------------------------------------------
-  Situação                        Valor cobrado             Bateria final
-  ------------------- ------------------------- -------------------------
-  Carla (Avulso),      R\$ 1,00 + 12 × R\$ 0,15                       ---
-  bicicleta mecânica,            = **R\$ 2,80** 
-  12 minutos                                    
-
-  Ana                      (R\$ 2,00 + 25 × R\$                       55%
-  (Universitário),          0,30) × 50% = **R\$ 
-  bicicleta elétrica                     4,75** 
-  com 80%, 25 minutos                           
-
-  Bruno (Mensal),        5 minutos × R\$ 0,40 =                       20%
-  patinete com 60%,                **R\$ 2,00** 
-  20 minutos                                    
-
-  Diego                R\$ 3,00 + 10 × R\$ 0,40                       80%
-  (Universitário),               = **R\$ 7,00** 
-  patinete com 100%,                            
-  10 minutos                                    
-
-  Eva (Mensal),                    **R\$ 0,00**                       ---
-  bicicleta mecânica,                           
-  10 minutos                                    
-  -----------------------------------------------------------------------
+| Situação | Valor cobrado | Bateria final |
+|---|---:|---:|
+| Carla (Avulso), bicicleta mecânica, 12 minutos | R$ 1,00 + 12 × R$ 0,15 = **R$ 2,80** | — |
+| Ana (Universitário), bicicleta elétrica com 80%, 25 minutos | (R$ 2,00 + 25 × R$ 0,30) × 50% = **R$ 4,75** | 55% |
+| Bruno (Mensal), patinete com 60%, 20 minutos | 5 minutos × R$ 0,40 = **R$ 2,00** | 20% |
+| Diego (Universitário), patinete com 100%, 10 minutos | R$ 3,00 + 10 × R$ 0,40 = **R$ 7,00** | 80% |
+| Eva (Mensal), bicicleta mecânica, 10 minutos | **R$ 0,00** | — |
 
 ## O que o sistema deve permitir
 
@@ -246,42 +227,14 @@ Liberadas (`ArrayList` e companhia). Bibliotecas de terceiros não são
 permitidas, com exceção do JUnit.
 
 ## Método de avaliação
-
-  -----------------------------------------------------------------------
-                                    Pontos Item avaliado
-  ---------------------------------------- ------------------------------
-                                       1,5 Diagrama de classes UML da
-                                           camada de negócio, com todas
-                                           as classes, interfaces e
-                                           relacionamentos, compatível
-                                           com o código-fonte. Ferramenta
-                                           livre (sugestão: draw.io).
-
-                                       4,5 Implementação: requisitos
-                                           funcionais 1 a 8 funcionando
-                                           conforme as regras (2,0);
-                                           conceitos de POO aplicados
-                                           como pedido acima (1,5);
-                                           persistência automática (0,5);
-                                           interface gráfica separada da
-                                           camada de negócio e Javadoc
-                                           (0,5).
-
-                                       0,5 Plano de testes para validar
-                                           as classes da camada de
-                                           negócio.
-
-                                       1,5 Implementação do plano de
-                                           testes com JUnit. Todos os
-                                           métodos públicos da camada de
-                                           negócio que não sejam getters
-                                           e setters devem ter testes.
-
-                                       2,0 Apresentação (nota individual,
-                                           detalhada abaixo).
-
-                                  **10,0** **Total**
-  -----------------------------------------------------------------------
+| Pontos | Item avaliado |
+|---:|---|
+| 1,5 | Diagrama de classes UML da camada de negócio, com todas as classes, interfaces e relacionamentos, compatível com o código-fonte. Ferramenta livre (sugestão: draw.io). |
+| 4,5 | Implementação: requisitos funcionais 1 a 8 funcionando conforme as regras (2,0); conceitos de POO aplicados como pedido acima (1,5); persistência automática (0,5); interface gráfica separada da camada de negócio e Javadoc (0,5). |
+| 0,5 | Plano de testes para validar as classes da camada de negócio. |
+| 1,5 | Implementação do plano de testes com JUnit. Todos os métodos públicos da camada de negócio que não sejam getters e setters devem ter testes. |
+| 2,0 | Apresentação (nota individual, detalhada abaixo). |
+| **10,0** | **Total** |
 
 ## Apresentação
 
@@ -291,46 +244,17 @@ e 2 minutos para perguntas.
 A apresentação deve seguir obrigatoriamente o template disponibilizado
 no AVA, que já traz os slides na ordem esperada.
 
-  ------------------------------------------------------------------------
-  Slide                 O que mostrar                                Tempo
-  --------------------- --------------------- ----------------------------
-  Capa                  Equipe                                        0:15
-
-  Diagrama de classes   Visão geral do                                1:30
-                        diagrama da camada de 
-                        negócio               
-
-  Decisões de modelagem As principais                                 1:00
-                        escolhas da equipe e  
-                        as alternativas       
-                        descartadas           
-
-  Onde usamos cada      Encapsulamento,                               1:30
-  conceito              herança, classe e     
-                        método abstrato,      
-                        polimorfismo e        
-                        interface: onde e por 
-                        quê                   
-
-  Polimorfismo em ação  Um trecho curto de                            1:00
-                        código que mostre o   
-                        polimorfismo          
-                        funcionando           
-
-  Plano de testes       Uma amostra dos casos                         0:45
-                        de teste              
-
-  Testes implementados  Um ou dois métodos                            0:45
-                        JUnit que implementam 
-                        casos do plano        
-
-  Execução dos testes   Resultado da execução                         0:30
-                        dos testes unitários  
-
-  Como foi aplicar os   Dificuldades,                                 0:45
-  conceitos             aprendizados e o que  
-                        fariam diferente      
-  ------------------------------------------------------------------------
+| Slide | O que mostrar | Tempo |
+|---|---|---:|
+| Capa | Equipe | 0:15 |
+| Diagrama de classes | Visão geral do diagrama da camada de negócio | 1:30 |
+| Decisões de modelagem | As principais escolhas da equipe e as alternativas descartadas | 1:00 |
+| Onde usamos cada conceito | Encapsulamento, herança, classe e método abstrato, polimorfismo e interface: onde e por quê | 1:30 |
+| Polimorfismo em ação | Um trecho curto de código que mostre o polimorfismo funcionando | 1:00 |
+| Plano de testes | Uma amostra dos casos de teste | 0:45 |
+| Testes implementados | Um ou dois métodos JUnit que implementam casos do plano | 0:45 |
+| Execução dos testes | Resultado da execução dos testes unitários | 0:30 |
+| Como foi aplicar os conceitos | Dificuldades, aprendizados e o que fariam diferente | 0:45 |
 
 Todos os integrantes devem apresentar pelo menos um slide, e qualquer
 integrante pode ser chamado a explicar qualquer parte do código. A nota
@@ -338,27 +262,13 @@ da apresentação é individual.
 
 ### Critérios da apresentação
 
-  -----------------------------------------------------------------------
-                                    Pontos Critério
-  ---------------------------------------- ------------------------------
-                                       0,5 Clareza do diagrama e
-                                           justificativa das decisões de
-                                           modelagem.
-
-                                       0,5 Explicação de onde e por que
-                                           cada conceito de POO foi
-                                           aplicado.
-
-                                       0,4 Plano de testes, testes
-                                           implementados e resultado da
-                                           execução.
-
-                                       0,4 Domínio do código demonstrado
-                                           nas respostas às perguntas.
-
-                                       0,2 Uso do template e respeito ao
-                                           tempo.
-  -----------------------------------------------------------------------
+| Pontos | Critério |
+|---:|---|
+| 0,5 | Clareza do diagrama e justificativa das decisões de modelagem. |
+| 0,5 | Explicação de onde e por que cada conceito de POO foi aplicado. |
+| 0,4 | Plano de testes, testes implementados e resultado da execução. |
+| 0,4 | Domínio do código demonstrado nas respostas às perguntas. |
+| 0,2 | Uso do template e respeito ao tempo. |
 
 ## Material a ser submetido no AVA
 
