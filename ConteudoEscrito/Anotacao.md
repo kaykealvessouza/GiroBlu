@@ -142,7 +142,8 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 **Objetivo:** representar as características e os comportamentos comuns a todos os veículos.
 
 **Possíveis atributos:**
-- Código de identificação.
+- private static int contadorCodigo = 0;
+- private final int codigoIdentificador;
 - Modelo.
 - Estado atual (disponível, em uso ou em manutenção).
 - Estação atual.
@@ -187,6 +188,7 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 - public int consultarCodigo();
 - public abstract double consultarTarifaDeDesbloqueio();
 - public abstract double consultarTarifaPorMinuto();
+- public abstract TipoVeiculo consultarTipo();
 
 ## 2.4. VeiculoMecanico (abstrata) 
 
@@ -212,10 +214,18 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 **UML CRIADO? --> [  ]**
 
 **Atributos**
+- Herdados da classe abstrata pai (Veiculo)
 
 **Construtor**
+- public BicletaMecanica(String modelo, Estacao estacaoAtual);
 
 **Métodos**
+@Override 
+- public double consultarTarifaDeDesbloqueio();
+@Override
+- public double consultarTarifaPorMinuto();
+@Override
+- public TipoVeiculo consultarTipo();
 
 ## 2.5. VeiculoEletrico (abstrata)
 
@@ -243,10 +253,18 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 **UML CRIADO? --> [  ]**
 
 **Atributos**
+- Herdados da classe abstrata pai (Veiculo)
+- private int nivelBateria;
 
 **Construtor**
+- protected veiculoEletrico(String modelo, Estacao estacaoAtual, int nivelBateria);
 
 **Métodos**
+- public void recarregarBateria();
+- public boolean possuiCargaMinimaParaViagem();
+- public int consultarNivelBateria();
+- public void consumirBateria(int minutos);
+- public abstract int consultarConsumoPorMinuto();
 
 ### 2.5.1. BicicletaEletrica
 
