@@ -188,29 +188,13 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 - public abstract double consultarTarifaDeDesbloqueio();
 - public abstract double consultarTarifaPorMinuto();
 
-## 2.4. VeiculoMecanico (abstrata)
+## 2.4. VeiculoMecanico (abstrata) 
 
-**Objetivo:** representar uma categoria de veículos que não dependem de bateria.
+**Removido**
 
-**Possíveis atributos:**
-- Ainda não foram identificados atributos exclusivos necessários.
+**Objetivo Anterior:** representar uma categoria de veículos que não dependem de bateria.
 
-**Possíveis métodos:**
-- Ainda não foram identificados métodos exclusivos necessários.
-
-**Observações:**
-- Classe intermediária criada para permitir a inclusão de outros tipos de veículos mecânicos futuramente.
-- Não possui lógica de bateria ou recarga.
-
-**Atualização XX/11 - Definindo atributos e métodos**
-
-**UML CRIADO? --> [  ]**
-
-**Atributos**
-
-**Construtor**
-
-**Métodos**
+**Motivo da Remoção:** seria apenas para seguir a lógica de VeiculoEletrico, porém como não teria nenhum método ou atributo próprio, é mais pertinente remover.
 
 ### 2.4.1. BicicletaMecanica
 
