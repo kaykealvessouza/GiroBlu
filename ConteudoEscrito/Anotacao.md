@@ -3,6 +3,7 @@
 ## 1. Rascunho Inicial das Classes
 
 Classes iniciais que foram pensadas para o sistema, organizadas de acordo com suas possíveis hierarquias.
+Criado a prévia dia 4/11.
 
 ## 1.1. Sistema
 - Sistema
@@ -64,6 +65,38 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 - Avaliar se o histórico de viagens ficará armazenado diretamente em `Sistema`.
 - O relatório de faturamento deverá considerar as viagens encerradas dentro do período informado, agrupando os resultados por tipo de veículo.
 
+**Atualização 06/11 - Definindo atributos e métodos**
+
+**UML CRIADO? --> [  ]**
+
+**Atributos**
+- private ArrayList<Estacao> estacoes;
+- private ArrayList<Veiculo> veiculos;
+- private ArrayList<Usuario> usuarios;
+- private ArrayList<Viagem> viagens;
+
+**Construtor**
+- public Sistema();
+
+**Métodos**
+- public void cadastrarEstacao(Estacao estacao);
+- public void cadastrarVeiculo(Veiculo veiculo);
+- public void cadastrarUsuario(Usuario usuario);
+
+- public RelatorioFaturamento consultarFaturamento(LocalDate dataInicial,LocalDate dataFinal); 
+
+- public Estacao consultarEstacao(String nome);
+- public List<Estacao> consultarEstacoes();
+
+- public Veiculo consultarVeiculo(int codigo);
+- public List<Veiculo> consultarVeiculos();
+
+- public Usuario consultarUsuario(String email);
+- public List<Usuario> consultarUsuarios();
+
+- public Viagem consultarViagensDoUsuario(Usuario usuario);
+- public List<Viagem> consultarViagens();
+
 ## 2.2. Estacao
 
 **Objetivo:** representar os pontos de estacionamento e disponibilização dos veículos.
@@ -84,6 +117,25 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 - Veículos em manutenção continuam ocupando vagas quando estão estacionados.
 - Veículos em uso não ocupam vagas na estação de origem.
 - Uma estação não pode receber mais veículos do que sua capacidade permite.
+
+**Atualização 06/11 - Definindo atributos e métodos**
+
+**UML CRIADO? --> [  ]**
+
+**Atributos**
+- private String nome;
+- private int capacidadeMaxima;
+- private ArrayList<Veiculo> veiculosEstacionados;
+
+**Construtor**
+- public Estacao(String nome, int capacidadeMaxima);
+
+**Métodos**
+- public void adicionarVeiculo(Veiculo veiculo);
+- public void removerVeiculo(Veiculo veiculo);
+- public int consultarVagasDisponíveis();
+- public ArrayList<Veiculo> consultarVeiculosDisponiveis();
+- public int consultarQuantidadeVeiculosEstacionados();
 
 ## 2.3. Veiculo (abstrata)
 
@@ -108,6 +160,33 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 - A classe deverá concentrar as regras comuns a todos os tipos de veículo.
 - Métodos específicos de cada categoria poderão ser definidos nas subclasses.
 - Avaliar quais comportamentos devem ser abstratos e implementados pelas subclasses.
+- Estado do Veiculo será um enum com os valores DISPONIVEL, EM_USO e MANUTENCAO.
+
+**Atualização 06/11 - Definindo atributos e métodos**
+
+**UML CRIADO? --> [  ]**
+
+**Atributos**
+- private static int contadorCodigo;
+- private final int codigoIdentificador
+- private String modelo;
+- private private EstadoVeiculo estadoAtual;
+- private Estacao estacaoAtual;
+
+**Construtor**
+- protected Veiculo(String modelo, Estacao estacaoAtual)
+
+**Métodos**
+- public void iniciarUtilizacao();
+- public void finalizarUtilizacao();
+- public void enviarParaManutencao();
+- public void retornarDaManutencao();
+- public EstadoVeiculo consultarEstadoAtual();
+- public String consultarEstacaoAtual();
+- public String consultarModelo();
+- public int consultarCodigo();
+- public abstract double consultarTarifaDeDesbloqueio();
+- public abstract double consultarTarifaPorMinuto();
 
 ## 2.4. VeiculoMecanico (abstrata)
 
@@ -123,6 +202,16 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 - Classe intermediária criada para permitir a inclusão de outros tipos de veículos mecânicos futuramente.
 - Não possui lógica de bateria ou recarga.
 
+**Atualização XX/11 - Definindo atributos e métodos**
+
+**UML CRIADO? --> [  ]**
+
+**Atributos**
+
+**Construtor**
+
+**Métodos**
+
 ### 2.4.1. BicicletaMecanica
 
 **Objetivo:** representar as bicicletas mecânicas disponíveis no sistema.
@@ -133,6 +222,16 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 **Possíveis métodos:**
 - Implementar comportamentos específicos exigidos pela classe abstrata `Veiculo`, quando necessário.
 - Definir suas tarifas específicas.
+
+**Atualização XX/11 - Definindo atributos e métodos**
+
+**UML CRIADO? --> [  ]**
+
+**Atributos**
+
+**Construtor**
+
+**Métodos**
 
 ## 2.5. VeiculoEletrico (abstrata)
 
@@ -155,6 +254,16 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 - A recarga deverá levar a bateria até 100%, respeitando a regra de que o veículo não pode estar em uso.
 - O consumo por minuto poderá variar de acordo com o tipo de veículo elétrico.
 
+**Atualização XX/11 - Definindo atributos e métodos**
+
+**UML CRIADO? --> [  ]**
+
+**Atributos**
+
+**Construtor**
+
+**Métodos**
+
 ### 2.5.1. BicicletaEletrica
 
 **Objetivo:** representar as bicicletas elétricas.
@@ -166,6 +275,16 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 - Definir consumo de bateria por minuto: 1%.
 - Definir tarifas específicas.
 
+**Atualização XX/11 - Definindo atributos e métodos**
+
+**UML CRIADO? --> [  ]**
+
+**Atributos**
+
+**Construtor**
+
+**Métodos**
+
 ### 2.5.2. PatineteEletrico
 
 **Objetivo:** representar os patinetes elétricos.
@@ -176,6 +295,16 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 **Possíveis métodos:**
 - Definir consumo de bateria por minuto: 2%.
 - Definir tarifas específicas.
+
+**Atualização XX/11 - Definindo atributos e métodos**
+
+**UML CRIADO? --> [  ]**
+
+**Atributos**
+
+**Construtor**
+
+**Métodos**
 
 ## 2.6. Usuario
 
@@ -199,6 +328,16 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 - O usuário precisa possuir pelo menos R$ 5,00 de saldo para iniciar uma viagem.
 - Caso o saldo fique negativo após o encerramento de uma viagem, será necessário realizar uma recarga suficiente antes de iniciar outra.
 
+**Atualização XX/11 - Definindo atributos e métodos**
+
+**UML CRIADO? --> [  ]**
+
+**Atributos**
+
+**Construtor**
+
+**Métodos**
+
 ## 2.7. Plano (abstrata)
 
 **Objetivo:** definir as regras de cobrança aplicadas aos usuários.
@@ -214,17 +353,57 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 - Cada modalidade deverá implementar suas próprias regras de cobrança.
 - A estrutura deve permitir adicionar novos planos sem modificar as regras das modalidades existentes.
 
+**Atualização XX/11 - Definindo atributos e métodos**
+
+**UML CRIADO? --> [  ]**
+
+**Atributos**
+
+**Construtor**
+
+**Métodos**
+
 ### 2.7.1. PlanoAvulso
 
 **Regra:** cobrança integral da tarifa do veículo, incluindo desbloqueio e valor por minuto.
+
+**Atualização XX/11 - Definindo atributos e métodos**
+
+**UML CRIADO? --> [  ]**
+
+**Atributos**
+
+**Construtor**
+
+**Métodos**
 
 ### 2.7.2. PlanoMensal
 
 **Regra:** não cobra desbloqueio e oferece os primeiros 15 minutos gratuitos de cada viagem. A cobrança considera somente os minutos excedentes.
 
+**Atualização XX/11 - Definindo atributos e métodos**
+
+**UML CRIADO? --> [  ]**
+
+**Atributos**
+
+**Construtor**
+
+**Métodos**
+
 ### 2.7.3. PlanoUniversitario
 
 **Regra:** oferece 50% de desconto sobre o valor total da viagem, exceto para patinetes elétricos, que mantêm a tarifa integral.
+
+**Atualização XX/11 - Definindo atributos e métodos**
+
+**UML CRIADO? --> [  ]**
+
+**Atributos**
+
+**Construtor**
+
+**Métodos**
 
 ## 2.8. Carteira
 
@@ -247,6 +426,16 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 - O valor de uma recarga deve ser maior que zero.
 - O saldo pode ficar negativo após o encerramento de uma viagem.
 - O extrato deve apresentar recargas e viagens em ordem cronológica, com o saldo após cada movimentação.
+
+**Atualização XX/11 - Definindo atributos e métodos**
+
+**UML CRIADO? --> [  ]**
+
+**Atributos**
+
+**Construtor**
+
+**Métodos**
 
 ## 2.9. Viagem
 
@@ -275,6 +464,58 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 - A viagem precisa terminar em uma estação com vaga disponível.
 - O valor final deve ser arredondado para duas casas decimais.
 - O encerramento deve atualizar a localização e a disponibilidade do veículo, além de aplicar o consumo de bateria quando necessário.
+
+**Atualização XX/11 - Definindo atributos e métodos**
+
+**UML CRIADO? --> [  ]**
+
+**Atributos**
+
+**Construtor**
+
+**Métodos**
+
+## 2.10. RelatorioFaturamento
+
+**Objetivo:** representar os resultados de uma consulta de faturamento, armazenando a quantidade de viagens encerradas e os valores arrecadados por tipo de veículo e no total.
+
+Ex de saída:
+
+Tipo de veículo |	Viagens |	Faturamento
+----------------|---------|-----------
+Bicicleta mecânica |	12 |	R$ 45,00
+Bicicleta elétrica |	8 |	R$ 62,50
+Patinete elétrico |	15 |	R$ 90,00
+Total |	35 |	R$ 197,50
+
+**Possíveis atributos:**
+- Período inicial e final do relatório.
+- Quantidade de viagens por tipo de veículo.
+- Faturamento por tipo de veículo.
+- Quantidade total de viagens.
+- Faturamento total.
+
+**Possíveis métodos:**
+- Consultar quantidade de viagens por tipo de veículo.
+- Consultar faturamento por tipo de veículo.
+- Consultar quantidade total de viagens.
+- Consultar faturamento total.
+
+**Observações:**
+- O relatório deverá considerar somente viagens encerradas dentro do período informado.
+- Os resultados deverão ser agrupados por tipo de veículo.
+- A classe armazenará os resultados calculados, sem responsabilidade pela apresentação visual do relatório.
+- A geração do relatório será coordenada por `Sistema`, que consultará o histórico de viagens e retornará um objeto `RelatorioFaturamento`.
+
+**Atualização XX/11 - Definindo atributos e métodos**
+
+**UML CRIADO? --> [  ]**
+
+**Atributos**
+
+**Construtor**
+
+**Métodos**
 
 ---
 
