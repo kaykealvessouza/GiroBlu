@@ -118,9 +118,9 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 - Veículos em uso não ocupam vagas na estação de origem.
 - Uma estação não pode receber mais veículos do que sua capacidade permite.
 
-**Atualização 06/11 - Definindo atributos e métodos**
+**Atualização 07/11 - Definindo atributos e métodos**
 
-**UML CRIADO? --> [  ]**
+**UML CRIADO? --> [x]**
 
 **Atributos**
 - private String nome;
@@ -163,9 +163,9 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 - Avaliar quais comportamentos devem ser abstratos e implementados pelas subclasses.
 - Estado do Veiculo será um enum com os valores DISPONIVEL, EM_USO e MANUTENCAO.
 
-**Atualização 06/11 - Definindo atributos e métodos**
+**Atualização 07/11 - Definindo atributos e métodos**
 
-**UML CRIADO? --> [  ]**
+**UML CRIADO? --> [x]**
 
 **Atributos**
 - private static int contadorCodigo;
@@ -209,9 +209,9 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 - Implementar comportamentos específicos exigidos pela classe abstrata `Veiculo`, quando necessário.
 - Definir suas tarifas específicas.
 
-**Atualização XX/11 - Definindo atributos e métodos**
+**Atualização 07/11 - Definindo atributos e métodos**
 
-**UML CRIADO? --> [  ]**
+**UML CRIADO? --> [x]**
 
 **Atributos**
 - Herdados da classe abstrata pai (Veiculo)
@@ -248,9 +248,9 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 - A recarga deverá levar a bateria até 100%, respeitando a regra de que o veículo não pode estar em uso.
 - O consumo por minuto poderá variar de acordo com o tipo de veículo elétrico.
 
-**Atualização XX/11 - Definindo atributos e métodos**
+**Atualização 07/11 - Definindo atributos e métodos**
 
-**UML CRIADO? --> [  ]**
+**UML CRIADO? --> [x]**
 
 **Atributos**
 - Herdados da classe abstrata pai (Veiculo)
@@ -277,9 +277,9 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 - Definir consumo de bateria por minuto: 1%.
 - Definir tarifas específicas.
 
-**Atualização XX/11 - Definindo atributos e métodos**
+**Atualização 07/11 - Definindo atributos e métodos**
 
-**UML CRIADO? --> [  ]**
+**UML CRIADO? --> [x]**
 
 **Atributos**
 
@@ -298,9 +298,9 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 - Definir consumo de bateria por minuto: 2%.
 - Definir tarifas específicas.
 
-**Atualização XX/11 - Definindo atributos e métodos**
+**Atualização 07/11 - Definindo atributos e métodos**
 
-**UML CRIADO? --> [  ]**
+**UML CRIADO? --> [x]**
 
 **Atributos**
 
