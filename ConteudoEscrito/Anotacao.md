@@ -330,15 +330,54 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 - O usuário precisa possuir pelo menos R$ 5,00 de saldo para iniciar uma viagem.
 - Caso o saldo fique negativo após o encerramento de uma viagem, será necessário realizar uma recarga suficiente antes de iniciar outra.
 
-**Atualização XX/11 - Definindo atributos e métodos**
+**Atualização 08/11 - Definindo atributos e métodos**
 
-**UML CRIADO? --> [  ]**
+**UML CRIADO? --> [x]**
 
 **Atributos**
 
+private String nome;
+private String email;
+private Viagem viagemAtiva;
+private Plano planoContratado;
+private Carteira carteira;
+
 **Construtor**
 
+public Usuario(String nome, String email, Plano planoContratado) {
+    this.nome = nome;
+    this.email = email;
+    this.planoContratado = planoContratado;
+    this.carteira = new Carteira();   // ← o usuário cria a própria carteira, zerada
+}
+
 **Métodos**
+
+public boolean possuiViagemEmAndamento() {return viagemAtiva != null;}   // tem objeto? então tem viagem
+public boolean temSaldoMinimo() {return carteira.temSaldoMinimo();}     // repassa a pergunta pra carteira
+
+public void registrarViagemAtiva(Viagem viagem) throws ViagemEmAndamentoException {
+    if (possuiViagemEmAndamento()) {
+        throw new ViagemEmAndamentoException("Usuário já possui uma viagem em andamento.");
+    }
+    this.viagemAtiva = viagem;     // ← o trabalho de verdade do método
+}
+
+public void finalizarViagemAtiva() throws SemViagemEmAndamentoException {
+    if (!possuiViagemEmAndamento()) {
+        throw new SemViagemEmAndamentoException("Usuário não possui viagem em andamento.");
+    }
+    this.viagemAtiva = null;     // ← o usuário deixa de ter viagem ativa
+}
+
+public void recarregarCarteira(double valor, LocalDateTime dataHora) throws ValorInvalidoException {carteira.adicionarSaldo(valor, dataHora);}
+
+public void pagarViagem(double valor) {carteira.debitarValor(valor);}
+
+public double consultarSaldo() {return carteira.getSaldoAtual();}
+
+public List<Recarga> consultarRecargas() {return carteira.getHistoricoRecarga();}
+
 
 ## 2.7. Plano (abstrata)
 
@@ -429,9 +468,9 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 - O saldo pode ficar negativo após o encerramento de uma viagem.
 - O extrato deve apresentar recargas e viagens em ordem cronológica, com o saldo após cada movimentação.
 
-**Atualização XX/11 - Definindo atributos e métodos**
+**Atualização 07/11 - Definindo atributos e métodos**
 
-**UML CRIADO? --> [  ]**
+**UML CRIADO? --> [x]**
 
 **Atributos**
 
