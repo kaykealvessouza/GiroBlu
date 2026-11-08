@@ -379,7 +379,7 @@ public double consultarSaldo() {return carteira.getSaldoAtual();}
 public List<Recarga> consultarRecargas() {return carteira.getHistoricoRecarga();}
 
 
-## 2.7. Plano (abstrata)
+## 2.7. Plano (Interface)
 
 **Objetivo:** definir as regras de cobrança aplicadas aos usuários.
 
@@ -394,9 +394,9 @@ public List<Recarga> consultarRecargas() {return carteira.getHistoricoRecarga();
 - Cada modalidade deverá implementar suas próprias regras de cobrança.
 - A estrutura deve permitir adicionar novos planos sem modificar as regras das modalidades existentes.
 
-**Atualização XX/11 - Definindo atributos e métodos**
+**Atualização 08/11 - Definindo atributos e métodos**
 
-**UML CRIADO? --> [  ]**
+**UML CRIADO? --> [x]**
 
 **Atributos**
 
@@ -408,9 +408,9 @@ public List<Recarga> consultarRecargas() {return carteira.getHistoricoRecarga();
 
 **Regra:** cobrança integral da tarifa do veículo, incluindo desbloqueio e valor por minuto.
 
-**Atualização XX/11 - Definindo atributos e métodos**
+**Atualização 08/11 - Definindo atributos e métodos**
 
-**UML CRIADO? --> [  ]**
+**UML CRIADO? --> [x]**
 
 **Atributos**
 
@@ -422,9 +422,9 @@ public List<Recarga> consultarRecargas() {return carteira.getHistoricoRecarga();
 
 **Regra:** não cobra desbloqueio e oferece os primeiros 15 minutos gratuitos de cada viagem. A cobrança considera somente os minutos excedentes.
 
-**Atualização XX/11 - Definindo atributos e métodos**
+**Atualização 08/11 - Definindo atributos e métodos**
 
-**UML CRIADO? --> [  ]**
+**UML CRIADO? --> [x]**
 
 **Atributos**
 
@@ -436,9 +436,9 @@ public List<Recarga> consultarRecargas() {return carteira.getHistoricoRecarga();
 
 **Regra:** oferece 50% de desconto sobre o valor total da viagem, exceto para patinetes elétricos, que mantêm a tarifa integral.
 
-**Atualização XX/11 - Definindo atributos e métodos**
+**Atualização 08/11 - Definindo atributos e métodos**
 
-**UML CRIADO? --> [  ]**
+**UML CRIADO? --> [x]**
 
 **Atributos**
 
