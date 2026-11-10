@@ -890,10 +890,10 @@ Espaço destinado à definição dos tipos enumerados utilizados pelo sistema, r
 - [X] Definir como será armazenado o histórico de movimentações financeiras.
 - [X] Definir como será armazenado o histórico de viagens.
 - [X] Definir a responsabilidade de cada classe no início e encerramento de uma viagem.
-- [X] Definir como será realizada a persistência dos dados.
+- [] Definir como será realizada a persistência dos dados.
 - [X] Definir a estrutura de `RelatorioFaturamento`.
-- [X] Definir como será realizada a restauração do contador de códigos dos veículos após carregar os dados persistidos.
-- [X] Criar e revisar o diagrama UML conforme as decisões forem consolidadas.
+- [] Definir como será realizada a restauração do contador de códigos dos veículos após carregar os dados persistidos.
+- [] Criar e revisar o diagrama UML conforme as decisões forem consolidadas.
 
 ---
 

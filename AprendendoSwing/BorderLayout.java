@@ -1,0 +1,6 @@
+/**
+ * BorderLayout
+ */
+public class BorderLayout {
+
+}
