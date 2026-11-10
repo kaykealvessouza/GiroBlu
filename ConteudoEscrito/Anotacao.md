@@ -69,7 +69,7 @@ As informações desta seção representam propostas de modelagem e decisões to
 
 **Atualização 06/11 — Definindo atributos e métodos**
 
-**UML CRIADO? --> [ X ]**
+**UML CRIADO? --> [X]**
 
 **Atributos**
 - `private ArrayList<Estacao> estacoes;`
@@ -138,7 +138,7 @@ As informações desta seção representam propostas de modelagem e decisões to
 - Veículos em uso não ocupam vagas na estação de origem.
 - Uma estação não pode receber mais veículos do que sua capacidade permite.
 
-**Atualização 07/11 - Definindo atributos e métodos**
+**Atualização 06/11 — Definindo atributos e métodos**
 
 **UML CRIADO? --> [X]**
 
@@ -188,7 +188,7 @@ As informações desta seção representam propostas de modelagem e decisões to
 - O estado do veículo será representado por um enum com os valores `DISPONIVEL`, `EM_USO` e `MANUTENCAO`.
 - O código identificador será gerado automaticamente, evitando que seja informado manualmente no cadastro.
 
-**Atualização 07/11 - Definindo atributos e métodos**
+**Atualização 06/11 — Definindo atributos e métodos**
 
 **UML CRIADO? --> [X]**
 
@@ -244,7 +244,7 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 - Implementar os comportamentos abstratos exigidos pela classe `Veiculo`.
 - Definir suas tarifas específicas.
 
-**Atualização 07/11 - Definindo atributos e métodos**
+**Atualização 06/11 — Definindo atributos e métodos**
 
 **UML CRIADO? --> [X]**
 
@@ -285,7 +285,7 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 - A recarga deverá levar a bateria até 100%, respeitando a regra de que o veículo não pode estar em uso.
 - O consumo por minuto poderá variar de acordo com o tipo de veículo elétrico.
 
-**Atualização 07/11 - Definindo atributos e métodos**
+**Atualização 06/11 — Definindo atributos e métodos**
 
 **UML CRIADO? --> [X]**
 
@@ -421,21 +421,8 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 - `private Plano planoContratado;`
 - `private Carteira carteira;`
 
-- private String nome;
-- private String email;
-- private Viagem viagemAtiva;
-- private Plano planoContratado;
-- private Carteira carteira;
-
 **Construtor**
 - `public Usuario(String nome, String email, Plano planoContratado);`
-
-- public Usuario(String nome, String email, Plano planoContratado) {
-    this.nome = nome;
-    this.email = email;
-    this.planoContratado = planoContratado;
-    this.carteira = new Carteira();   // ← o usuário cria a própria carteira, zerada
-}
 
 **Métodos**
 - `public String consultarNome();`
@@ -808,26 +795,6 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 - `consultarValorMovimentacao()` retornará o atributo `valor`.
 - `consultarTipoMovimentacao()` retornará `TipoMovimentacao.CREDITO`.
 - A classe não será responsável por atualizar o saldo da carteira. Essa operação ficará sob responsabilidade de `Carteira`.
-
-## 2.11 Recarga
-
-**Objetivo:** armazenar o histórico de recargas da carteira de um certo usuário.
-
-**Atualização XX/11 - Definindo atributos e métodos**
-
-**UML CRIADO? --> [ x ]**
-
-**Atributos**
-- private double valor 
-- private LocalDateTime dataHora
-
-**Construtor**
-- public Recarga(valor: int, dataHora: LocalDateTime)
-	{throws ValorInvalidoException} 
-
-**Métodos**
-- public double consultarValor()
-- public LocalDateTime consultarDataHora() 
 
 ---
 
