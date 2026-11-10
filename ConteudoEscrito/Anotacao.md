@@ -67,7 +67,7 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 
 **Atualização 06/11 - Definindo atributos e métodos**
 
-**UML CRIADO? --> [  ]**
+**UML CRIADO? --> [ X ]**
 
 **Atributos**
 - private ArrayList<Estacao> estacoes;
@@ -263,8 +263,10 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 - public void recarregarBateria();
 - public boolean possuiCargaMinimaParaViagem();
 - public int consultarNivelBateria();
-- public void consumirBateria(int minutos);
+- public abstract int consultarNivelBateria();
+- public abstract void consumirBateria(int minutos);
 - public abstract int consultarConsumoPorMinuto();
+- public abstract boolean aceitaDescontoUniversitario() 
 
 ### 2.5.1. BicicletaEletrica
 
@@ -284,8 +286,20 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 **Atributos**
 
 **Construtor**
+- public BicicletaEletrica(modelo: String, estacaoAtual: Estacao, nivelBateria: int)
 
 **Métodos**
+- public double consultarTarifaDeDesbloqueio()
+- public double consultarTarifaPorMinuto()
+- public TipoVeiculo consultarTipo()
+@Override
+- public int consultarConsumoPorMinuto()
+@Override
+- public void finalizarUtilizacao(minutos: int)
+@Override
+- public void consumirBateria(minutos: int)
+@Override
+- public boolean aceitaDescontoUniversitario() 
 
 ### 2.5.2. PatineteEletrico
 
@@ -305,8 +319,21 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 **Atributos**
 
 **Construtor**
+- public PatineteEletrico(modelo: String, estacaoAtual: Estacao, nivelBateria: int)
 
 **Métodos**
+- public double consultarTarifaDeDesbloqueio()
+- public double consultarTarifaPorMinuto()
+- public TipoVeiculo consultarTipo() 
+@Override
+- public boolean aceitaDescontoUniversitario() 
+@Override
+- public int consultarConsumoPorMinuto()
+@Override
+- public void finalizarUtilizacao(minutos: int)
+@Override
+- public void consumirBateria(minutos: int) 
+
 
 ## 2.6. Usuario
 
@@ -336,15 +363,15 @@ As informações desta seção são propostas iniciais e poderão ser modificada
 
 **Atributos**
 
-private String nome;
-private String email;
-private Viagem viagemAtiva;
-private Plano planoContratado;
-private Carteira carteira;
+- private String nome;
+- private String email;
+- private Viagem viagemAtiva;
+- private Plano planoContratado;
+- private Carteira carteira;
 
 **Construtor**
 
-public Usuario(String nome, String email, Plano planoContratado) {
+- public Usuario(String nome, String email, Plano planoContratado) {
     this.nome = nome;
     this.email = email;
     this.planoContratado = planoContratado;
@@ -353,30 +380,35 @@ public Usuario(String nome, String email, Plano planoContratado) {
 
 **Métodos**
 
-public boolean possuiViagemEmAndamento() {return viagemAtiva != null;}   // tem objeto? então tem viagem
-public boolean temSaldoMinimo() {return carteira.temSaldoMinimo();}     // repassa a pergunta pra carteira
+- public String consultarNome()
+- public String consultarEmail()
+- public Plano consultarPlanoContratado()
+- public Viagem consultarViagemAtiva()
 
-public void registrarViagemAtiva(Viagem viagem) throws ViagemEmAndamentoException {
+- public boolean possuiViagemEmAndamento() {return viagemAtiva != null;}   // tem objeto? então tem viagem
+- public boolean temSaldoMinimo() {return carteira.temSaldoMinimo();}     // repassa a pergunta pra carteira
+
+- public void registrarViagemAtiva(Viagem viagem) throws ViagemEmAndamentoException {
     if (possuiViagemEmAndamento()) {
         throw new ViagemEmAndamentoException("Usuário já possui uma viagem em andamento.");
     }
     this.viagemAtiva = viagem;     // ← o trabalho de verdade do método
 }
 
-public void finalizarViagemAtiva() throws SemViagemEmAndamentoException {
+- public void finalizarViagemAtiva() throws SemViagemEmAndamentoException {
     if (!possuiViagemEmAndamento()) {
         throw new SemViagemEmAndamentoException("Usuário não possui viagem em andamento.");
     }
     this.viagemAtiva = null;     // ← o usuário deixa de ter viagem ativa
 }
 
-public void recarregarCarteira(double valor, LocalDateTime dataHora) throws ValorInvalidoException {carteira.adicionarSaldo(valor, dataHora);}
+- public void recarregarCarteira(double valor, LocalDateTime dataHora) throws ValorInvalidoException {carteira.adicionarSaldo(valor, dataHora);}
 
-public void pagarViagem(double valor) {carteira.debitarValor(valor);}
+- public void pagarViagem(double valor) {carteira.debitarValor(valor);}
 
-public double consultarSaldo() {return carteira.getSaldoAtual();}
+- public double consultarSaldo() {return carteira.getSaldoAtual();}
 
-public List<Recarga> consultarRecargas() {return carteira.getHistoricoRecarga();}
+- public List<Recarga> consultarRecargas() {return carteira.getHistoricoRecarga();}
 
 
 ## 2.7. Plano (Interface)
@@ -403,6 +435,8 @@ public List<Recarga> consultarRecargas() {return carteira.getHistoricoRecarga();
 **Construtor**
 
 **Métodos**
+- public double calcularValor(veiculo: Veiculo, minutos: int)
+- public String cosultarNome()
 
 ### 2.7.1. PlanoAvulso
 
@@ -417,6 +451,10 @@ public List<Recarga> consultarRecargas() {return carteira.getHistoricoRecarga();
 **Construtor**
 
 **Métodos**
+@Override
+- public double calcularValor(veiculo: Veiculo, minutos: int)
+@Override
+- public String cosultarNome()
 
 ### 2.7.2. PlanoMensal
 
@@ -431,6 +469,10 @@ public List<Recarga> consultarRecargas() {return carteira.getHistoricoRecarga();
 **Construtor**
 
 **Métodos**
+@Override
+- public double calcularValor(veiculo: Veiculo, minutos: int)
+@Override
+- public String cosultarNome()
 
 ### 2.7.3. PlanoUniversitario
 
@@ -445,6 +487,10 @@ public List<Recarga> consultarRecargas() {return carteira.getHistoricoRecarga();
 **Construtor**
 
 **Métodos**
+@Override
+- public double calcularValor(veiculo: Veiculo, minutos: int)
+@Override
+- public String cosultarNome()
 
 ## 2.8. Carteira
 
@@ -473,10 +519,19 @@ public List<Recarga> consultarRecargas() {return carteira.getHistoricoRecarga();
 **UML CRIADO? --> [x]**
 
 **Atributos**
+- private double saldoAtual
+- private ArrayList<Recarga> historicoRecarga 
+- private static final double SALDO_MINIMO = 5.0
 
 **Construtor**
+- public Carteira()
 
 **Métodos**
+- public double consultarSaldoAtual()
+- public List<Recarga> consultarHistoricoRecarga()
+- public void adicionarSaldo(valor: double, dataHora: LocalDateTime)
+- public void debitarValor(valor: double)
+- public boolean temSaldoMinimo()
 
 ## 2.9. Viagem
 
@@ -557,6 +612,26 @@ Total |	35 |	R$ 197,50
 **Construtor**
 
 **Métodos**
+
+## 2.11 Recarga
+
+**Objetivo:** armazenar o histórico de recargas da carteira de um certo usuário.
+
+**Atualização XX/11 - Definindo atributos e métodos**
+
+**UML CRIADO? --> [ x ]**
+
+**Atributos**
+- private double valor 
+- private LocalDateTime dataHora
+
+**Construtor**
+- public Recarga(valor: int, dataHora: LocalDateTime)
+	{throws ValorInvalidoException} 
+
+**Métodos**
+- public double consultarValor()
+- public LocalDateTime consultarDataHora() 
 
 ---
 
