@@ -1,314 +1,439 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Page-1" id="13h2fEhCeAIvE8MdByC8">
-    <mxGraphModel dx="484" dy="855" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="1200" math="0" shadow="0">
+    <mxGraphModel dx="1246" dy="686" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="1200" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="VOzfNgnplMJaNr39qCtg-5" edge="1" parent="1" source="VOzfNgnplMJaNr39qCtg-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.559;entryY=-0.003;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;startArrow=classicThin;startFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryPerimeter=0;" target="VOzfNgnplMJaNr39qCtg-11">
-          <mxGeometry relative="1" x="-0.2186" as="geometry">
-            <mxPoint x="2607.4479999999994" y="467.9200000000001" as="sourcePoint" />
-            <mxPoint x="2768.998" y="467.05000000000007" as="targetPoint" />
-          </mxGeometry>
+        <mxCell id="g3" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=44;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="«interface»&lt;br&gt;&lt;b&gt;Plano&lt;/b&gt;" vertex="1">
+          <mxGeometry height="102" width="380" x="300" y="882" as="geometry" />
         </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-6" connectable="0" parent="VOzfNgnplMJaNr39qCtg-5" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="0..1&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;0..*&lt;/span&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry relative="1" x="-0.2274" y="1" as="geometry">
-            <mxPoint x="-20" y="13" as="offset" />
-          </mxGeometry>
+        <mxCell id="g4" parent="g3" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="8" width="380" y="44" as="geometry" />
         </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-7" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Estacao" vertex="1">
-          <mxGeometry height="280" width="298" x="2800" y="40" as="geometry" />
+        <mxCell id="g5" parent="g3" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
+          <mxGeometry height="8" width="380" y="52" as="geometry" />
         </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-8" parent="VOzfNgnplMJaNr39qCtg-7" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- nome: String&lt;br&gt;- capacidadeMaxima: int&lt;div&gt;- veiculosEstacionados: ArrayList&amp;lt;Veiculo&amp;gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="65.5" width="298" y="26" as="geometry" />
+        <mxCell id="g6" parent="g3" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;i&gt;+ calcularValor(veiculo: Veiculo,&amp;nbsp;&lt;/i&gt;minutos: long&lt;i&gt;): double&lt;/i&gt;&lt;br&gt;&lt;i&gt;+ consultarNome(): String&lt;/i&gt;" vertex="1">
+          <mxGeometry height="42" width="380" y="60" as="geometry" />
         </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-9" parent="VOzfNgnplMJaNr39qCtg-7" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
-          <mxGeometry height="8" width="298" y="91.5" as="geometry" />
+        <mxCell id="g7" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Usuario" vertex="1">
+          <mxGeometry height="356" width="450" x="700" y="352" as="geometry" />
         </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-10" parent="VOzfNgnplMJaNr39qCtg-7" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ Estacao(nome: String, capacidadeMaxima: int)&lt;br&gt;+ getNome(): String&lt;br&gt;+ getCapacidadeMaxima(): int&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;+ adicionarVeiculo(veiculo: Veiculo): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;{throws EstacaoLotadaException}&lt;/div&gt;&lt;div&gt;+ removerVeiculo(veiculo: Veiculo): void&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;{throws VeiculoNaoEncontradoException}&lt;/div&gt;&lt;div&gt;+ consultarQuantidadeVeiculosEstacionados(): int&lt;/div&gt;&lt;div&gt;+ consultarVagasDisponiveis(): int&lt;/div&gt;&lt;div&gt;+ consultarVeiculosDisponiveis(): ArrayList&amp;lt;Veiculo&amp;gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="180.5" width="298" y="99.5" as="geometry" />
+        <mxCell id="g8" parent="g7" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- nome: String&lt;br&gt;- email: String&lt;br&gt;- viagemAtiva: Viagem&lt;br&gt;- planoContratado: Plano&lt;br&gt;- carteira: Carteira" vertex="1">
+          <mxGeometry height="93" width="450" y="26" as="geometry" />
         </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-11" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;i&gt;Veiculo&lt;/i&gt;" vertex="1">
-          <mxGeometry height="340" width="321" x="2769" y="450" as="geometry" />
+        <mxCell id="g9" parent="g7" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
+          <mxGeometry height="8" width="450" y="119" as="geometry" />
         </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-12" parent="VOzfNgnplMJaNr39qCtg-11" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- &lt;u&gt;contadorCodigo&lt;/u&gt;: int&lt;div&gt;- codigoIdentificador: int&amp;nbsp;&lt;span style=&quot;font-weight: 700; text-align: center; background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;«final»&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;- modelo: String&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;- estacaoAtual: Estacao&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;- estadoAtual: EstadoVeiculo&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="86" width="321" y="26" as="geometry" />
+        <mxCell id="g10" parent="g7" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ Usuario(nome: String, email: String, planoContratado: Plano)&lt;br&gt;+ consultarNome(): String&lt;br&gt;+ consultarEmail(): String&lt;br&gt;+ consultarPlanoContratado(): Plano&lt;br&gt;+ consultarViagemAtiva(): Viagem&lt;br&gt;+ possuiViagemEmAndamento(): boolean&lt;br&gt;+ temSaldoMinimo(): boolean&lt;br&gt;+ registrarViagemAtiva(viagem: Viagem): void&lt;br&gt;+ finalizarViagemAtiva(): void&lt;br&gt;+ recarregarCarteira(valor: double, dataHora: LocalDateTime): void&lt;br&gt;+ pagarViagem(&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;Viagem viagem&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;): void&lt;/span&gt;&lt;br&gt;+ consultarSaldo(): double&lt;br&gt;+ consultarRecargas(): List&amp;lt;Recarga&amp;gt;&lt;div&gt;+ consultarHistoricoMovimentacoes():&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;List&amp;lt;MovimentacaoFinanceira&amp;gt;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="229" width="450" y="127" as="geometry" />
         </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-13" parent="VOzfNgnplMJaNr39qCtg-11" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
-          <mxGeometry height="8" width="321" y="112" as="geometry" />
+        <mxCell id="g11" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Sistema" vertex="1">
+          <mxGeometry height="339" width="600" x="1860" y="822" as="geometry" />
         </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-14" parent="VOzfNgnplMJaNr39qCtg-11" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="# Veiculo(modelo: String, estacaoAtual: Estacao)&lt;div&gt;+ iniciarUtilizacao(): void&lt;/div&gt;&lt;div&gt;+ finalizarUtilizacao(minutos: int): void&lt;/div&gt;&lt;div&gt;+ enviarParaManutencao(): void&lt;/div&gt;&lt;div&gt;+ retornarDaManutencao(): void&lt;/div&gt;&lt;div&gt;+ consultarEstadoAtual(): EstadoVeiculo&lt;/div&gt;&lt;div&gt;+ consultarEstacaoAtual(): Estacao&lt;/div&gt;&lt;div&gt;+ consultarModelo(): String&lt;/div&gt;&lt;div&gt;+ consultarCodigo(): int&lt;br&gt;+ podeSerLiberado(): boolean&lt;/div&gt;&lt;div&gt;+ &lt;i&gt;consultarTarifaDeDesbloqueio()&lt;/i&gt;: double&lt;/div&gt;&lt;div&gt;+&lt;i&gt; consultarTarifaPorMinuto()&lt;/i&gt;: double&lt;/div&gt;&lt;div&gt;+ &lt;i&gt;consultarTipo()&lt;/i&gt;: TipoVeiculo&lt;/div&gt;&lt;div&gt;+ aceitaDescontoUniversitario(): boolean&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="220" width="321" y="120" as="geometry" />
+        <mxCell id="g12" parent="g11" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- estacoes: ArrayList&amp;lt;Estacao&amp;gt;&lt;br&gt;- veiculos: ArrayList&amp;lt;Veiculo&amp;gt;&lt;br&gt;- usuarios: ArrayList&amp;lt;Usuario&amp;gt;&lt;br&gt;- viagens: ArrayList&amp;lt;Viagem&amp;gt;" vertex="1">
+          <mxGeometry height="76" width="600" y="26" as="geometry" />
         </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-15" edge="1" parent="1" source="VOzfNgnplMJaNr39qCtg-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.491;exitY=0.999;exitDx=0;exitDy=0;defaultLabelBackgroundColor=page;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="VOzfNgnplMJaNr39qCtg-79">
+        <mxCell id="g13" parent="g11" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
+          <mxGeometry height="8" width="600" y="102" as="geometry" />
+        </mxCell>
+        <mxCell id="g14" parent="g11" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ Sistema()&lt;br&gt;+ cadastrarEstacao(estacao: Estacao): void&lt;br&gt;+ cadastrarVeiculo(veiculo: Veiculo): void&lt;br&gt;+ cadastrarUsuario(usuario: Usuario): void&lt;br&gt;+ consultarFaturamento(dataInicial: LocalDate, dataFinal: LocalDate): RelatorioFaturamento&lt;br&gt;+ consultarEstacao(nome: String): Estacao&lt;br&gt;+ consultarEstacoes(): List&amp;lt;Estacao&amp;gt;&lt;br&gt;+ consultarVeiculo(codigo: int): Veiculo&lt;br&gt;+ consultarVeiculos(): List&amp;lt;Veiculo&amp;gt;&lt;br&gt;+ consultarUsuario(email: String): Usuario&lt;br&gt;+ consultarUsuarios(): List&amp;lt;Usuario&amp;gt;&lt;br&gt;+ consultarViagensDoUsuario(usuario: Usuario): List&amp;lt;Viagem&amp;gt;&lt;br&gt;+ consultarViagens(): List&amp;lt;Viagem&amp;gt;&lt;div&gt;&lt;div&gt;+ iniciarViagem(Usuario usuario, Veiculo veiculo, LocalDateTime dataHoraInicio):&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;Viagem&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ finalizarViagem(Viagem viagem, Estacao estacaoDestino, LocalDateTime dataHoraFim): void&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="229" width="600" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="g19" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="PlanoAvulso" vertex="1">
+          <mxGeometry height="84" width="380" x="40" y="1084" as="geometry" />
+        </mxCell>
+        <mxCell id="g20" parent="g19" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="8" width="380" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="g21" parent="g19" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
+          <mxGeometry height="8" width="380" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="g22" parent="g19" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ calcularValor(veiculo: Veiculo, minutos: long): double&lt;br&gt;+ consultarNome(): String" vertex="1">
+          <mxGeometry height="42" width="380" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="g23" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="PlanoMensal" vertex="1">
+          <mxGeometry height="84" width="380" x="560" y="1084" as="geometry" />
+        </mxCell>
+        <mxCell id="g24" parent="g23" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="8" width="380" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="g25" parent="g23" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
+          <mxGeometry height="8" width="380" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="g26" parent="g23" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ calcularValor(veiculo: Veiculo, minutos: long): double&lt;br&gt;+ consultarNome(): String" vertex="1">
+          <mxGeometry height="42" width="380" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="g27" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="PlanoUniversitario" vertex="1">
+          <mxGeometry height="84" width="380" x="300" y="1192" as="geometry" />
+        </mxCell>
+        <mxCell id="g28" parent="g27" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="8" width="380" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="g29" parent="g27" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
+          <mxGeometry height="8" width="380" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="g30" parent="g27" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ calcularValor(veiculo: Veiculo, minutos: long): double&lt;br&gt;+ consultarNome(): String" vertex="1">
+          <mxGeometry height="42" width="380" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="g31" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Carteira" vertex="1">
+          <mxGeometry height="180" width="390" x="1390" y="362" as="geometry" />
+        </mxCell>
+        <mxCell id="g32" parent="g31" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;- saldoAtual:&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;double&lt;/span&gt;&lt;/div&gt;&lt;div&gt;- historicoMovimentacoes:&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;List&amp;lt;MovimentacaoFinanceira&amp;gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="44" width="390" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="g33" parent="g31" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
+          <mxGeometry height="3.5" width="390" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="g34" parent="g31" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;+&amp;nbsp;Carteira()&lt;/div&gt;&lt;div&gt;+ adicionarSaldo(Recarga recarga):&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;void&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ debitarValor(Viagem viagem):&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;void&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ consultarSaldoAtual():&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;double&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ consultarHistoricoMovimentacoes():&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;List&amp;lt;MovimentacaoFinanceira&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ temSaldoMinimo():&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;boolean&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="106.5" width="390" y="73.5" as="geometry" />
+        </mxCell>
+        <mxCell id="g35" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Viagem" vertex="1">
+          <mxGeometry height="420" width="300" x="1350" y="602" as="geometry" />
+        </mxCell>
+        <mxCell id="g36" parent="g35" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;- usuario:&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;Usuario&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;- veiculo:&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;Veiculo&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;- estacaoOrigem:&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;Estacao&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;- estacaoDestino:&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;Estacao&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;- dataHoraInicio:&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;LocalDateTime&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;- dataHoraFim:&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;LocalDateTime&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;- valorCobrado:&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;double&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="119" width="300" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="g37" parent="g35" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
+          <mxGeometry height="8" width="300" y="145" as="geometry" />
+        </mxCell>
+        <mxCell id="g38" parent="g35" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;+&amp;nbsp;Viagem(Usuario, Veiculo,&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;Estacao estacaoOrigem&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;, LocalDateTime)&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ finalizarViagem(Estacao estacaoDestino, LocalDateTime dataHoraFim):&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;void&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ calcularDuracao():&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;long&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ calcularValor():&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;double&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ estaEmAndamento():&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;boolean&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ consultarUsuario():&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;Usuario&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ consultarVeiculo():&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;Veiculo&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ consultarEstacaoOrigem():&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;Estacao&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ consultarEstacaoDestino():&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;Estacao&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ consultarDataHoraInicio():&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;LocalDateTime&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ consultarDataHoraFim():&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;LocalDateTime&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ consultarValorCobrado():&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;double&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;div style=&quot;&quot;&gt;+ consultarDataHoraMovimentacao(): LocalDateTime&lt;/div&gt;&lt;div style=&quot;&quot;&gt;+ consultarValorMovimentacao(): double&lt;/div&gt;&lt;div style=&quot;&quot;&gt;+ consultarTipoMovimentacao(): TipoMovimentacao&lt;/div&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="267" width="300" y="153" as="geometry" />
+        </mxCell>
+        <mxCell id="g39" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Estacao" vertex="1">
+          <mxGeometry height="203" width="340" x="1980" y="1378" as="geometry" />
+        </mxCell>
+        <mxCell id="g40" parent="g39" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- nome: String&lt;br&gt;- capacidadeMaxima: int&lt;br&gt;- veiculosEstacionados: ArrayList&amp;lt;Veiculo&amp;gt;" vertex="1">
+          <mxGeometry height="59" width="340" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="g41" parent="g39" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
+          <mxGeometry height="8" width="340" y="85" as="geometry" />
+        </mxCell>
+        <mxCell id="g42" parent="g39" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ Estacao(nome: String, capacidadeMaxima: int)&lt;br&gt;+ adicionarVeiculo(veiculo: Veiculo): void&lt;br&gt;+ removerVeiculo(veiculo: Veiculo): void&lt;br&gt;+ consultarVagasDisponiveis(): int&lt;br&gt;+ consultarVeiculosDisponiveis(): List&amp;lt;Veiculo&amp;gt;&lt;br&gt;+ consultarQuantidadeVeiculosEstacionados(): int" vertex="1">
+          <mxGeometry height="110" width="340" y="93" as="geometry" />
+        </mxCell>
+        <mxCell id="g43" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=44;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="«enumeration»&lt;br&gt;&lt;b&gt;EstadoVeiculo&lt;/b&gt;" vertex="1">
+          <mxGeometry height="119" width="200" x="810" y="1352" as="geometry" />
+        </mxCell>
+        <mxCell id="g44" parent="g43" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="DISPONIVEL&lt;br&gt;EM_USO&lt;br&gt;MANUTENCAO" vertex="1">
+          <mxGeometry height="59" width="200" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="g45" parent="g43" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
+          <mxGeometry height="8" width="200" y="103" as="geometry" />
+        </mxCell>
+        <mxCell id="g46" parent="g43" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="8" width="200" y="111" as="geometry" />
+        </mxCell>
+        <mxCell id="g47" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;i&gt;Veiculo&lt;/i&gt;" vertex="1">
+          <mxGeometry height="339" width="340" x="1090" y="1242" as="geometry" />
+        </mxCell>
+        <mxCell id="g48" parent="g47" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;u&gt;- contadorCodigo: int&lt;/u&gt;&lt;br&gt;- codigoIdentificador: int {final}&lt;br&gt;- modelo: String&lt;br&gt;- estadoAtual: EstadoVeiculo&lt;br&gt;- estacaoAtual: Estacao" vertex="1">
+          <mxGeometry height="93" width="340" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="g49" parent="g47" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
+          <mxGeometry height="8" width="340" y="119" as="geometry" />
+        </mxCell>
+        <mxCell id="g50" parent="g47" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="# Veiculo(modelo: String, estacaoAtual: Estacao)&lt;br&gt;+ iniciarUtilizacao(): void&lt;br&gt;+ finalizarUtilizacao(Estacao estacaoDestino, long minutos): void&lt;br&gt;+ enviarParaManutencao(): void&lt;br&gt;+ retornarDaManutencao(): void&lt;br&gt;+ podeSerLiberado(): boolean&lt;br&gt;+ consultarEstadoAtual(): EstadoVeiculo&lt;br&gt;+ consultarEstacaoAtual(): Estacao&lt;br&gt;+ consultarModelo(): String&lt;br&gt;+ consultarCodigo(): int&lt;br&gt;&lt;i&gt;+ consultarTarifaDeDesbloqueio(): double&lt;/i&gt;&lt;br&gt;&lt;i&gt;+ consultarTarifaPorMinuto(): double&lt;/i&gt;&lt;br&gt;&lt;i&gt;+ consultarTipo(): TipoVeiculo&lt;br&gt;&lt;/i&gt;" vertex="1">
+          <mxGeometry height="212" width="340" y="127" as="geometry" />
+        </mxCell>
+        <mxCell id="g51" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=44;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="«enumeration»&lt;br&gt;&lt;b&gt;TipoVeiculo&lt;/b&gt;" vertex="1">
+          <mxGeometry height="119" width="200" x="1490" y="1212" as="geometry" />
+        </mxCell>
+        <mxCell id="g52" parent="g51" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="BICICLETA_MECANICA&lt;br&gt;BICICLETA_ELETRICA&lt;br&gt;PATINETE_ELETRICO" vertex="1">
+          <mxGeometry height="59" width="200" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="g53" parent="g51" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
+          <mxGeometry height="8" width="200" y="103" as="geometry" />
+        </mxCell>
+        <mxCell id="g54" parent="g51" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="8" width="200" y="111" as="geometry" />
+        </mxCell>
+        <mxCell id="g55" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="BicicletaMecanica" vertex="1">
+          <mxGeometry height="118" width="400" x="770" y="1691" as="geometry" />
+        </mxCell>
+        <mxCell id="g56" parent="g55" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="8" width="400" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="g57" parent="g55" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
+          <mxGeometry height="8" width="400" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="g58" parent="g55" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ BicicletaMecanica(modelo: String, estacaoAtual: Estacao)&lt;br&gt;+ consultarTarifaDeDesbloqueio(): double&lt;br&gt;+ consultarTarifaPorMinuto(): double&lt;br&gt;+ consultarTipo(): TipoVeiculo" vertex="1">
+          <mxGeometry height="76" width="400" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="g59" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;i&gt;VeiculoEletrico&lt;/i&gt;" vertex="1">
+          <mxGeometry height="194" width="510" x="1240" y="1691" as="geometry" />
+        </mxCell>
+        <mxCell id="g60" parent="g59" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- nivelBateria: int" vertex="1">
+          <mxGeometry height="25" width="510" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="g61" parent="g59" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
+          <mxGeometry height="8" width="510" y="51" as="geometry" />
+        </mxCell>
+        <mxCell id="g62" parent="g59" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="# VeiculoEletrico(modelo: String, estacaoAtual: Estacao, nivelBateria: int)&lt;br&gt;+ recarregarBateria(): void&lt;br&gt;+ possuiCargaMinimaParaViagem(): boolean&lt;br&gt;+ consultarNivelBateria(): int&lt;br&gt;+ consumirBateria(long minutos): void&lt;br&gt;&lt;i&gt;+ consultarConsumoPorMinuto(): int&lt;/i&gt;&lt;br&gt;+ finalizarUtilizacao(&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;Estacao estacaoDestino,&amp;nbsp;&lt;/span&gt;minutos: long&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;): void&lt;/span&gt;&lt;div&gt;+ podeSerLiberado(): boolean&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="135" width="510" y="59" as="geometry" />
+        </mxCell>
+        <mxCell id="g63" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="BicicletaEletrica" vertex="1">
+          <mxGeometry height="135" width="520" x="945" y="1988" as="geometry" />
+        </mxCell>
+        <mxCell id="g64" parent="g63" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="8" width="520" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="g65" parent="g63" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
+          <mxGeometry height="8" width="520" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="g66" parent="g63" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ BicicletaEletrica(modelo: String, estacaoAtual: Estacao, nivelBateria: int)&lt;br&gt;+ consultarTarifaDeDesbloqueio(): double&lt;br&gt;+ consultarTarifaPorMinuto(): double&lt;br&gt;+ consultarTipo(): TipoVeiculo&lt;br&gt;+ consultarConsumoPorMinuto(): int" vertex="1">
+          <mxGeometry height="93" width="520" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="g67" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="PatineteEletrico" vertex="1">
+          <mxGeometry height="135" width="510" x="1525" y="1988" as="geometry" />
+        </mxCell>
+        <mxCell id="g68" parent="g67" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="8" width="510" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="g69" parent="g67" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
+          <mxGeometry height="8" width="510" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="g70" parent="g67" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ PatineteEletrico(modelo: String, estacaoAtual: Estacao, nivelBateria: int)&lt;br&gt;+ consultarTarifaDeDesbloqueio(): double&lt;br&gt;+ consultarTarifaPorMinuto(): double&lt;br&gt;+ consultarTipo(): TipoVeiculo&lt;br&gt;+ consultarConsumoPorMinuto(): int" vertex="1">
+          <mxGeometry height="93" width="510" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="g71" edge="1" parent="1" source="g59" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;endArrow=block;endSize=16;endFill=0;" target="g47" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="g72" edge="1" parent="1" source="g55" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;endArrow=block;endSize=16;endFill=0;" target="g47" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="g73" edge="1" parent="1" source="g63" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;endArrow=block;endSize=16;endFill=0;" target="g59" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="g74" edge="1" parent="1" source="g67" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;endArrow=block;endSize=16;endFill=0;" target="g59" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="g75" edge="1" parent="1" source="g19" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=block;endSize=16;endFill=0;" target="g3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="g76" edge="1" parent="1" source="g23" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=block;endSize=16;endFill=0;" target="g3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="g77" edge="1" parent="1" source="g27" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=block;endSize=16;endFill=0;" target="g3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="g78" edge="1" parent="1" source="g11" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;startArrow=diamond;startFill=0;startSize=14;endArrow=open;endSize=10;" target="g39" value="estacoes 0..*">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="g79" edge="1" parent="1" source="g11" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;startArrow=diamond;startFill=0;startSize=14;endArrow=open;endSize=10;" target="g47" value="veiculos 0..*">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="2007" y="950" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-16" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Usuario" vertex="1">
-          <mxGeometry height="333" width="360" x="1772" y="530" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-17" parent="VOzfNgnplMJaNr39qCtg-16" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- nome: String&lt;div&gt;- email: String&lt;/div&gt;&lt;div&gt;- viagemAtiva: Viagem&lt;/div&gt;&lt;div&gt;- planoContratado: Plano&lt;/div&gt;&lt;div&gt;- carteira: Carteira&lt;/div&gt;" vertex="1">
-          <mxGeometry height="94" width="360" y="26" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-18" parent="VOzfNgnplMJaNr39qCtg-16" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
-          <mxGeometry height="8" width="360" y="120" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-19" parent="VOzfNgnplMJaNr39qCtg-16" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ Usuario(nome: String, email: String, planoContratado: Plano)&lt;div&gt;+ consultarNome(): String&lt;/div&gt;&lt;div&gt;+ consultarEmail(): String&lt;/div&gt;&lt;div&gt;+&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;consultar&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;PlanoContratado(): Plano&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ consultarViagemAtiva(): Viagem&lt;br&gt;&lt;div&gt;+ possuiViagemEmAndamento(): boolean&lt;/div&gt;&lt;div&gt;+ temSaldoMinimo(): boolean&lt;/div&gt;&lt;div&gt;+ registrarViagemAtiva(viagem: Viagem): void&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ finalizarViagemAtiva(): void&lt;/div&gt;&lt;div&gt;+ recarregarSaldo(valor: double, dataHora: LocalDateTime): void&lt;/div&gt;&lt;/div&gt;&lt;div&gt;+ pagarViagem(valor: double): void&lt;/div&gt;&lt;div&gt;+ consultarSaldo(): double&lt;/div&gt;&lt;div&gt;+ consultarRecarga(): List&amp;lt;Recarga&amp;gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="205" width="360" y="128" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-20" edge="1" parent="1" source="VOzfNgnplMJaNr39qCtg-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;" target="VOzfNgnplMJaNr39qCtg-11">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-21" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;i&gt;VeiculoEletrico&lt;/i&gt;" vertex="1">
-          <mxGeometry height="260" width="214" x="2670" y="840" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-22" parent="VOzfNgnplMJaNr39qCtg-21" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- nivelBateria: int" vertex="1">
-          <mxGeometry height="26" width="214" y="26" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-23" parent="VOzfNgnplMJaNr39qCtg-21" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
-          <mxGeometry height="8" width="214" y="52" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-24" parent="VOzfNgnplMJaNr39qCtg-21" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="# VeiculoEletrico (modelo: String, estacaoAtual: Estacao, nivelBateria: int)&lt;div&gt;+ recarregarBateria(): void&lt;/div&gt;&lt;div&gt;+ possuiCargaMinimaParaViagem(): boolean&lt;/div&gt;&lt;div&gt;+ consultarNivelBateria(): int&lt;/div&gt;&lt;div&gt;+ podeSerLiberado(): boolean&lt;/div&gt;&lt;div&gt;&lt;i&gt;+ finalizarUtilizacao(minutos: int): void&lt;/i&gt;&lt;/div&gt;&lt;div&gt;&lt;i&gt;+ consumirBateria(minutos: int): void&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;+ &lt;i&gt;consultarConsumoPorMinuto()&lt;/i&gt;: int&lt;i&gt;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;&lt;i&gt;+ aceitaDescontoUniversitario(): boolean&lt;/i&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="200" width="214" y="60" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-25" edge="1" parent="1" source="VOzfNgnplMJaNr39qCtg-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;endArrow=open;endFill=0;" target="VOzfNgnplMJaNr39qCtg-11">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-26" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="BicicletaMecanica" vertex="1">
-          <mxGeometry height="120" width="270" x="2960" y="840" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-27" parent="VOzfNgnplMJaNr39qCtg-26" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
-          <mxGeometry height="8" width="270" y="26" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-28" parent="VOzfNgnplMJaNr39qCtg-26" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ BicicletaMecanica(modelo: String, estacaoAtual: Estacao)&lt;div&gt;&lt;div&gt;+ consultarTarifaDeDesbloqueio(): double&lt;/div&gt;&lt;div&gt;+ consultarTarifaPorMinuto(): double&lt;/div&gt;&lt;div&gt;+ consultarTipo(): TipoVeiculo&lt;/div&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="86" width="270" y="34" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-29" edge="1" parent="1" source="VOzfNgnplMJaNr39qCtg-30" style="edgeStyle=none;curved=1;rounded=0;curveGeometry=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=12;defaultLabelBackgroundColor=page;startSize=8;endSize=8;dashed=1;endArrow=block;endFill=0;" target="VOzfNgnplMJaNr39qCtg-79">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-30" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="PlanoUniversitario" vertex="1">
-          <mxGeometry height="104" width="154" x="1873" y="1169" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-31" parent="VOzfNgnplMJaNr39qCtg-30" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
-          <mxGeometry height="8" width="154" y="26" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-32" parent="VOzfNgnplMJaNr39qCtg-30" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ calcularValor(veiculo: Veiculo, minutos: int): double&lt;br&gt;+ StringNome(): String" vertex="1">
-          <mxGeometry height="70" width="154" y="34" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-33" edge="1" parent="1" source="VOzfNgnplMJaNr39qCtg-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=12;defaultLabelBackgroundColor=page;startSize=8;endSize=8;dashed=1;endArrow=block;endFill=0;" target="VOzfNgnplMJaNr39qCtg-79">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-34" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="PlanoMensal" vertex="1">
-          <mxGeometry height="104" width="154" x="2032" y="1169" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-35" parent="VOzfNgnplMJaNr39qCtg-34" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
-          <mxGeometry height="8" width="154" y="26" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-36" parent="VOzfNgnplMJaNr39qCtg-34" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ calcularValor(veiculo: Veiculo, minutos: int): double&lt;br&gt;+ StringNome(): String" vertex="1">
-          <mxGeometry height="70" width="154" y="34" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-37" edge="1" parent="1" source="VOzfNgnplMJaNr39qCtg-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=12;defaultLabelBackgroundColor=page;startSize=8;endSize=8;dashed=1;endArrow=block;endFill=0;" target="VOzfNgnplMJaNr39qCtg-79">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-38" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="PlanoAvulso" vertex="1">
-          <mxGeometry height="104" width="154" x="1712" y="1169" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-39" parent="VOzfNgnplMJaNr39qCtg-38" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
-          <mxGeometry height="8" width="154" y="26" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-40" parent="VOzfNgnplMJaNr39qCtg-38" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ calcularValor(veiculo: Veiculo, minutos: int): double&lt;br&gt;+ StringNome(): String" vertex="1">
-          <mxGeometry height="70" width="154" y="34" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-41" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Viagem" vertex="1">
-          <mxGeometry height="86" width="154" x="2142" y="40" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-42" parent="VOzfNgnplMJaNr39qCtg-41" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ field: type" vertex="1">
-          <mxGeometry height="26" width="154" y="26" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-43" parent="VOzfNgnplMJaNr39qCtg-41" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
-          <mxGeometry height="8" width="154" y="52" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-44" parent="VOzfNgnplMJaNr39qCtg-41" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ method(type): type" vertex="1">
-          <mxGeometry height="26" width="154" y="60" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-45" edge="1" parent="1" source="VOzfNgnplMJaNr39qCtg-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;endArrow=diamond;endFill=1;exitX=0.54;exitY=1.003;exitDx=0;exitDy=0;exitPerimeter=0;" target="VOzfNgnplMJaNr39qCtg-16">
-          <mxGeometry relative="1" x="-0.1626" as="geometry">
-            <mxPoint x="1947" y="470" as="sourcePoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-46" connectable="0" parent="VOzfNgnplMJaNr39qCtg-45" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="1&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;1&lt;/div&gt;" vertex="1">
-          <mxGeometry relative="1" x="-0.1624" as="geometry">
-            <mxPoint x="-10" y="4" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-47" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Carteira" vertex="1">
-          <mxGeometry height="217" width="260" x="1812" y="270" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-48" parent="VOzfNgnplMJaNr39qCtg-47" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- saldoAtual: double&lt;div&gt;- historicoRecarga: ArrayList&amp;lt;Recarga&amp;gt;&lt;/div&gt;&lt;div&gt;- &lt;u&gt;SALDO_MINIMO&lt;/u&gt;: double&amp;nbsp;&lt;span style=&quot;font-weight: 700; text-align: center; background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;«final»&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;= 5.0&lt;/span&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="54" width="260" y="26" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-49" parent="VOzfNgnplMJaNr39qCtg-47" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
-          <mxGeometry height="8" width="260" y="80" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-50" parent="VOzfNgnplMJaNr39qCtg-47" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ Carteira ()&lt;div&gt;+ consultarSaldoAtual(): double&lt;br&gt;+ consultarHistoricoRecarga(): List&amp;lt;Recarga&amp;gt;&lt;/div&gt;&lt;div&gt;+ adicionarSaldo(valor: double, dataHora: LocalDateTime): void&lt;/div&gt;&lt;div&gt;+ debitarValor(valor: double): void&lt;/div&gt;&lt;div&gt;+ temSaldoMinimo(): boolean&lt;/div&gt;" vertex="1">
-          <mxGeometry height="129" width="260" y="88" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-51" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="«interface»" vertex="1">
-          <mxGeometry height="102" width="160" x="3090" y="1250" as="geometry">
-            <mxRectangle height="30" width="100" x="2574" y="572" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-52" parent="VOzfNgnplMJaNr39qCtg-51" style="html=1;whiteSpace=wrap;" value="&lt;b&gt;Recarregavel&lt;/b&gt;" vertex="1">
-          <mxGeometry height="50" width="160" y="26" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-53" parent="VOzfNgnplMJaNr39qCtg-51" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ method(type): type" vertex="1">
-          <mxGeometry height="26" width="160" y="76" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-58" edge="1" parent="1" source="VOzfNgnplMJaNr39qCtg-63" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.51;exitY=0.962;exitDx=0;exitDy=0;endArrow=diamond;endFill=1;exitPerimeter=0;" target="VOzfNgnplMJaNr39qCtg-47" value="">
-          <mxGeometry relative="1" x="0.4609" as="geometry">
             <Array as="points">
-              <mxPoint x="1942.8" y="214.5" />
+              <mxPoint x="1260" y="1042" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-59" connectable="0" parent="VOzfNgnplMJaNr39qCtg-58" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;0...*&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;1&lt;/span&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry relative="1" x="0.6383" y="1" as="geometry">
-            <mxPoint x="-21" y="-24" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-60" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Recarga" vertex="1">
-          <mxGeometry height="154" width="276" x="1802" y="40" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-61" parent="VOzfNgnplMJaNr39qCtg-60" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="- valor: double&lt;div&gt;- dataHora: LocalDateTime&lt;/div&gt;" vertex="1">
-          <mxGeometry height="44" width="276" y="26" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-62" parent="VOzfNgnplMJaNr39qCtg-60" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
-          <mxGeometry height="8" width="276" y="70" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-63" parent="VOzfNgnplMJaNr39qCtg-60" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ Recarga(valor: int, dataHora: LocalDateTime)&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;{throws ValorInvalidoException}&amp;nbsp;&lt;br&gt;&lt;div&gt;+ consultarValor(): double&lt;/div&gt;&lt;div&gt;+&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;consultar&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;DataHora(): LocalDateTime&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="76" width="276" y="78" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-64" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="«interface»" vertex="1">
-          <mxGeometry height="102" width="160" x="3090" y="1250" as="geometry">
-            <mxRectangle height="30" width="100" x="2574" y="572" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-65" parent="VOzfNgnplMJaNr39qCtg-64" style="html=1;whiteSpace=wrap;" value="&lt;b&gt;Recarregavel&lt;/b&gt;" vertex="1">
-          <mxGeometry height="50" width="160" y="26" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-66" parent="VOzfNgnplMJaNr39qCtg-64" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ method(type): type" vertex="1">
-          <mxGeometry height="26" width="160" y="76" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-67" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="«interface»" vertex="1">
-          <mxGeometry height="126" width="120" x="3150" y="450" as="geometry">
-            <mxRectangle height="30" width="100" x="2574" y="572" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-68" parent="VOzfNgnplMJaNr39qCtg-67" style="html=1;whiteSpace=wrap;" value="&lt;b&gt;Recarregavel&lt;/b&gt;" vertex="1">
-          <mxGeometry height="50" width="120" y="26" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-69" parent="VOzfNgnplMJaNr39qCtg-67" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="DISPONIVEL&lt;div&gt;EM_USO&lt;br&gt;EM_MANUTENCAO&lt;/div&gt;" vertex="1">
-          <mxGeometry height="50" width="120" y="76" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-70" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="«enumerate»" vertex="1">
-          <mxGeometry height="76" width="120" x="3150" y="450" as="geometry">
-            <mxRectangle height="30" width="100" x="2574" y="572" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-71" parent="VOzfNgnplMJaNr39qCtg-70" style="html=1;whiteSpace=wrap;" value="&lt;span style=&quot;text-align: left;&quot;&gt;EstadoVeiculo&lt;/span&gt;" vertex="1">
-          <mxGeometry height="50" width="120" y="26" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-72" edge="1" parent="1" source="VOzfNgnplMJaNr39qCtg-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;exitX=1.006;exitY=0.044;exitDx=0;exitDy=0;entryX=0.001;entryY=0.147;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;" target="VOzfNgnplMJaNr39qCtg-70">
-          <mxGeometry relative="1" x="0.0485" as="geometry">
+        <mxCell id="g80" edge="1" parent="1" source="g11" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;startArrow=diamond;startFill=0;startSize=14;endArrow=open;endSize=10;" target="g7" value="usuarios 0..*">
+          <mxGeometry relative="1" x="-0.0585" as="geometry">
+            <mxPoint as="offset" />
             <Array as="points">
-              <mxPoint x="3090" y="463.6" />
-              <mxPoint x="3090" y="461.2" />
+              <mxPoint x="2150" y="582" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-73" edge="1" parent="1" source="VOzfNgnplMJaNr39qCtg-86" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;exitX=0.469;exitY=0.031;exitDx=0;exitDy=0;exitPerimeter=0;" target="VOzfNgnplMJaNr39qCtg-21">
+        <mxCell id="g81" edge="1" parent="1" source="g11" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;startArrow=diamond;startFill=0;startSize=14;endArrow=open;endSize=10;" target="g35" value="viagens 0..*">
+          <mxGeometry relative="1" x="0.6133" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1780" y="933" />
+              <mxPoint x="1780" y="742" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g82" edge="1" parent="1" source="g39" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;startArrow=diamond;startFill=0;startSize=14;endArrow=open;endSize=10;" target="g47" value="veiculosEstacionados 0..*">
+          <mxGeometry relative="1" x="0.0014" as="geometry">
+            <Array as="points">
+              <mxPoint x="1910" y="1503.5" />
+              <mxPoint x="1910" y="1411.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g83" edge="1" parent="1" source="g47" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;endArrow=open;endSize=10;" target="g39" value="estacaoAtual 0..1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="2647" y="1210" as="sourcePoint" />
-            <mxPoint x="2770.152" y="1050.7199999999998" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1580" y="1411.5" />
+              <mxPoint x="1580" y="1522" />
+            </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-74" edge="1" parent="1" source="VOzfNgnplMJaNr39qCtg-76" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="VOzfNgnplMJaNr39qCtg-21">
-          <mxGeometry relative="1" x="0.1351" as="geometry">
-            <mxPoint x="2857" y="1085.4299999999998" as="sourcePoint" />
-            <mxPoint x="2771.008" y="1049.995" as="targetPoint" />
+        <mxCell id="g84" edge="1" parent="1" source="g7" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;startArrow=diamond;startFill=1;startSize=14;endArrow=open;endSize=10;" value="carteira 1">
+          <mxGeometry relative="1" x="-0.2167" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1300" y="440.75" />
+              <mxPoint x="1300" y="440.75" />
+            </Array>
+            <mxPoint x="1390" y="440.8" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-75" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;" target="VOzfNgnplMJaNr39qCtg-41">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="2132" y="699" as="sourcePoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-76" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="PatineteEletrico" vertex="1">
-          <mxGeometry height="188" width="230" x="2780" y="1210" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-77" parent="VOzfNgnplMJaNr39qCtg-76" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
-          <mxGeometry height="8" width="230" y="26" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-78" parent="VOzfNgnplMJaNr39qCtg-76" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;+ PatineteEletrico(modelo: String, estacaoAtual: Estacao, nivelBateria: int)&lt;/div&gt;&lt;div&gt;+ consultarTarifaDeDesbloqueio(): double&lt;/div&gt;&lt;div&gt;+ consultarTarifaPorMinuto(): double&lt;/div&gt;&lt;div&gt;+ consultarTipo(): TipoVeiculo&lt;/div&gt;&lt;div&gt;+ consultarConsumoPorMinuto(): int&lt;/div&gt;&lt;div&gt;+ aceitaDescontoUniversitario(): boolean&lt;/div&gt;&lt;div&gt;+ finalizarUtilizacao(minutos: int): void&lt;/div&gt;&lt;div&gt;&lt;div&gt;+ consumirBateria(minutos: int): void&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;i&gt;&lt;br&gt;&lt;/i&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="154" width="230" y="34" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-79" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="«interface»" vertex="1">
-          <mxGeometry height="120" width="332" x="1782" y="950" as="geometry">
-            <mxRectangle height="30" width="100" x="2574" y="572" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-80" parent="VOzfNgnplMJaNr39qCtg-79" style="html=1;whiteSpace=wrap;" value="&lt;b&gt;Plano&lt;/b&gt;" vertex="1">
-          <mxGeometry height="50" width="332" y="26" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-81" parent="VOzfNgnplMJaNr39qCtg-79" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ calcularValor(veiculo: Veiculo, minutos: int): double&lt;br&gt;+ consultarNome(): String" vertex="1">
-          <mxGeometry height="44" width="332" y="76" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-82" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="«enumerate»" vertex="1">
-          <mxGeometry height="126" width="154" x="3130" y="600" as="geometry">
-            <mxRectangle height="30" width="100" x="2574" y="572" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-83" parent="VOzfNgnplMJaNr39qCtg-82" style="html=1;whiteSpace=wrap;" value="&lt;span style=&quot;text-align: left;&quot;&gt;TipoVeiculo&lt;/span&gt;" vertex="1">
-          <mxGeometry height="50" width="154" y="26" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-84" parent="VOzfNgnplMJaNr39qCtg-82" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="BICICLETA_MECANICA&lt;div&gt;BICICLETA_ELETRICA&lt;/div&gt;&lt;div&gt;PATINETE_ELETRICO&lt;/div&gt;" vertex="1">
-          <mxGeometry height="50" width="154" y="76" as="geometry" />
-        </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-85" edge="1" parent="1" source="VOzfNgnplMJaNr39qCtg-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.017;entryY=0.097;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=12;defaultLabelBackgroundColor=page;startSize=8;endSize=8;" target="VOzfNgnplMJaNr39qCtg-82">
+        <mxCell id="g85" edge="1" parent="1" source="g7" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;endArrow=open;endSize=10;" target="g3" value="planoContratado 1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-86" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="BicicletaEletrica" vertex="1">
-          <mxGeometry height="180" width="240" x="2530" y="1210" as="geometry" />
+        <mxCell id="g86" edge="1" parent="1" source="g7" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;endArrow=open;endSize=10;" target="g35" value="viagemAtiva 0..1">
+          <mxGeometry relative="1" x="-0.1329" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="925" y="742" />
+            </Array>
+          </mxGeometry>
         </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-87" parent="VOzfNgnplMJaNr39qCtg-86" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
-          <mxGeometry height="8" width="240" y="26" as="geometry" />
+        <mxCell id="g87" edge="1" parent="1" source="g3" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endSize=10;" target="g47" value="usa">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-88" parent="VOzfNgnplMJaNr39qCtg-86" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;+ BicicletaEletrica(modelo: String, estacaoAtual: Estacao, nivelBateria: int)&lt;/div&gt;&lt;div&gt;+ consultarTarifaDeDesbloqueio(): double&lt;/div&gt;&lt;div&gt;+ consultarTarifaPorMinuto(): double&lt;/div&gt;&lt;div&gt;+ consultarTipo(): TipoVeiculo&lt;/div&gt;&lt;div&gt;+ consultarConsumoPorMinuto(): int&lt;/div&gt;&lt;div&gt;+ finalizarUtilizacao(minutos: int): void&lt;/div&gt;&lt;div&gt;&lt;div&gt;+ consumirBateria(minutos: int): void&lt;/div&gt;&lt;/div&gt;&lt;div&gt;+ aceitaDescontoUniversitario(): boolean&lt;/div&gt;&lt;div&gt;&lt;i&gt;&lt;br&gt;&lt;/i&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="146" width="240" y="34" as="geometry" />
+        <mxCell id="g88" edge="1" parent="1" source="g11" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endSize=10;" target="FIAG6YUjcAL78laAHss3-5" value="gera">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-99" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Sistema" vertex="1">
-          <mxGeometry height="323" width="340" x="2300" y="240" as="geometry" />
+        <mxCell id="g89" edge="1" parent="1" source="g47" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endSize=10;" target="g43" value="">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-94" parent="VOzfNgnplMJaNr39qCtg-99" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="-&amp;nbsp;estacoes: ArrayList&amp;lt;Estacao&amp;gt;&lt;div&gt;- veiculos: ArrayList&amp;lt;Veiculo&amp;gt;&lt;/div&gt;&lt;div&gt;- usuarios: ArrayList&amp;lt;Usuario&amp;gt;&lt;/div&gt;&lt;div&gt;-&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;viagens: ArrayList&amp;lt;Viagem&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="72" width="340" y="26" as="geometry" />
+        <mxCell id="g90" edge="1" parent="1" source="g47" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endSize=10;" target="g51" value="">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-100" parent="VOzfNgnplMJaNr39qCtg-99" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
-          <mxGeometry height="8" width="340" y="98" as="geometry" />
+        <mxCell id="FIAG6YUjcAL78laAHss3-4" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="RelatorioFaturamento" vertex="1">
+          <mxGeometry height="250" width="400" x="2520" y="872" as="geometry" />
         </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-101" parent="VOzfNgnplMJaNr39qCtg-99" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ Sistema()&lt;div&gt;+&amp;nbsp;&lt;span style=&quot;background-color: transparent;&quot;&gt;cadastrarEstacao(Estacao estacao): void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ cadastrarVeiculo(Veiculo veiculo)&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;: void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ cadastrarUsuario(Usuario usuario)&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;: void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ consultarFaturamento(LocalDate dataInicial,LocalDate dataFinal) :&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;RelatorioFaturamento&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;+ consultarEstacao(String nome):&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;Estacao&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ consultarEstacoes():&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;List&amp;lt;Estacao&amp;gt;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ consultarVeiculo(int codigo):&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;Veiculo&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ consultarVeiculos():&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;List&amp;lt;Veiculo&amp;gt;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;+ consultarUsuario(String email):&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;Usuario&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ consultarUsuarios():&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;List&amp;lt;Usuario&amp;gt;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;+ consultarViagensDoUsuario(Usuario usuario):&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;Viagem&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ consultarViagens():&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;List&amp;lt;Viagem&amp;gt;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="217" width="340" y="106" as="geometry" />
+        <mxCell id="FIAG6YUjcAL78laAHss3-5" parent="FIAG6YUjcAL78laAHss3-4" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;- dataInicial:&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;LocalDate&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;- dataFinal:&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;LocalDate&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;- quantidadeViagens:&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;Map&amp;lt;TipoVeiculo, Integer&amp;gt;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;- faturamentoPorTipo:&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;Map&amp;lt;TipoVeiculo, Double&amp;gt;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="74" width="400" y="26" as="geometry" />
         </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-102" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="RelatorioFaturamento" vertex="1">
-          <mxGeometry height="86" width="154" x="3284" y="126" as="geometry" />
+        <mxCell id="FIAG6YUjcAL78laAHss3-6" parent="FIAG6YUjcAL78laAHss3-4" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
+          <mxGeometry height="3.5" width="400" y="100" as="geometry" />
         </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-103" parent="VOzfNgnplMJaNr39qCtg-102" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ field: type" vertex="1">
-          <mxGeometry height="26" width="154" y="26" as="geometry" />
+        <mxCell id="FIAG6YUjcAL78laAHss3-7" parent="FIAG6YUjcAL78laAHss3-4" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;div&gt;+ RelatorioFaturamento(LocalDate dataInicial, LocalDate dataFinal, Map&amp;lt;TipoVeiculo, Integer&amp;gt; quantidadeViagens, Map&amp;lt;TipoVeiculo, Double&amp;gt; faturamentoPorTipo)&lt;/div&gt;&lt;div&gt;+ consultarQuantidadeViagens(TipoVeiculo tipo):&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;int&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ consultarFaturamento(TipoVeiculo tipo):&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;double&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ consultarQuantidadeTotalViagens():&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;int&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ consultarFaturamentoTotal():&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;double&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ consultarDataInicial():&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;LocalDate&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ consultarDataFinal():&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;LocalDate&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="146.5" width="400" y="103.5" as="geometry" />
         </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-104" parent="VOzfNgnplMJaNr39qCtg-102" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
-          <mxGeometry height="8" width="154" y="52" as="geometry" />
+        <mxCell id="FIAG6YUjcAL78laAHss3-8" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=44;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="«interface»&lt;br&gt;MovimentacaoFinanceira" vertex="1">
+          <mxGeometry height="120" width="380" x="1840" y="260" as="geometry" />
         </mxCell>
-        <mxCell id="VOzfNgnplMJaNr39qCtg-105" parent="VOzfNgnplMJaNr39qCtg-102" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ method(type): type" vertex="1">
-          <mxGeometry height="26" width="154" y="60" as="geometry" />
+        <mxCell id="FIAG6YUjcAL78laAHss3-9" parent="FIAG6YUjcAL78laAHss3-8" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="8" width="380" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="FIAG6YUjcAL78laAHss3-10" parent="FIAG6YUjcAL78laAHss3-8" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
+          <mxGeometry height="8" width="380" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="FIAG6YUjcAL78laAHss3-11" parent="FIAG6YUjcAL78laAHss3-8" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;i&gt;+ consultarDataHoraMovimentacao():&amp;nbsp;&lt;/i&gt;&lt;i style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;LocalDateTime&amp;nbsp;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;&lt;i&gt;+ consultarValorMovimentacao():&amp;nbsp;&lt;/i&gt;&lt;i style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;double&amp;nbsp;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;&lt;i&gt;+ consultarTipoMovimentacao():&amp;nbsp;&lt;/i&gt;&lt;i style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;TipoMovimentacao&amp;nbsp;&lt;/i&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="380" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FIAG6YUjcAL78laAHss3-14" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=44;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="«enumeration»&lt;br&gt;TipoMovimentacao" vertex="1">
+          <mxGeometry height="96" width="200" x="2350" y="272" as="geometry" />
+        </mxCell>
+        <mxCell id="FIAG6YUjcAL78laAHss3-15" parent="FIAG6YUjcAL78laAHss3-14" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="DEBITO&lt;div&gt;CREDITO&lt;/div&gt;" vertex="1">
+          <mxGeometry height="36" width="200" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="FIAG6YUjcAL78laAHss3-16" parent="FIAG6YUjcAL78laAHss3-14" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
+          <mxGeometry height="8" width="200" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="FIAG6YUjcAL78laAHss3-17" parent="FIAG6YUjcAL78laAHss3-14" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="8" width="200" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="FIAG6YUjcAL78laAHss3-18" edge="1" parent="1" source="FIAG6YUjcAL78laAHss3-8" style="html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="FIAG6YUjcAL78laAHss3-14" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2230" y="322" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FIAG6YUjcAL78laAHss3-19" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Recarga" vertex="1">
+          <mxGeometry height="180" width="390" x="2255" y="522" as="geometry" />
+        </mxCell>
+        <mxCell id="FIAG6YUjcAL78laAHss3-20" parent="FIAG6YUjcAL78laAHss3-19" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;- valor: double&lt;/div&gt;&lt;div&gt;- dataHora: LocalDateTime&lt;/div&gt;" vertex="1">
+          <mxGeometry height="44" width="390" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="FIAG6YUjcAL78laAHss3-21" parent="FIAG6YUjcAL78laAHss3-19" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
+          <mxGeometry height="3.5" width="390" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="FIAG6YUjcAL78laAHss3-22" parent="FIAG6YUjcAL78laAHss3-19" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;div&gt;+ Recarga(valor: double, dataHora: LocalDateTime)&lt;/div&gt;&lt;div&gt;+ consultarValor(): double&lt;/div&gt;&lt;div&gt;+ consultarDataHora(): LocalDateTime&lt;/div&gt;&lt;div&gt;+ consultarDataHoraMovimentacao(): LocalDateTime&lt;/div&gt;&lt;div&gt;+ consultarValorMovimentacao(): double&lt;/div&gt;&lt;div&gt;+ consultarTipoMovimentacao(): TipoMovimentacao&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="106.5" width="390" y="73.5" as="geometry" />
+        </mxCell>
+        <mxCell id="FIAG6YUjcAL78laAHss3-23" edge="1" parent="1" source="FIAG6YUjcAL78laAHss3-19" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;defaultLabelBackgroundColor=page;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="FIAG6YUjcAL78laAHss3-8" value="">
+          <mxGeometry relative="1" width="160" x="0.4757" as="geometry">
+            <Array as="points">
+              <mxPoint x="2450" y="462" />
+              <mxPoint x="2030" y="462" />
+            </Array>
+            <mxPoint x="1870" y="486" as="sourcePoint" />
+            <mxPoint x="2080" y="422" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FIAG6YUjcAL78laAHss3-24" edge="1" parent="1" source="g35" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;defaultLabelBackgroundColor=page;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="FIAG6YUjcAL78laAHss3-8" value="">
+          <mxGeometry relative="1" width="160" x="0.4458" as="geometry">
+            <Array as="points">
+              <mxPoint x="2030" y="707" />
+            </Array>
+            <mxPoint x="2240" y="584" as="sourcePoint" />
+            <mxPoint x="1820" y="442" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FIAG6YUjcAL78laAHss3-26" edge="1" parent="1" source="g31" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=0;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;defaultLabelBackgroundColor=page;exitX=0.471;exitY=0.003;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="FIAG6YUjcAL78laAHss3-9" value="historicoMovimentacoes 0...*">
+          <mxGeometry relative="1" x="-0.2467" y="-4" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="1540" y="302" as="sourcePoint" />
+            <mxPoint x="1660" y="172" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FIAG6YUjcAL78laAHss3-27" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=top;rounded=0;defaultLabelBackgroundColor=page;exitX=0.002;exitY=0.343;exitDx=0;exitDy=0;exitPerimeter=0;" value="Usuario">
+          <mxGeometry relative="1" x="-0.0663" y="-19" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1350" y="841.3" />
+              <mxPoint x="924.4" y="841.3" />
+            </Array>
+            <mxPoint x="1350" y="839.5494999999999" as="sourcePoint" />
+            <mxPoint x="924.4000000000002" y="708" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FIAG6YUjcAL78laAHss3-28" connectable="0" parent="FIAG6YUjcAL78laAHss3-27" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;inheritText=1;defaultLabelBackgroundColor=page;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.8145" as="geometry">
+            <mxPoint x="-160" y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FIAG6YUjcAL78laAHss3-29" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=top;rounded=0;defaultLabelBackgroundColor=page;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" value="Veiculo">
+          <mxGeometry relative="1" x="-0.5152" y="-20" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="1350" y="882" as="sourcePoint" />
+            <mxPoint x="1260.0000000000002" y="1245.75" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FIAG6YUjcAL78laAHss3-30" connectable="0" parent="FIAG6YUjcAL78laAHss3-29" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;inheritText=1;defaultLabelBackgroundColor=page;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-1" as="geometry">
+            <mxPoint x="-70" y="40" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FIAG6YUjcAL78laAHss3-31" edge="1" parent="1" source="g35" style="endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=top;rounded=0;defaultLabelBackgroundColor=page;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.275;entryY=-0.002;entryDx=0;entryDy=0;entryPerimeter=0;" target="g39" value="estacaoOrigem">
+          <mxGeometry relative="1" x="-0.9798" y="10" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1650" y="801.8" />
+              <mxPoint x="1740" y="801.8" />
+              <mxPoint x="1740" y="1282" />
+              <mxPoint x="2073.5" y="1282" />
+            </Array>
+            <mxPoint x="1669.9999999999998" y="832.0095" as="sourcePoint" />
+            <mxPoint x="2080" y="1372" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FIAG6YUjcAL78laAHss3-32" connectable="0" parent="FIAG6YUjcAL78laAHss3-31" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;inheritText=1;defaultLabelBackgroundColor=page;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.899" as="geometry">
+            <mxPoint x="50" y="10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FIAG6YUjcAL78laAHss3-33" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=top;rounded=0;defaultLabelBackgroundColor=page;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.164;entryY=-0.002;entryDx=0;entryDy=0;entryPerimeter=0;" target="g39" value="estacaoDestino">
+          <mxGeometry relative="1" x="-1" y="10" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1740" y="852" />
+              <mxPoint x="1740" y="1282" />
+              <mxPoint x="2035.8000000000002" y="1282" />
+            </Array>
+            <mxPoint x="1650" y="852" as="sourcePoint" />
+            <mxPoint x="2000" y="1342" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FIAG6YUjcAL78laAHss3-34" connectable="0" parent="FIAG6YUjcAL78laAHss3-33" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;inheritText=1;defaultLabelBackgroundColor=page;" value="0...1" vertex="1">
+          <mxGeometry relative="1" x="-0.8903" as="geometry">
+            <mxPoint x="40" y="10" as="offset" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
