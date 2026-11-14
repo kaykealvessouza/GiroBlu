@@ -117,6 +117,30 @@ As informações desta seção representam propostas de modelagem e decisões to
 - Registra o débito na carteira do usuário e remove a referência da viagem ativa.
 - O saldo pode ficar negativo após o pagamento, conforme as regras do sistema, impedindo o usuário de iniciar outra viagem até regularizar o saldo.
 
+**Atualização 13/11 — Ajustes após revisão do diagrama**
+
+**UML CRIADO? --> [X]**
+
+**Ajustes**
+- Adicionado `private ArrayList<Plano> planosDisponiveis;`
+  - Motivo: os três planos são criados uma única vez no construtor de `Sistema` e compartilhados por todos os usuários, pois não guardam dados próprios.
+- Adicionado `public List<Plano> consultarPlanos();`
+  - Motivo: a tela de cadastro lista os planos disponíveis por esse método, sem criar objetos de plano. Retorna `List` não modificável para impedir alterações externas.
+- Adicionados `public void salvarDados() throws PersistenciaException;` e `public void carregarDados() throws PersistenciaException;`
+  - Motivo: persistência automática na pasta `dados-gb26`. `carregarDados()` é executado ao abrir o programa; `salvarDados()` após cada operação que altera dados.
+- `public void cadastrarVeiculo(Veiculo veiculo) throws EstacaoLotadaException;`
+  - Motivo: o veículo é cadastrado já posicionado em uma estação, que pode estar lotada.
+- `public RelatorioFaturamento consultarFaturamento(LocalDate dataInicial, LocalDate dataFinal) throws DataInvalidaException;`
+  - Motivo: impedir períodos com data final anterior à inicial.
+- `public Viagem iniciarViagem(Usuario usuario, Veiculo veiculo, LocalDateTime dataHoraInicio) throws ViagemEmAndamentoException, SaldoInsuficienteException, VeiculoIndisponivelException, VeiculoNaoEncontradoException;`
+  - Motivo: `SaldoInsuficienteException` nasce aqui quando `temSaldoMinimo()` retorna `false`. As demais são propagadas de `Usuario`, `Veiculo` e `Estacao` até a interface gráfica.
+- `public void finalizarViagem(Viagem viagem, Estacao estacaoDestino, LocalDateTime dataHoraFim) throws DataInvalidaException, EstacaoLotadaException;`
+  - Motivo: propaga a validação de datas da `Viagem` e a falta de vaga na estação de destino.
+
+**Observações da atualização:**
+- `Sistema` passa a ter uma relação de agregação com `Plano` (`planosDisponiveis 0..*`).
+- Quase todas as exceções do sistema passam por `iniciarViagem()` e `finalizarViagem()`, que funcionam como ponto de entrada das operações para a interface gráfica.
+
 ### 2.2. Estacao
 
 **Objetivo:** representar os pontos de estacionamento e disponibilização dos veículos.
@@ -161,6 +185,20 @@ As informações desta seção representam propostas de modelagem e decisões to
 - A consulta de veículos disponíveis não deve incluir veículos em manutenção.
 - A coleção de veículos estacionados deve respeitar a capacidade máxima da estação.
 - Preferir retornar `List` em vez de expor diretamente a implementação `ArrayList`. Também será necessário evitar que consultas permitam modificar diretamente a coleção interna.
+
+**Atualização 13/11 — Ajustes após revisão do diagrama**
+
+**UML CRIADO? --> [X]**
+
+**Ajustes**
+- `public void adicionarVeiculo(Veiculo veiculo) throws EstacaoLotadaException;`
+  - Motivo: garantir a regra de que a estação nunca recebe mais veículos do que sua capacidade.
+- `public void removerVeiculo(Veiculo veiculo) throws VeiculoNaoEncontradoException;`
+  - Motivo: impedir a remoção de um veículo que não está estacionado nesta estação.
+
+**Observações da atualização:**
+- `adicionarVeiculo()` utiliza `consultarVagasDisponiveis()` para decidir se lança a exceção, mantendo a regra de capacidade em um único lugar.
+- Como `Veiculo` e `Estacao` se conhecem (os dois lados da associação), a atualização da estação e do veículo deve ocorrer sempre em conjunto, coordenada por `Sistema`.
 
 ### 2.3. Veiculo (abstrata)
 
@@ -223,6 +261,27 @@ As informações desta seção representam propostas de modelagem e decisões to
 - O método `finalizarUtilizacao(Estacao estacaoDestino, long minutos)` foi proposto para permitir que o encerramento da utilização seja tratado polimorficamente. A classe base poderá atualizar o estado, enquanto a classe `VeiculoEletrico` poderá complementar o comportamento aplicando o consumo da bateria.
 - A restauração do contador de códigos durante a persistência ainda deverá ser considerada, evitando identificadores duplicados após reiniciar o sistema.
 
+**Atualização 13/11 — Ajustes após revisão do diagrama**
+
+**UML CRIADO? --> [X]**
+
+**Ajustes**
+- Adicionado `public String consultarDescricao();`
+  - Motivo: requisito 6. A tela exibe tipo e modelo de qualquer veículo por esse método; `VeiculoEletrico` sobrescreve acrescentando a carga da bateria. Evita que a interface gráfica pergunte se o veículo é elétrico.
+- Adicionado `public boolean aceitaDescontoUniversitario();` (retorna `true`)
+  - Motivo: o `PlanoUniversitario` pergunta ao veículo se o desconto se aplica, sem `instanceof` e sem comparar o tipo. Novos veículos herdam a resposta padrão.
+- Adicionado `public void recarregarBateria() throws OperacaoInvalidaException;` (concreto, sempre lança a exceção)
+  - Motivo: requisito 5. Permite solicitar a recarga a partir de qualquer `Veiculo`, sem cast para `VeiculoEletrico`. Veículos sem bateria informam que a operação não se aplica.
+- `public void iniciarUtilizacao() throws VeiculoIndisponivelException;`
+  - Motivo: impedir a liberação quando `podeSerLiberado()` retornar `false` (indisponível ou, nos elétricos, com menos de 20% de bateria).
+- `public void enviarParaManutencao() throws OperacaoInvalidaException;`
+  - Motivo: um veículo em uso não pode ser enviado para manutenção.
+- `public void retornarDaManutencao() throws OperacaoInvalidaException;`
+  - Motivo: só é possível retornar um veículo que está em manutenção.
+
+**Observações da atualização:**
+- `consultarDescricao()`, `aceitaDescontoUniversitario()` e `recarregarBateria()` são métodos concretos (não abstratos), pois possuem um comportamento padrão. Apenas as subclasses que precisam de outro comportamento os sobrescrevem.
+
 ### 2.4. VeiculoMecanico (abstrata)
 
 **Removido da estrutura atual.**
@@ -263,6 +322,16 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 - A classe herda diretamente de `Veiculo`.
 - As tarifas e o tipo retornado deverão corresponder à bicicleta mecânica.
 - A classe não precisa implementar comportamentos de bateria.
+
+**Atualização 13/11 — Ajustes após revisão do diagrama**
+
+**UML CRIADO? --> [X]**
+
+**Ajustes**
+- Nenhuma alteração na classe.
+
+**Observações da atualização:**
+- Herda de `Veiculo` os novos métodos `consultarDescricao()`, `aceitaDescontoUniversitario()` (retorna `true`) e `recarregarBateria()` (lança `OperacaoInvalidaException`, pois a bicicleta mecânica não possui bateria).
 
 ### 2.5. VeiculoEletrico (abstrata)
 
@@ -316,6 +385,24 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 - O método `aceitaDescontoUniversitario()` foi retirado da proposta. A regra de desconto pertence ao plano contratado, não ao veículo. O plano universitário poderá consultar o tipo do veículo para decidir se o desconto será aplicado.
 - Caso o consumo calculado ultrapasse a carga restante, a bateria deverá chegar a 0%, nunca assumir valor negativo. O encerramento da viagem ainda deverá ser permitido.
 
+**Atualização 13/11 — Ajustes após revisão do diagrama**
+
+**UML CRIADO? --> [X]**
+
+**Ajustes**
+- `protected VeiculoEletrico(String modelo, Estacao estacaoAtual, int nivelBateria) throws ValorInvalidoException;`
+  - Motivo: impedir a criação de veículos com bateria fora do intervalo de 0% a 100%.
+- `possuiCargaMinimaParaViagem()` e `consumirBateria(long minutos)` passaram de `public` para `protected`.
+  - Motivo: são usados apenas internamente pelas sobrescritas `podeSerLiberado()` e `finalizarUtilizacao()`; nenhuma classe externa precisa chamá-los.
+- `@Override public void recarregarBateria() throws OperacaoInvalidaException;`
+  - Motivo: sobrescreve o método de `Veiculo`, recarregando a bateria até 100%. Lança a exceção quando o veículo está em uso.
+- `@Override public String consultarDescricao();`
+  - Motivo: acrescenta a carga atual da bateria à descrição do veículo (requisito 6).
+
+**Observações da atualização:**
+- **Decisão revista:** o método `aceitaDescontoUniversitario()` voltou para a proposta, agora em `Veiculo` e `PatineteEletrico`. A consulta a `consultarTipo()` dentro do `PlanoUniversitario` seria uma verificação do tipo do objeto, que o enunciado pede para resolver por polimorfismo. Com o método, o plano apenas pergunta ao veículo se o desconto se aplica.
+- `recarregarBateria()` e `consultarDescricao()` são implementados nesta classe e, por isso, não são abstratos; as subclasses elétricas os herdam.
+
 ### 2.5.1. BicicletaEletrica
 
 **Objetivo:** representar as bicicletas elétricas.
@@ -349,6 +436,14 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 - O comportamento de recarga e consumo será herdado de `VeiculoEletrico`.
 - Não será necessário sobrescrever `consumirBateria()` nem `finalizarUtilizacao(Estacao estacaoDestino, long minutos)`, desde que a implementação compartilhada em `VeiculoEletrico` atenda às regras.
 
+**Atualização 13/11 — Ajustes após revisão do diagrama**
+
+**UML CRIADO? --> [X]**
+
+**Ajustes**
+- `public BicicletaEletrica(String modelo, Estacao estacaoAtual, int nivelBateria) throws ValorInvalidoException;`
+  - Motivo: o construtor chama o de `VeiculoEletrico` (`super`), que pode lançar a exceção de bateria inválida.
+
 ### 2.5.2. PatineteEletrico
 
 **Objetivo:** representar os patinetes elétricos.
@@ -381,6 +476,16 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 - O consumo de bateria será de 2% por minuto.
 - O comportamento de recarga e consumo será herdado de `VeiculoEletrico`.
 - Não será necessário sobrescrever `consumirBateria()` nem `finalizarUtilizacao(Estacao estacaoDestino, long minutos)`, desde que a implementação compartilhada em `VeiculoEletrico` atenda às regras.
+
+**Atualização 13/11 — Ajustes após revisão do diagrama**
+
+**UML CRIADO? --> [X]**
+
+**Ajustes**
+- `public PatineteEletrico(String modelo, Estacao estacaoAtual, int nivelBateria) throws ValorInvalidoException;`
+  - Motivo: o construtor chama o de `VeiculoEletrico` (`super`), que pode lançar a exceção de bateria inválida.
+- Adicionado `@Override public boolean aceitaDescontoUniversitario();` (retorna `false`)
+  - Motivo: regra do enunciado. O plano universitário não concede desconto em patinetes.
 
 ### 2.6. Usuario
 
@@ -446,6 +551,23 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 - `temSaldoMinimo()` deverá consultar a carteira, evitando duplicar a regra de saldo mínimo em `Usuario`.
 - A forma de obtenção do extrato completo ainda depende da definição de como as movimentações financeiras serão representadas.
 
+**Atualização 13/11 — Ajustes após revisão do diagrama**
+
+**UML CRIADO? --> [X]**
+
+**Ajustes**
+- Removido `public List<Recarga> consultarRecargas();`
+  - Motivo: a `Carteira` não mantém mais uma lista exclusiva de recargas, e sim o histórico de `MovimentacaoFinanceira`. O extrato utiliza `consultarHistoricoMovimentacoes()`.
+- `public void registrarViagemAtiva(Viagem viagem) throws ViagemEmAndamentoException;`
+  - Motivo: impedir o registro de uma nova viagem quando já existe uma em andamento.
+- `public void finalizarViagemAtiva(Viagem viagem) throws SemViagemEmAndamentoException;`
+  - Motivo: o método passa a receber a viagem encerrada para conferir se é a viagem ativa do usuário. Lança a exceção quando não há viagem em andamento.
+- `public void recarregarCarteira(double valor, LocalDateTime dataHora) throws ValorInvalidoException;`
+  - Motivo: o método cria a `Recarga`, cujo construtor valida o valor. A exceção é propagada até a interface gráfica.
+
+**Observações da atualização:**
+- A extração do extrato fica resolvida: `consultarHistoricoMovimentacoes()` delega à `Carteira`, que mantém recargas e viagens em uma única coleção.
+
 ### 2.7. Plano (interface)
 
 **Objetivo:** definir o contrato de comportamento das modalidades de cobrança aplicadas aos usuários.
@@ -481,6 +603,16 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 - Cada classe concreta implementará o cálculo de acordo com as regras de sua modalidade.
 - O método `calcularValor()` receberá o veículo e a duração da viagem, permitindo utilizar as tarifas específicas por meio do polimorfismo.
 - A interface não deverá conhecer regras específicas de bateria ou de disponibilidade dos veículos.
+
+**Atualização 13/11 — Ajustes após revisão do diagrama**
+
+**UML CRIADO? --> [X]**
+
+**Ajustes**
+- Nenhuma alteração no contrato da interface.
+
+**Observações da atualização:**
+- `Sistema` passa a manter os planos em `planosDisponiveis`. Como os planos não possuem estado, um mesmo objeto é compartilhado por todos os usuários da modalidade.
 
 #### 2.7.1. PlanoAvulso
 
@@ -541,6 +673,14 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 - O plano poderá consultar `veiculo.consultarTipo()` para identificar patinetes elétricos, sem precisar utilizar `instanceof`.
 - O desconto será aplicado sobre o valor total da viagem, incluindo desbloqueio, quando aplicável.
 
+**Atualização 13/11 — Ajustes após revisão do diagrama**
+
+**UML CRIADO? --> [X]**
+
+**Ajustes**
+- `PlanoUniversitario` passa a usar `veiculo.aceitaDescontoUniversitario()` em vez de `veiculo.consultarTipo()`.
+  - Motivo: decidir o desconto comparando o tipo do veículo é uma verificação de tipo, que o enunciado pede para substituir por polimorfismo. Com o novo método, cada veículo informa se aceita o desconto, e um novo tipo de veículo herda a resposta padrão sem alterar o plano.
+
 ### 2.8. Carteira
 
 **Objetivo:** controlar o saldo e as movimentações financeiras do usuário, registrando créditos e débitos realizados.
@@ -591,6 +731,17 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 - O histórico deverá permitir consultar tanto recargas quanto viagens, mantendo ambas em uma coleção comum por meio da interface `MovimentacaoFinanceira`.
 - A consulta do histórico não deverá permitir alterações diretas na coleção interna.
 - O extrato deverá ordenar as movimentações cronologicamente e apresentar o saldo após cada operação. A implementação dessa consulta ainda dependerá da definição de como será representado o saldo após cada movimentação.
+
+**Atualização 13/11 — Ajustes após revisão do diagrama**
+
+**UML CRIADO? --> [X]**
+
+**Ajustes**
+- Adicionada a constante `private static final double SALDO_MINIMO = 5.0;`
+  - Motivo: registrar o valor da regra de R$ 5,00 em um único lugar, evitando um número fixo dentro de `temSaldoMinimo()`. Se a regra mudar, apenas a constante é alterada.
+
+**Observações da atualização:**
+- `adicionarSaldo(Recarga recarga)` não declara exceção: recebe uma `Recarga` já criada e, portanto, já validada pelo construtor. A exceção de valor inválido ocorre antes, em `Usuario.recarregarCarteira()`.
 
 ### 2.9. Viagem
 
@@ -668,6 +819,14 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 - `consultarDataHoraMovimentacao()` retornará `dataHoraFim`, pois a viagem somente será considerada uma movimentação financeira após seu encerramento.
 - `consultarValorMovimentacao()` retornará `valorCobrado`.
 - `consultarTipoMovimentacao()` retornará `TipoMovimentacao.DEBITO`.
+
+**Atualização 13/11 — Ajustes após revisão do diagrama**
+
+**UML CRIADO? --> [X]**
+
+**Ajustes**
+- `public void finalizarViagem(Estacao estacaoDestino, LocalDateTime dataHoraFim) throws DataInvalidaException;`
+  - Motivo: o enunciado exige que a data e a hora de término sejam posteriores ao início.
 
 ### 2.10. RelatorioFaturamento
 
@@ -796,6 +955,16 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 - `consultarTipoMovimentacao()` retornará `TipoMovimentacao.CREDITO`.
 - A classe não será responsável por atualizar o saldo da carteira. Essa operação ficará sob responsabilidade de `Carteira`.
 
+**Atualização 13/11 — Ajustes após revisão do diagrama**
+
+**UML CRIADO? --> [X]**
+
+**Ajustes**
+- Removidos `public double consultarValor();` e `public LocalDateTime consultarDataHora();`
+  - Motivo: duplicavam `consultarValorMovimentacao()` e `consultarDataHoraMovimentacao()`, que a classe já implementa pela interface `MovimentacaoFinanceira`.
+- `public Recarga(double valor, LocalDateTime dataHora) throws ValorInvalidoException;`
+  - Motivo: a exceção nasce no construtor quando o valor é menor ou igual a zero, impedindo que uma recarga inválida chegue a existir.
+
 ---
 
 ## 3. Interfaces
@@ -880,7 +1049,44 @@ Espaço destinado à definição dos tipos enumerados utilizados pelo sistema, r
 
 ---
 
-## 5. Pendências gerais
+## 5. Exceções
+
+Espaço destinado às exceções criadas pela equipe para sinalizar violações das regras de negócio. As exceções são tratadas na interface gráfica, que exibe uma mensagem clara ao usuário sem encerrar o programa.
+
+**Atualização 13/11 — Definição das exceções**
+
+**UML CRIADO? --> [X]**
+
+**Hierarquia**
+- `Exception` (java.lang)
+  - `GiroBluException`
+    - Demais exceções do sistema.
+
+**Observações da hierarquia:**
+- Todas as exceções herdam de `GiroBluException`, que herda de `Exception`. Dessa forma, a interface gráfica pode tratar todas as violações de regra em um único `catch`, se necessário.
+- Cada exceção possui um construtor `public NomeException(String mensagem)`, repassando a mensagem para a superclasse.
+
+| Exceção | Regra violada | Onde é lançada | Por onde é propagada |
+|---|---|---|---|
+| `ValorInvalidoException` | Recarga com valor menor ou igual a zero; bateria fora de 0% a 100% | `Recarga()`, `VeiculoEletrico()` | `Usuario.recarregarCarteira()`, construtores de `BicicletaEletrica` e `PatineteEletrico` |
+| `SaldoInsuficienteException` | Saldo menor que R$ 5,00 para iniciar viagem | `Sistema.iniciarViagem()` | — |
+| `ViagemEmAndamentoException` | Usuário já possui viagem em andamento | `Usuario.registrarViagemAtiva()` | `Sistema.iniciarViagem()` |
+| `SemViagemEmAndamentoException` | Encerrar viagem inexistente | `Usuario.finalizarViagemAtiva()` | — |
+| `VeiculoIndisponivelException` | Veículo indisponível ou elétrico com menos de 20% | `Veiculo.iniciarUtilizacao()` | `Sistema.iniciarViagem()` |
+| `EstacaoLotadaException` | Estação sem vaga | `Estacao.adicionarVeiculo()` | `Sistema.cadastrarVeiculo()`, `Sistema.finalizarViagem()` |
+| `VeiculoNaoEncontradoException` | Veículo não está na estação | `Estacao.removerVeiculo()` | `Sistema.iniciarViagem()` |
+| `DataInvalidaException` | Término anterior ao início; período de faturamento inválido | `Viagem.finalizarViagem()`, `Sistema.consultarFaturamento()` | `Sistema.finalizarViagem()` |
+| `OperacaoInvalidaException` | Manutenção de veículo em uso; retorno de veículo fora de manutenção; recarga de veículo em uso ou sem bateria | `Veiculo.enviarParaManutencao()`, `Veiculo.retornarDaManutencao()`, `recarregarBateria()` | — |
+| `PersistenciaException` | Falha ao ler ou gravar os arquivos de dados | `Sistema.salvarDados()`, `Sistema.carregarDados()` | — |
+
+**Observações gerais:**
+- Métodos que não violam regras (consultas, `possuiViagemEmAndamento()`, `temSaldoMinimo()`, `podeSerLiberado()`, `aceitaDescontoUniversitario()`, `pagarViagem()`, `debitarValor()` e os métodos de `Plano`) não declaram exceções.
+- `pagarViagem()` e `debitarValor()` não lançam exceção porque o saldo pode ficar negativo após uma viagem.
+- No diagrama, as exceções lançadas são indicadas no final de cada método com `{throws NomeException}`.
+
+---
+
+## 6. Pendências gerais
 
 - [X] Definir os atributos e métodos definitivos de cada classe.
 - [X] Definir os relacionamentos entre as classes.
@@ -890,14 +1096,17 @@ Espaço destinado à definição dos tipos enumerados utilizados pelo sistema, r
 - [X] Definir como será armazenado o histórico de movimentações financeiras.
 - [X] Definir como será armazenado o histórico de viagens.
 - [X] Definir a responsabilidade de cada classe no início e encerramento de uma viagem.
-- [] Definir como será realizada a persistência dos dados.
+- [X] Definir como será realizada a persistência dos dados (`salvarDados()` e `carregarDados()` em `Sistema`, pasta `dados-gb26`).
 - [X] Definir a estrutura de `RelatorioFaturamento`.
-- [] Definir como será realizada a restauração do contador de códigos dos veículos após carregar os dados persistidos.
-- [] Criar e revisar o diagrama UML conforme as decisões forem consolidadas.
+- [ ] Definir como será realizada a restauração do contador de códigos dos veículos após carregar os dados persistidos.
+- [X] Criar e revisar o diagrama UML conforme as decisões forem consolidadas.
+- [X] Definir as exceções do sistema e onde cada uma é lançada.
+- [ ] Definir o formato dos arquivos CSV (campos de cada entidade e como as referências entre objetos serão salvas).
+- [ ] Exportar o diagrama final em PDF para a entrega.
 
 ---
 
-## 6. Observações gerais
+## 7. Observações gerais
 
 - A estrutura deve permitir adicionar novos tipos de veículos e planos com o mínimo de alterações nas classes existentes.
 - As regras de negócio devem ficar na camada de negócio, sem dependência da interface gráfica.
