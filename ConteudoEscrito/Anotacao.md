@@ -81,20 +81,20 @@ As informações desta seção representam propostas de modelagem e decisões to
 - `public Sistema();`
 
 **Métodos**
-- `public void cadastrarEstacao(Estacao estacao);`
+- `public void cadastrarEstacao(Estacao estacao) throws RegistroJaExistenteException;`
 - `public void cadastrarVeiculo(Veiculo veiculo);`
-- `public void cadastrarUsuario(Usuario usuario);`
+- `public void cadastrarUsuario(Usuario usuario) throws RegistroJaExistenteException;`
 - `public RelatorioFaturamento consultarFaturamento(LocalDate dataInicial, LocalDate dataFinal);`
-- `public Estacao consultarEstacao(String nome);`
+- `public Estacao consultarEstacao(String nome) throws RegistroNaoEncontradoException;`
 - `public List<Estacao> consultarEstacoes();`
-- `public Veiculo consultarVeiculo(int codigo);`
+- `public Veiculo consultarVeiculo(int codigo) throws RegistroNaoEncontradoException;`
 - `public List<Veiculo> consultarVeiculos();`
-- `public Usuario consultarUsuario(String email);`
+- `public Usuario consultarUsuario(String email) throws RegistroNaoEncontradoException;`
 - `public List<Usuario> consultarUsuarios();`
 - `public List<Viagem> consultarViagensDoUsuario(Usuario usuario);`
 - `public List<Viagem> consultarViagens();`
 - `public Viagem iniciarViagem(Usuario usuario, Veiculo veiculo, LocalDateTime dataHoraInicio);`
-- `public void finalizarViagem(Viagem viagem, Estacao estacaoDestino, LocalDateTime dataHoraFim);`
+- `public void finalizarViagem(Viagem viagem, Estacao estacaoDestino, LocalDateTime dataHoraFim)throws SemViagemEmAndamentoException, DataInvalidaException, EstacaoLotadaException;`
 
 **Observações da definição:**
 - As coleções são mantidas internamente em `ArrayList`, mas os métodos de consulta utilizam `List` como tipo de retorno, reduzindo o acoplamento à implementação concreta.
@@ -543,6 +543,7 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 - `public double consultarSaldo();`
 - `public List<MovimentacaoFinanceira> consultarHistoricoMovimentacoes();`
 - `public List<Recarga> consultarRecargas()`
+- `public List<LinhaExtrato> consultarExtrato();`
 
 **Observações da definição:**
 - A carteira será criada no construtor do usuário, iniciando com saldo zero.
@@ -550,6 +551,7 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 - `finalizarViagemAtiva()` deverá remover a referência à viagem ativa após o encerramento.
 - `temSaldoMinimo()` deverá consultar a carteira, evitando duplicar a regra de saldo mínimo em `Usuario`.
 - A forma de obtenção do extrato completo ainda depende da definição de como as movimentações financeiras serão representadas.
+- A consulta do extrato deve ser delegada à `Carteira`, evitando duplicação da lógica de organização e cálculo do saldo acumulado.
 
 **Atualização 13/11 — Ajustes após revisão do diagrama**
 
@@ -722,6 +724,7 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 - `public double consultarSaldoAtual();`
 - `public List<MovimentacaoFinanceira> consultarHistoricoMovimentacoes();`
 - `public boolean temSaldoMinimo();`
+- `public List<LinhaExtrato> consultarExtrato();`
 
 **Observações da definição:**
 - O construtor deverá inicializar o saldo em zero e criar a coleção de movimentações.
@@ -730,7 +733,12 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 - `temSaldoMinimo()` deverá verificar se o saldo atual é igual ou superior a R$ 5,00.
 - O histórico deverá permitir consultar tanto recargas quanto viagens, mantendo ambas em uma coleção comum por meio da interface `MovimentacaoFinanceira`.
 - A consulta do histórico não deverá permitir alterações diretas na coleção interna.
-- O extrato deverá ordenar as movimentações cronologicamente e apresentar o saldo após cada operação. A implementação dessa consulta ainda dependerá da definição de como será representado o saldo após cada movimentação.
+- O extrato deve apresentar todas as movimentações em ordem cronológica, da mais antiga para a mais recente, incluindo o saldo após cada movimentação.
+- O saldo acumulado deve considerar as recargas como créditos e as viagens como débitos.
+- A ordenação deve ser realizada sobre uma cópia da lista original, sem modificar o histórico armazenado na carteira.
+- Caso duas movimentações possuam a mesma data e horário, deve ser preservada a ordem original em que foram registradas.
+- O saldo acumulado deve ser calculado a partir de zero, considerando o histórico completo de movimentações.
+- O método deve retornar uma lista de `LinhaExtrato`.
 
 **Atualização 13/11 — Ajustes após revisão do diagrama**
 
@@ -790,7 +798,7 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 - `public Viagem(Usuario usuario, Veiculo veiculo, Estacao estacaoOrigem, LocalDateTime dataHoraInicio);`
 
 **Métodos**
-- `public void finalizarViagem(Estacao estacaoDestino, LocalDateTime dataHoraFim);`
+- `public void finalizarViagem(Estacao estacaoDestino, LocalDateTime dataHoraFim)throws SemViagemEmAndamentoException, DataInvalidaException;`
 - `public long calcularDuracao();`
 - `public double calcularValor();`
 - `public boolean estaEmAndamento();`
@@ -965,6 +973,33 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 - `public Recarga(double valor, LocalDateTime dataHora) throws ValorInvalidoException;`
   - Motivo: a exceção nasce no construtor quando o valor é menor ou igual a zero, impedindo que uma recarga inválida chegue a existir.
 
+## 2.13. LinhaExtrato
+
+**Objetivo:** representar uma linha do extrato financeiro, associando uma movimentação ao saldo resultante após sua realização.
+
+**Atributos:**
+
+- `movimentacao: MovimentacaoFinanceira` — movimentação financeira correspondente.
+- `saldoApos: double` — saldo acumulado após a movimentação.
+
+**Construtor:**
+
+- `LinhaExtrato(MovimentacaoFinanceira movimentacao, double saldoApos)`
+
+**Métodos:**
+
+- `consultarMovimentacao(): MovimentacaoFinanceira`
+- `consultarSaldoApos(): double`
+
+**Observações:**
+
+- Os atributos devem ser imutáveis (`final`), pois uma linha do extrato representa o resultado de uma movimentação já registrada.
+- A classe não deve alterar a carteira nem as movimentações originais.
+- Não precisa implementar `Serializable`, pois as linhas do extrato serão geradas a partir do histórico financeiro já persistido.
+- As instâncias serão criadas pela classe `Carteira` durante a geração do extrato.
+- A classe não possui responsabilidade de calcular o saldo acumulado, apenas armazenar e disponibilizar os dados correspondentes à linha do extrato.
+- A movimentação associada será identificada por meio da interface `MovimentacaoFinanceira`, utilizando seus métodos `consultarDataHoraMovimentacao()`, `consultarValorMovimentacao()` e `consultarTipoMovimentacao()`.
+
 ---
 
 ## 3. Interfaces
@@ -1071,10 +1106,12 @@ Espaço destinado às exceções criadas pela equipe para sinalizar violações 
 | `ValorInvalidoException` | Recarga com valor menor ou igual a zero; bateria fora de 0% a 100% | `Recarga()`, `VeiculoEletrico()` | `Usuario.recarregarCarteira()`, construtores de `BicicletaEletrica` e `PatineteEletrico` |
 | `SaldoInsuficienteException` | Saldo menor que R$ 5,00 para iniciar viagem | `Sistema.iniciarViagem()` | — |
 | `ViagemEmAndamentoException` | Usuário já possui viagem em andamento | `Usuario.registrarViagemAtiva()` | `Sistema.iniciarViagem()` |
-| `SemViagemEmAndamentoException` | Encerrar viagem inexistente | `Usuario.finalizarViagemAtiva()` | — |
-| `VeiculoIndisponivelException` | Veículo indisponível ou elétrico com menos de 20% | `Veiculo.iniciarUtilizacao()` | `Sistema.iniciarViagem()` |
+| `SemViagemEmAndamentoException` | Tentativa de encerrar uma viagem inexistente, já encerrada ou que não corresponde à viagem ativa do usuário | `Usuario.finalizarViagemAtiva()`, `Viagem.finalizarViagem()` | `Sistema.finalizarViagem()` |
+| `VeiculoIndisponivelException` | Veículo indisponível ou elétrico com menos de 20% de bateria | `Veiculo.iniciarUtilizacao()` | `Sistema.iniciarViagem()` |
 | `EstacaoLotadaException` | Estação sem vaga | `Estacao.adicionarVeiculo()` | `Sistema.cadastrarVeiculo()`, `Sistema.finalizarViagem()` |
 | `VeiculoNaoEncontradoException` | Veículo não está na estação | `Estacao.removerVeiculo()` | `Sistema.iniciarViagem()` |
+| `RegistroNaoEncontradoException` | Estação, veículo ou usuário não encontrado na consulta solicitada | `Sistema.consultarEstacao()`, `Sistema.consultarVeiculo()`, `Sistema.consultarUsuario()` | — |
+| `RegistroJaExistenteException` | Tentativa de cadastrar usuário com e-mail já utilizado ou estação com nome já cadastrado | `Sistema.cadastrarUsuario()`, `Sistema.cadastrarEstacao()` | — |
 | `DataInvalidaException` | Término anterior ao início; período de faturamento inválido | `Viagem.finalizarViagem()`, `Sistema.consultarFaturamento()` | `Sistema.finalizarViagem()` |
 | `OperacaoInvalidaException` | Manutenção de veículo em uso; retorno de veículo fora de manutenção; recarga de veículo em uso ou sem bateria | `Veiculo.enviarParaManutencao()`, `Veiculo.retornarDaManutencao()`, `recarregarBateria()` | — |
 | `PersistenciaException` | Falha ao ler ou gravar os arquivos de dados | `Sistema.salvarDados()`, `Sistema.carregarDados()` | — |
