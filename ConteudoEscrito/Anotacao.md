@@ -134,12 +134,37 @@ As informações desta seção representam propostas de modelagem e decisões to
   - Motivo: impedir períodos com data final anterior à inicial.
 - `public Viagem iniciarViagem(Usuario usuario, Veiculo veiculo, LocalDateTime dataHoraInicio) throws ViagemEmAndamentoException, SaldoInsuficienteException, VeiculoIndisponivelException, VeiculoNaoEncontradoException;`
   - Motivo: `SaldoInsuficienteException` nasce aqui quando `temSaldoMinimo()` retorna `false`. As demais são propagadas de `Usuario`, `Veiculo` e `Estacao` até a interface gráfica.
-- `public void finalizarViagem(Viagem viagem, Estacao estacaoDestino, LocalDateTime dataHoraFim) throws DataInvalidaException, EstacaoLotadaException;`
-  - Motivo: propaga a validação de datas da `Viagem` e a falta de vaga na estação de destino.
+- `public void finalizarViagem(Viagem viagem, Estacao estacaoDestino, LocalDateTime dataHoraFim) throws SemViagemEmAndamentoException, DataInvalidaException, EstacaoLotadaException;`
+  - Motivo: propaga a viagem que não está em andamento, a validação de datas da `Viagem` e a falta de vaga na estação de destino.
 
 **Observações da atualização:**
 - `Sistema` passa a ter uma relação de agregação com `Plano` (`planosDisponiveis 0..*`).
 - Quase todas as exceções do sistema passam por `iniciarViagem()` e `finalizarViagem()`, que funcionam como ponto de entrada das operações para a interface gráfica.
+
+**Atualização 14/11 — Ordem das operações e regras de cadastro**
+
+**UML CRIADO? --> [ ]**
+
+**Ordem das operações**
+
+Regra geral: primeiro as validações que apenas leem o estado e lançam exceção; só depois as alterações. Se qualquer exceção ocorrer, nenhum objeto pode ter sido alterado.
+
+- `iniciarViagem`:
+  1. Validações de leitura: `usuario.possuiViagemEmAndamento()` → `ViagemEmAndamentoException`; `usuario.temSaldoMinimo()` → `SaldoInsuficienteException`; `veiculo.podeSerLiberado()` → `VeiculoIndisponivelException`.
+  2. Ler a estação de origem a partir de `veiculo.consultarEstacaoAtual()`, antes de iniciar a utilização (o veículo em uso fica com `estacaoAtual = null`).
+  3. Criar a `Viagem`.
+  4. Alterar: `estacaoOrigem.removerVeiculo(veiculo)`, `veiculo.iniciarUtilizacao()`, `usuario.registrarViagemAtiva(viagem)` e adicionar a viagem em `viagens`.
+- `finalizarViagem`:
+  1. Validações de leitura: a viagem está em andamento e é a viagem ativa do usuário → `SemViagemEmAndamentoException`; a estação de destino tem vaga → `EstacaoLotadaException`.
+  2. `viagem.finalizarViagem(estacaoDestino, dataHoraFim)`: valida as datas (`DataInvalidaException`) antes de alterar a si mesma.
+  3. `veiculo.finalizarUtilizacao(estacaoDestino, minutos)`: atualiza estado, localização e, nos elétricos, a bateria.
+  4. `estacaoDestino.adicionarVeiculo(veiculo)`.
+  5. `usuario.pagarViagem(viagem)` e depois `usuario.finalizarViagemAtiva(viagem)`.
+
+**Regras de cadastro e consulta**
+- Duplicidade: o nome da estação e o e-mail do usuário são comparados ignorando maiúsculas/minúsculas e espaços nas pontas. A mesma comparação vale em `consultarEstacao(String)` e `consultarUsuario(String)`.
+- `cadastrarVeiculo` assume que a estação do veículo já está cadastrada: a tela só oferece estações obtidas por `consultarEstacoes()`. O `Sistema` chama `estacao.adicionarVeiculo(veiculo)` e só depois inclui o veículo em `veiculos`. Se a estação estiver lotada, o veículo não é incluído.
+
 
 ### 2.2. Estacao
 
@@ -199,6 +224,14 @@ As informações desta seção representam propostas de modelagem e decisões to
 **Observações da atualização:**
 - `adicionarVeiculo()` utiliza `consultarVagasDisponiveis()` para decidir se lança a exceção, mantendo a regra de capacidade em um único lugar.
 - Como `Veiculo` e `Estacao` se conhecem (os dois lados da associação), a atualização da estação e do veículo deve ocorrer sempre em conjunto, coordenada por `Sistema`.
+
+**Atualização 14/11 — Ajustes**
+
+**UML CRIADO? --> [ ]**
+
+**Ajustes**
+- Adicionado `public String consultarNome();`
+  - Motivo: `Sistema.consultarEstacao(String nome)` precisa comparar o nome da estação e a tela precisa exibi-lo.
 
 ### 2.3. Veiculo (abstrata)
 
@@ -281,6 +314,20 @@ As informações desta seção representam propostas de modelagem e decisões to
 
 **Observações da atualização:**
 - `consultarDescricao()`, `aceitaDescontoUniversitario()` e `recarregarBateria()` são métodos concretos (não abstratos), pois possuem um comportamento padrão. Apenas as subclasses que precisam de outro comportamento os sobrescrevem.
+
+**Atualização 14/11 — Estado e localização do veículo**
+
+**UML CRIADO? --> [X]**
+
+**Ajustes**
+- Estado inicial: o veículo é criado `DISPONIVEL`.
+- `iniciarUtilizacao()`: além de mudar o estado para `EM_USO`, limpa a estação atual (`estacaoAtual = null`), pois veículo em uso não ocupa vaga (no UML, `estacaoAtual 0..1`).
+- `finalizarUtilizacao(Estacao estacaoDestino, long minutos)`: define `estacaoAtual = estacaoDestino` e o estado `DISPONIVEL`.
+- `enviarParaManutencao()`: lança `OperacaoInvalidaException` somente se o veículo estiver `EM_USO`. Se já estiver em manutenção, não faz nada (o enunciado permite enviar qualquer veículo que não esteja em uso).
+
+**Observações da atualização:**
+- `Sistema.iniciarViagem` deve ler a estação de origem **antes** de chamar `iniciarUtilizacao()`.
+- Nenhuma alteração necessária no UML (o `0..1` de `estacaoAtual` já representa essa regra).
 
 ### 2.4. VeiculoMecanico (abstrata)
 
@@ -550,7 +597,7 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 - `registrarViagemAtiva()` deverá impedir o registro de uma nova viagem caso já exista uma em andamento.
 - `finalizarViagemAtiva()` deverá remover a referência à viagem ativa após o encerramento.
 - `temSaldoMinimo()` deverá consultar a carteira, evitando duplicar a regra de saldo mínimo em `Usuario`.
-- A forma de obtenção do extrato completo ainda depende da definição de como as movimentações financeiras serão representadas.
+- O extrato é obtido por `consultarExtrato()`, que delega à `Carteira` (ver 2.8 e 2.13).
 - A consulta do extrato deve ser delegada à `Carteira`, evitando duplicação da lógica de organização e cálculo do saldo acumulado.
 
 **Atualização 13/11 — Ajustes após revisão do diagrama**
@@ -559,7 +606,7 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 
 **Ajustes**
 - Removido `public List<Recarga> consultarRecargas();`
-  - Motivo: a `Carteira` não mantém mais uma lista exclusiva de recargas, e sim o histórico de `MovimentacaoFinanceira`. O extrato utiliza `consultarHistoricoMovimentacoes()`.
+  - Motivo: a `Carteira` não mantém mais uma lista exclusiva de recargas, e sim o histórico de `MovimentacaoFinanceira`. O extrato utiliza `consultarExtrato()`.
 - `public void registrarViagemAtiva(Viagem viagem) throws ViagemEmAndamentoException;`
   - Motivo: impedir o registro de uma nova viagem quando já existe uma em andamento.
 - `public void finalizarViagemAtiva(Viagem viagem) throws SemViagemEmAndamentoException;`
@@ -568,7 +615,16 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
   - Motivo: o método cria a `Recarga`, cujo construtor valida o valor. A exceção é propagada até a interface gráfica.
 
 **Observações da atualização:**
-- A extração do extrato fica resolvida: `consultarHistoricoMovimentacoes()` delega à `Carteira`, que mantém recargas e viagens em uma única coleção.
+- O extrato é obtido por `consultarExtrato()`, que delega à `Carteira`. Ela mantém recargas e viagens em uma única coleção e gera as `LinhaExtrato` em ordem cronológica, com o saldo após cada movimentação.
+
+**Atualização 14/11 — Ajustes**
+
+**UML CRIADO? --> [ ]**
+
+**Ajustes**
+- Removido `public List<MovimentacaoFinanceira> consultarHistoricoMovimentacoes();`
+  - Motivo: o extrato passa a ser obtido por `consultarExtrato()`, e o método ficaria sem uso. A `Carteira` mantém o seu `consultarHistoricoMovimentacoes()`.
+- Mantido `public List<LinhaExtrato> consultarExtrato();`, que delega à `Carteira`.
 
 ### 2.7. Plano (interface)
 
@@ -742,7 +798,7 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 
 **Atualização 13/11 — Ajustes após revisão do diagrama**
 
-**UML CRIADO? --> [X]**
+**UML CRIADO? --> [ ]**
 
 **Ajustes**
 - Adicionada a constante `private static final double SALDO_MINIMO = 5.0;`
@@ -833,8 +889,19 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 **UML CRIADO? --> [X]**
 
 **Ajustes**
-- `public void finalizarViagem(Estacao estacaoDestino, LocalDateTime dataHoraFim) throws DataInvalidaException;`
-  - Motivo: o enunciado exige que a data e a hora de término sejam posteriores ao início.
+- `public void finalizarViagem(Estacao estacaoDestino, LocalDateTime dataHoraFim) throws SemViagemEmAndamentoException, DataInvalidaException;`
+  - Motivo: o enunciado exige que a data e a hora de término sejam posteriores ao início, e a viagem só pode ser encerrada uma vez.
+
+**Atualização 14/11 — Ajustes**
+
+**UML CRIADO? --> [ ]**
+
+**Ajustes**
+- `finalizarViagem()` valida primeiro (viagem em andamento e data de término posterior ao início) e só depois altera os atributos. Se lançar exceção, a viagem continua como estava.
+- `calcularDuracao()` e `calcularValor()` só devem ser chamados depois de encerrar a viagem (pré-condição registrada no Javadoc).
+- `consultarDataHoraMovimentacao()` devolve `null` enquanto a viagem está em andamento. A `Carteira` só recebe viagens encerradas.
+
+**Pendente com o professor:** a duração desconsidera os segundos restantes? Premissa provisória: minutos inteiros.
 
 ### 2.10. RelatorioFaturamento
 
@@ -895,6 +962,16 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 - O construtor recebe os resultados já calculados pelo `Sistema`.
 - Os mapas devem ser copiados no construtor e não devem permitir alterações externas.
 - Consultas para tipos sem viagens devem retornar zero.
+
+**Atualização 14/11 — Ajustes**
+
+**UML CRIADO? --> [X]**
+
+**Ajustes**
+- Nenhuma alteração na classe.
+
+**Observações da atualização:**
+- Premissa provisória para `Sistema.consultarFaturamento`: o período é inclusivo nas duas datas (comparação pela data de `dataHoraFim`).
 
 ### 2.11. MovimentacaoFinanceira
 
@@ -973,7 +1050,9 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 - `public Recarga(double valor, LocalDateTime dataHora) throws ValorInvalidoException;`
   - Motivo: a exceção nasce no construtor quando o valor é menor ou igual a zero, impedindo que uma recarga inválida chegue a existir.
 
-## 2.13. LinhaExtrato
+### 2.13. LinhaExtrato
+
+**UML CRIADO? --> [ ]**
 
 **Objetivo:** representar uma linha do extrato financeiro, associando uma movimentação ao saldo resultante após sua realização.
 
@@ -1090,7 +1169,7 @@ Espaço destinado às exceções criadas pela equipe para sinalizar violações 
 
 **Atualização 13/11 — Definição das exceções**
 
-**UML CRIADO? --> [X]**
+**UML CRIADO? --> [ ]**
 
 **Hierarquia**
 - `Exception` (java.lang)
@@ -1105,13 +1184,13 @@ Espaço destinado às exceções criadas pela equipe para sinalizar violações 
 |---|---|---|---|
 | `ValorInvalidoException` | Recarga com valor menor ou igual a zero; bateria fora de 0% a 100% | `Recarga()`, `VeiculoEletrico()` | `Usuario.recarregarCarteira()`, construtores de `BicicletaEletrica` e `PatineteEletrico` |
 | `SaldoInsuficienteException` | Saldo menor que R$ 5,00 para iniciar viagem | `Sistema.iniciarViagem()` | — |
-| `ViagemEmAndamentoException` | Usuário já possui viagem em andamento | `Usuario.registrarViagemAtiva()` | `Sistema.iniciarViagem()` |
-| `SemViagemEmAndamentoException` | Tentativa de encerrar uma viagem inexistente, já encerrada ou que não corresponde à viagem ativa do usuário | `Usuario.finalizarViagemAtiva()`, `Viagem.finalizarViagem()` | `Sistema.finalizarViagem()` |
-| `VeiculoIndisponivelException` | Veículo indisponível ou elétrico com menos de 20% de bateria | `Veiculo.iniciarUtilizacao()` | `Sistema.iniciarViagem()` |
-| `EstacaoLotadaException` | Estação sem vaga | `Estacao.adicionarVeiculo()` | `Sistema.cadastrarVeiculo()`, `Sistema.finalizarViagem()` |
+| `ViagemEmAndamentoException` | Usuário já possui viagem em andamento | `Usuario.registrarViagemAtiva()`, `Sistema.iniciarViagem()` | `Sistema.iniciarViagem()` |
+| `SemViagemEmAndamentoException` | Tentativa de encerrar uma viagem inexistente, já encerrada ou que não corresponde à viagem ativa do usuário | `Usuario.finalizarViagemAtiva()`, `Viagem.finalizarViagem()`, `Sistema.finalizarViagem()` | `Sistema.finalizarViagem()` |
+| `VeiculoIndisponivelException` | Veículo indisponível ou elétrico com menos de 20% de bateria | `Veiculo.iniciarUtilizacao()`, `Sistema.iniciarViagem()` | `Sistema.iniciarViagem()` |
+| `EstacaoLotadaException` | Estação sem vaga | `Estacao.adicionarVeiculo()`, `Sistema.finalizarViagem()` | `Sistema.cadastrarVeiculo()`, `Sistema.finalizarViagem()` |
 | `VeiculoNaoEncontradoException` | Veículo não está na estação | `Estacao.removerVeiculo()` | `Sistema.iniciarViagem()` |
 | `RegistroNaoEncontradoException` | Estação, veículo ou usuário não encontrado na consulta solicitada | `Sistema.consultarEstacao()`, `Sistema.consultarVeiculo()`, `Sistema.consultarUsuario()` | — |
-| `RegistroJaExistenteException` | Tentativa de cadastrar usuário com e-mail já utilizado ou estação com nome já cadastrado | `Sistema.cadastrarUsuario()`, `Sistema.cadastrarEstacao()` | — |
+| `RegistroJaExistenteException` | Tentativa de cadastrar usuário com e-mail já utilizado ou estação com nome já cadastrado (comparação ignora maiúsculas/minúsculas e espaços nas pontas) | `Sistema.cadastrarUsuario()`, `Sistema.cadastrarEstacao()` | — |
 | `DataInvalidaException` | Término anterior ao início; período de faturamento inválido | `Viagem.finalizarViagem()`, `Sistema.consultarFaturamento()` | `Sistema.finalizarViagem()` |
 | `OperacaoInvalidaException` | Manutenção de veículo em uso; retorno de veículo fora de manutenção; recarga de veículo em uso ou sem bateria | `Veiculo.enviarParaManutencao()`, `Veiculo.retornarDaManutencao()`, `recarregarBateria()` | — |
 | `PersistenciaException` | Falha ao ler ou gravar os arquivos de dados | `Sistema.salvarDados()`, `Sistema.carregarDados()` | — |
@@ -1133,12 +1212,16 @@ Espaço destinado às exceções criadas pela equipe para sinalizar violações 
 - [X] Definir como será armazenado o histórico de movimentações financeiras.
 - [X] Definir como será armazenado o histórico de viagens.
 - [X] Definir a responsabilidade de cada classe no início e encerramento de uma viagem.
-- [X] Definir como será realizada a persistência dos dados (`salvarDados()` e `carregarDados()` em `Sistema`, pasta `dados-gb26`).
 - [X] Definir a estrutura de `RelatorioFaturamento`.
-- [ ] Definir como será realizada a restauração do contador de códigos dos veículos após carregar os dados persistidos.
-- [X] Criar e revisar o diagrama UML conforme as decisões forem consolidadas.
 - [X] Definir as exceções do sistema e onde cada uma é lançada.
-- [ ] Definir o formato dos arquivos CSV (campos de cada entidade e como as referências entre objetos serão salvas).
+- [ ] Atualizar o diagrama UML conforme as atualizações de 13/11 e 14/11.
+- [ ] Decidir o formato da persistência (binário com `Serializable` ou CSV) e a regra do contador de códigos dos veículos.
+- [ ] Definir o formato dos arquivos de dados (campos e referências entre objetos), conforme a decisão acima.
+- [ ] Confirmar com o professor: duração com segundos restantes e período do faturamento inclusivo.
+- [ ] Constante `CODIGO_HOMOLOGACAO` na classe do `main` e título exato da janela.
+- [ ] Arquivos de dados de exemplo.
+- [ ] Plano de testes (PDF) e testes JUnit.
+- [ ] Javadoc.
 - [ ] Exportar o diagrama final em PDF para a entrega.
 
 ---

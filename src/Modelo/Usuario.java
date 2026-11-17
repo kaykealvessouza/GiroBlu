@@ -9,7 +9,6 @@ import Excecoes.ViagemEmAndamentoException;
 
 import Financeiro.LinhaExtrato;
 
-import Interfaces.MovimentacaoFinanceira;
 import Interfaces.Plano;
 
 public class Usuario {
@@ -118,15 +117,6 @@ public class Usuario {
     public double consultarSaldo() {
         return 0;
     }
-
-
-    // ==================== CONSULTAR HISTÓRICO DE MOVIMENTAÇÕES ====================
-    // Status: NÃO INICIADO
-
-    public List<MovimentacaoFinanceira> consultarHistoricoMovimentacoes() {
-        return null;
-    }
-
 
     // ==================== CONSULTAR EXTRATO ====================
     // Status: NÃO INICIADO
