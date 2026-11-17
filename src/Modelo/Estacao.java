@@ -64,4 +64,8 @@ public class Estacao {
         return 0;
     }
 
+    public String consultarNome(){
+        return "";
+    };
+
 }
