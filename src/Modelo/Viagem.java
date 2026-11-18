@@ -6,6 +6,7 @@ import Financeiro.TipoMovimentacao;
 import java.time.LocalDateTime;
 
 import Excecoes.DataInvalidaException;
+import Excecoes.SemViagemEmAndamentoException;
 
 public class Viagem implements MovimentacaoFinanceira {
 
@@ -35,7 +36,7 @@ public class Viagem implements MovimentacaoFinanceira {
     // Status: NÃO INICIADO
 
     public void finalizarViagem(Estacao estacaoDestino, LocalDateTime dataHoraFim)
-            throws DataInvalidaException {
+            throws SemViagemEmAndamentoException, DataInvalidaException {
 
     }
 

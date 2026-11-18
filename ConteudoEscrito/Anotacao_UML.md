@@ -109,7 +109,13 @@ Atualizar as assinaturas:
 - `cadastrarUsuario(Usuario): void {throws RegistroJaExistenteException}`
 - `finalizarViagem(Viagem, Estacao, LocalDateTime): void {throws SemViagemEmAndamentoException, DataInvalidaException, EstacaoLotadaException}`
 
-### 2.2. Usuario
+### 2.2. Estacao
+
+Adicionar:
+
+- `consultarNome(): String`
+
+### 2.3. Usuario
 
 Adicionar:
 
@@ -119,39 +125,59 @@ Manter:
 
 - `finalizarViagemAtiva(Viagem): void {throws SemViagemEmAndamentoException}`
 
-### 2.3. Viagem
+Remover:
+
+- `consultarHistoricoMovimentacoes(): List<MovimentacaoFinanceira>`
+
+O histórico de movimentações continua sendo responsabilidade da `Carteira`. O usuário poderá consultar o extrato por meio de `consultarExtrato()`.
+
+### 2.4. Viagem
 
 Atualizar:
 
 - `finalizarViagem(Estacao, LocalDateTime): void {throws SemViagemEmAndamentoException, DataInvalidaException}`
 
-### 2.4. Carteira
+### 2.5. Carteira
 
 Adicionar:
 
 - `consultarExtrato(): List<LinhaExtrato>`
 
-### 2.5. LinhaExtrato
+### 2.6. LinhaExtrato
 
 Criar a nova classe com:
 
 **Atributos privados e finais:**
+
 - `movimentacao: MovimentacaoFinanceira`
 - `saldoApos: double`
 
 **Métodos públicos:**
+
 - `LinhaExtrato(MovimentacaoFinanceira, double)`
 - `consultarMovimentacao(): MovimentacaoFinanceira`
 - `consultarSaldoApos(): double`
 
-### 2.6. Relacionamentos
+### 2.7. Relacionamentos
 
 - `Carteira` deve possuir uma dependência de criação/uso de `LinhaExtrato`, pois gera as linhas ao consultar o extrato.
-- `LinhaExtrato` deve possuir uma associação com `MovimentacaoFinanceira`, pois mantém uma referência à movimentação correspondente.
+- `LinhaExtrato` deve possuir uma associação com `MovimentacaoFinanceira`, pois mantém uma referência à movimentação correspondente. Multiplicidade: `movimentacao 1`.
 - `Usuario` já possui associação com `Carteira`; não é necessário criar outra associação estrutural entre eles por causa do extrato.
 - Adicionar `RegistroNaoEncontradoException` e `RegistroJaExistenteException` à hierarquia de herança de `GiroBluException`.
 - Atualizar os relacionamentos de dependência das exceções nos métodos que as lançam ou propagam.
 
+### 2.8. Limpeza opcional dos relacionamentos
+
+Corrigir as setas que estão sem referências estruturais no XML do diagrama:
+
+- `-105`, `-107`, `-109` e `-111`: setas de `Viagem` para `Usuario`, `Veiculo` e as duas `Estacao`, atualmente sem `source`.
+- `-78`: seta de `Usuario` para `Carteira`, atualmente sem `target`.
+
+Essas setas funcionam visualmente, mas não acompanham as classes caso sejam movidas no diagrama. Recomenda-se corrigir suas referências para manter os relacionamentos vinculados aos elementos correspondentes.
+
 ---
 
-**Observação:** não é necessário criar uma associação permanente entre `Carteira` e `LinhaExtrato`, pois as linhas são objetos temporários gerados durante a consulta. Uma dependência de criação é suficiente.
+**Observações:**
+
+- Não é necessário criar uma associação permanente entre `Carteira` e `LinhaExtrato`, pois as linhas são objetos temporários gerados durante a consulta. Uma dependência de criação é suficiente.
+- A ordem das operações, as regras de cadastro, a observação sobre `estacaoAtual` (o `0..1` já está), o estado inicial e a manutenção repetida não exigem alterações no UML.
