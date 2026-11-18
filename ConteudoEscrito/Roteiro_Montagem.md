@@ -77,10 +77,10 @@ Baseado no md de 14/11 e no enunciado. **Não tem código pronto**: para cada cl
 
 Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String mensagem)`.
 
-### 2.1 `GiroBluException` · [ ] implementado
+### 2.1 `GiroBluException` · [ X ] implementado
 - Herda de `Exception`. Construtor repassa a mensagem para a superclasse.
 
-### 2.2 Exceções filhas · [ ] todas implementadas
+### 2.2 Exceções filhas · [ X ] todas implementadas
 
 | Exceção | Quando é lançada (resumo do md) |
 |---|---|

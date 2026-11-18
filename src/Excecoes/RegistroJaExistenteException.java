@@ -4,7 +4,7 @@ package Excecoes;
 public class RegistroJaExistenteException extends GiroBluException {
 
     // ==================== CONSTRUTOR ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public RegistroJaExistenteException(String mensagem) {
         super(mensagem);

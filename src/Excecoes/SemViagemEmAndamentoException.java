@@ -4,8 +4,8 @@ package Excecoes;
 public class SemViagemEmAndamentoException extends GiroBluException {
 
     // ==================== CONSTRUTOR ====================
-    // Status: NÃO INICIADO
-
+    // Status: IMPLEMENTADO
+    
     public SemViagemEmAndamentoException(String mensagem) {
         super(mensagem);
     }

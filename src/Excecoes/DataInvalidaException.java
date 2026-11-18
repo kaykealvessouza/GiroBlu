@@ -4,7 +4,7 @@ package Excecoes;
 public class DataInvalidaException extends GiroBluException {
 
     // ==================== CONSTRUTOR ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public DataInvalidaException(String mensagem) {
         super(mensagem);

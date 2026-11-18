@@ -4,7 +4,7 @@ package Excecoes;
 public class RegistroNaoEncontradoException extends GiroBluException {
 
     // ==================== CONSTRUTOR ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public RegistroNaoEncontradoException(String mensagem) {
         super(mensagem);
