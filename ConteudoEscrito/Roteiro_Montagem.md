@@ -206,10 +206,10 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 - Texto com tipo (via `consultarTipo()`) e modelo.
 - 📌 A tela usa esse método para listar veículos sem perguntar se são elétricos.
 
-### 7.10 Getters · [ ] implementado
+### 7.10 Getters · [ X ] implementado
 - `consultarEstadoAtual()`, `consultarEstacaoAtual()`, `consultarModelo()`, `consultarCodigo()`.
 
-### 7.11 Abstratos · [ ] declarados
+### 7.11 Abstratos · [ X ] declarados
 - `double consultarTarifaDeDesbloqueio()`, `double consultarTarifaPorMinuto()`, `TipoVeiculo consultarTipo()`.
 
 ---
@@ -220,35 +220,35 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 ⚠ **Testes:** só rodam depois de 10 ou 11.
 **Atributo:** `private int nivelBateria`.
 
-### 8.1 Construtor `protected VeiculoEletrico(String, Estacao, int nivelBateria) throws ValorInvalidoException` · [ ] implementado [ ] testado
+### 8.1 Construtor `protected VeiculoEletrico(String, Estacao, int nivelBateria) throws ValorInvalidoException` · [ X ] implementado [ ] testado
 - Lança se a bateria for menor que 0 ou maior que 100. Chama `super`.
 - ✅ Teste: -1 e 101 lançam; 0 e 100 passam.
 
-### 8.2 `consultarNivelBateria()` · [ ] implementado
+### 8.2 `consultarNivelBateria()` · [ X ] implementado
 
-### 8.3 `protected possuiCargaMinimaParaViagem()` · [ ] implementado [ ] testado
+### 8.3 `protected possuiCargaMinimaParaViagem()` · [ X ] implementado [ ] testado
 - `true` com 20% ou mais.
 - ✅ Teste: 19 não, 20 sim.
 
-### 8.4 `@Override podeSerLiberado()` · [ ] implementado [ ] testado
+### 8.4 `@Override podeSerLiberado()` · [ X ] implementado [ ] testado
 - Regra da base **e** carga mínima.
 
-### 8.5 `protected consumirBateria(long minutos)` · [ ] implementado [ ] testado
+### 8.5 `protected consumirBateria(long minutos)` · [ X ] implementado [ ] testado
 - Desconta `minutos × consultarConsumoPorMinuto()`.
 - 📌 A bateria **nunca fica abaixo de 0** (consumo maior que a carga zera).
 - 📌 Atenção ao tipo: `long` × `int`.
 - ✅ Teste: bateria 60% com 20 min de patinete → 20%; consumo maior que a carga → 0%.
 
-### 8.6 `abstract int consultarConsumoPorMinuto()` · [ ] declarado
+### 8.6 `abstract int consultarConsumoPorMinuto()` · [ X ] declarado
 
-### 8.7 `@Override finalizarUtilizacao(Estacao, long)` · [ ] implementado [ ] testado
+### 8.7 `@Override finalizarUtilizacao(Estacao, long)` · [ X ] implementado [ ] testado
 - Executa o comportamento da base **e** aplica `consumirBateria(minutos)`.
 - 📌 O encerramento é permitido mesmo se a bateria zerar.
 
-### 8.8 `@Override recarregarBateria() throws OperacaoInvalidaException` · [ ] implementado [ ] testado
+### 8.8 `@Override recarregarBateria() throws OperacaoInvalidaException` · [ X ] implementado [ ] testado
 - Lança se `EM_USO`. Senão, bateria 100%. Em manutenção pode recarregar.
 
-### 8.9 `@Override consultarDescricao()` · [ ] implementado [ ] testado
+### 8.9 `@Override consultarDescricao()` · [ X ] implementado [ ] testado
 - Descrição da base **mais** a carga atual da bateria.
 
 ---

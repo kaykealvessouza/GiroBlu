@@ -59,6 +59,10 @@ public abstract class Veiculo {
             throw new IllegalArgumentException("A estação de destino não pode ser nula.");
         }
 
+        if (minutos <= 0) {
+            throw new IllegalArgumentException("A duração deve ser maior que zero.");
+        }
+
         this.estacaoAtual = estacaoDestino;
         this.estadoAtual = EstadoVeiculo.DISPONIVEL;
     }
