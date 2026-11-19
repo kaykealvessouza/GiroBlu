@@ -4,7 +4,7 @@ package Excecoes;
 public class SaldoInsuficienteException extends GiroBluException {
 
     // ==================== CONSTRUTOR ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public SaldoInsuficienteException(String mensagem) {
         super(mensagem);

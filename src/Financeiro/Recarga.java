@@ -15,38 +15,42 @@ public class Recarga implements MovimentacaoFinanceira {
 
 
     // ==================== CONSTRUTOR ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO / NÃO TESTADO
 
     public Recarga(double valor, LocalDateTime dataHora)
             throws ValorInvalidoException {
+        if (valor <= 0) {
+            throw new ValorInvalidoException("Valor inválido, precisa ser maior que 0!");
+        }
 
+        this.valor = valor;
+        this.dataHora = dataHora;
     }
 
 
     // ==================== CONSULTAR DATA E HORA DA MOVIMENTAÇÃO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     @Override
     public LocalDateTime consultarDataHoraMovimentacao() {
-        return null;
+        return this.dataHora;
     }
 
 
     // ==================== CONSULTAR VALOR DA MOVIMENTAÇÃO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     @Override
     public double consultarValorMovimentacao() {
-        return 0;
+        return this.valor;
     }
 
 
     // ==================== CONSULTAR TIPO DA MOVIMENTAÇÃO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     @Override
     public TipoMovimentacao consultarTipoMovimentacao() {
-        return null;
+        return TipoMovimentacao.CREDITO;
     }
-
 }

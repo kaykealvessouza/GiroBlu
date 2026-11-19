@@ -77,10 +77,10 @@ Baseado no md de 14/11 e no enunciado. **Não tem código pronto**: para cada cl
 
 Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String mensagem)`.
 
-### 2.1 `GiroBluException` · [ ] implementado
+### 2.1 `GiroBluException` · [ X ] implementado
 - Herda de `Exception`. Construtor repassa a mensagem para a superclasse.
 
-### 2.2 Exceções filhas · [ ] todas implementadas
+### 2.2 Exceções filhas · [ X ] todas implementadas
 
 | Exceção | Quando é lançada (resumo do md) |
 |---|---|
@@ -105,9 +105,9 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 
 ⚠ **Antes:** 1.3 (`TipoMovimentacao`).
 
-### 3.1 `LocalDateTime consultarDataHoraMovimentacao()` · [ ] declarado
-### 3.2 `double consultarValorMovimentacao()` · [ ] declarado
-### 3.3 `TipoMovimentacao consultarTipoMovimentacao()` · [ ] declarado
+### 3.1 `LocalDateTime consultarDataHoraMovimentacao()` · [ X ] declarado
+### 3.2 `double consultarValorMovimentacao()` · [ X ] declarado
+### 3.3 `TipoMovimentacao consultarTipoMovimentacao()` · [ X ] declarado
 
 📌 Sem atributos e sem construtor. Implementada por `Recarga` (5) e `Viagem` (18). É a interface própria exigida pelo enunciado.
 
@@ -117,8 +117,8 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 
 ⚠ **Antes:** o esqueleto de `Veiculo` precisa existir (já existe).
 
-### 4.1 `double calcularValor(Veiculo veiculo, long minutos)` · [ ] declarado
-### 4.2 `String consultarNome()` · [ ] declarado
+### 4.1 `double calcularValor(Veiculo veiculo, long minutos)` · [ X ] declarado
+### 4.2 `String consultarNome()` · [ X ] declarado
 
 📌 O plano não conhece regra de bateria, disponibilidade nem tipo concreto de veículo.
 
@@ -129,17 +129,17 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 ⚠ **Antes:** 1.3, 2 (`ValorInvalidoException`), 3.
 **Atributos:** `private double valor`, `private LocalDateTime dataHora`.
 
-### 5.1 Construtor `Recarga(double valor, LocalDateTime dataHora) throws ValorInvalidoException` · [ ] implementado [ ] testado
+### 5.1 Construtor `Recarga(double valor, LocalDateTime dataHora) throws ValorInvalidoException` · [ X ] implementado [ ] testado
 - 📌 Lança se `valor <= 0`. Quando lança, nenhum objeto é criado.
 - ✅ Teste: valor 0, negativo e positivo.
 
-### 5.2 `consultarDataHoraMovimentacao()` · [ ] implementado
+### 5.2 `consultarDataHoraMovimentacao()` · [ X ] implementado
 - Devolve `dataHora`.
 
-### 5.3 `consultarValorMovimentacao()` · [ ] implementado
+### 5.3 `consultarValorMovimentacao()` · [ X ] implementado
 - Devolve `valor`.
 
-### 5.4 `consultarTipoMovimentacao()` · [ ] implementado [ ] testado
+### 5.4 `consultarTipoMovimentacao()` · [ X ] implementado [ ] testado
 - Sempre `CREDITO`.
 
 📌 Não existem `consultarValor()` nem `consultarDataHora()` (removidos). A recarga **não** atualiza o saldo (isso é da `Carteira`).
@@ -151,9 +151,9 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 ⚠ **Antes:** 3.
 **Atributos (ambos `final`):** `MovimentacaoFinanceira movimentacao`, `double saldoApos`.
 
-### 6.1 Construtor `LinhaExtrato(MovimentacaoFinanceira, double)` · [ ] implementado
-### 6.2 `consultarMovimentacao()` · [ ] implementado
-### 6.3 `consultarSaldoApos()` · [ ] implementado
+### 6.1 Construtor `LinhaExtrato(MovimentacaoFinanceira, double)` · [ X ] implementado
+### 6.2 `consultarMovimentacao()` · [ X ] implementado
+### 6.3 `consultarSaldoApos()` · [ X ] implementado
 
 📌 Imutável, não altera carteira nem movimentações, não calcula o saldo (quem calcula é a `Carteira`, item 16.7). Não é persistida.
 
@@ -165,52 +165,51 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 ⚠ **Testes:** só rodam depois de 9 (use `BicicletaMecanica`).
 **Atributos:** `private static int contadorCodigo`, `private final int codigoIdentificador`, `private String modelo`, `private EstadoVeiculo estadoAtual`, `private Estacao estacaoAtual`.
 
-### 7.1 Construtor `protected Veiculo(String modelo, Estacao estacaoAtual)` · [ ] implementado [ ] testado
+### 7.1 Construtor `protected Veiculo(String modelo, Estacao estacaoAtual)` · [ X ] implementado [ ] testado
 - 📌 O código é gerado automaticamente a partir do contador compartilhado; nunca vem de fora. Dois veículos nunca repetem código.
 - 📌 Estado inicial: `DISPONIVEL`.
 - 📌 **Não** adiciona o veículo na lista da estação (quem faz é `Sistema.cadastrarVeiculo`).
-- 📌 Escreva no Javadoc se o contador guarda o último código usado ou o próximo (ponto em aberto 1).
 - ✅ Teste: dois veículos com códigos diferentes; estado inicial `DISPONIVEL`.
 
-### 7.2 `podeSerLiberado()` · [ ] implementado [ ] testado
+### 7.2 `podeSerLiberado()` · [ X ] implementado [ ] testado
 - Retorna `true` só se o estado for `DISPONIVEL`.
 - 📌 Os elétricos sobrescrevem e acrescentam a regra da bateria (8.4).
 
-### 7.3 `iniciarUtilizacao() throws VeiculoIndisponivelException` · [ ] implementado [ ] testado
+### 7.3 `iniciarUtilizacao() throws VeiculoIndisponivelException` · [ X ] implementado [ ] testado
 - Se `podeSerLiberado()` for `false`, lança a exceção **sem alterar nada**.
 - Senão: estado `EM_USO` e `estacaoAtual = null` (veículo em uso não ocupa vaga).
 - 📌 Use `podeSerLiberado()` (polimórfico). Não pergunte se o veículo é elétrico.
 - ✅ Teste: disponível inicia; em manutenção lança; em uso lança; `estacaoAtual` fica nula.
 
-### 7.4 `finalizarUtilizacao(Estacao estacaoDestino, long minutos)` · [ ] implementado [ ] testado
+### 7.4 `finalizarUtilizacao(Estacao estacaoDestino, long minutos)` · [ X ] implementado [ ] testado
 - Estado volta para `DISPONIVEL` e `estacaoAtual = estacaoDestino`.
 - 📌 A base **ignora** `minutos` (quem usa é o elétrico, 8.7).
 - 📌 Não adiciona na lista da estação (o `Sistema` chama `estacaoDestino.adicionarVeiculo`).
 
-### 7.5 `enviarParaManutencao() throws OperacaoInvalidaException` · [ ] implementado [ ] testado
+### 7.5 `enviarParaManutencao() throws OperacaoInvalidaException` · [ X ] implementado [ ] testado
 - Lança só se estiver `EM_USO`. Senão, estado `MANUTENCAO`.
 - 📌 Se já estiver em manutenção, não faz nada (não é erro).
 - ✅ Teste: disponível vai; em uso lança; já em manutenção continua sem erro.
 
-### 7.6 `retornarDaManutencao() throws OperacaoInvalidaException` · [ ] implementado [ ] testado
+### 7.6 `retornarDaManutencao() throws OperacaoInvalidaException` · [ X ] implementado [ ] testado
 - Lança se **não** estiver em `MANUTENCAO`. Senão, `DISPONIVEL`.
 
-### 7.7 `recarregarBateria() throws OperacaoInvalidaException` · [ ] implementado [ ] testado
+### 7.7 `recarregarBateria() throws OperacaoInvalidaException` · [ X ] implementado [ ] testado
 - **Sempre lança** (veículo sem bateria).
 - 📌 Existe para evitar cast para `VeiculoEletrico`. Os elétricos sobrescrevem (8.8).
 - ✅ Teste: bicicleta mecânica lança.
 
-### 7.8 `aceitaDescontoUniversitario()` · [ ] implementado [ ] testado
+### 7.8 `aceitaDescontoUniversitario()` · [ X ] implementado [ ] testado
 - Retorna `true` (padrão herdado).
 
-### 7.9 `consultarDescricao()` · [ ] implementado [ ] testado
+### 7.9 `consultarDescricao()` · [ X ] implementado [ ] testado
 - Texto com tipo (via `consultarTipo()`) e modelo.
 - 📌 A tela usa esse método para listar veículos sem perguntar se são elétricos.
 
-### 7.10 Getters · [ ] implementado
+### 7.10 Getters · [ X ] implementado
 - `consultarEstadoAtual()`, `consultarEstacaoAtual()`, `consultarModelo()`, `consultarCodigo()`.
 
-### 7.11 Abstratos · [ ] declarados
+### 7.11 Abstratos · [ X ] declarados
 - `double consultarTarifaDeDesbloqueio()`, `double consultarTarifaPorMinuto()`, `TipoVeiculo consultarTipo()`.
 
 ---
@@ -221,35 +220,35 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 ⚠ **Testes:** só rodam depois de 10 ou 11.
 **Atributo:** `private int nivelBateria`.
 
-### 8.1 Construtor `protected VeiculoEletrico(String, Estacao, int nivelBateria) throws ValorInvalidoException` · [ ] implementado [ ] testado
+### 8.1 Construtor `protected VeiculoEletrico(String, Estacao, int nivelBateria) throws ValorInvalidoException` · [ X ] implementado [ ] testado
 - Lança se a bateria for menor que 0 ou maior que 100. Chama `super`.
 - ✅ Teste: -1 e 101 lançam; 0 e 100 passam.
 
-### 8.2 `consultarNivelBateria()` · [ ] implementado
+### 8.2 `consultarNivelBateria()` · [ X ] implementado
 
-### 8.3 `protected possuiCargaMinimaParaViagem()` · [ ] implementado [ ] testado
+### 8.3 `protected possuiCargaMinimaParaViagem()` · [ X ] implementado [ ] testado
 - `true` com 20% ou mais.
 - ✅ Teste: 19 não, 20 sim.
 
-### 8.4 `@Override podeSerLiberado()` · [ ] implementado [ ] testado
+### 8.4 `@Override podeSerLiberado()` · [ X ] implementado [ ] testado
 - Regra da base **e** carga mínima.
 
-### 8.5 `protected consumirBateria(long minutos)` · [ ] implementado [ ] testado
+### 8.5 `protected consumirBateria(long minutos)` · [ X ] implementado [ ] testado
 - Desconta `minutos × consultarConsumoPorMinuto()`.
 - 📌 A bateria **nunca fica abaixo de 0** (consumo maior que a carga zera).
 - 📌 Atenção ao tipo: `long` × `int`.
 - ✅ Teste: bateria 60% com 20 min de patinete → 20%; consumo maior que a carga → 0%.
 
-### 8.6 `abstract int consultarConsumoPorMinuto()` · [ ] declarado
+### 8.6 `abstract int consultarConsumoPorMinuto()` · [ X ] declarado
 
-### 8.7 `@Override finalizarUtilizacao(Estacao, long)` · [ ] implementado [ ] testado
+### 8.7 `@Override finalizarUtilizacao(Estacao, long)` · [ X ] implementado [ ] testado
 - Executa o comportamento da base **e** aplica `consumirBateria(minutos)`.
 - 📌 O encerramento é permitido mesmo se a bateria zerar.
 
-### 8.8 `@Override recarregarBateria() throws OperacaoInvalidaException` · [ ] implementado [ ] testado
+### 8.8 `@Override recarregarBateria() throws OperacaoInvalidaException` · [ X ] implementado [ ] testado
 - Lança se `EM_USO`. Senão, bateria 100%. Em manutenção pode recarregar.
 
-### 8.9 `@Override consultarDescricao()` · [ ] implementado [ ] testado
+### 8.9 `@Override consultarDescricao()` · [ X ] implementado [ ] testado
 - Descrição da base **mais** a carga atual da bateria.
 
 ---

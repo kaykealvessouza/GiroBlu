@@ -4,7 +4,7 @@ package Excecoes;
 public class EstacaoLotadaException extends GiroBluException {
 
     // ==================== CONSTRUTOR ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public EstacaoLotadaException(String mensagem) {
         super(mensagem);

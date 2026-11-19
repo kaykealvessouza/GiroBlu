@@ -1,10 +1,9 @@
-
 package Excecoes;
 
 public class ValorInvalidoException extends GiroBluException {
 
     // ==================== CONSTRUTOR ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public ValorInvalidoException(String mensagem) {
         super(mensagem);

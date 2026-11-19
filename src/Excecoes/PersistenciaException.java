@@ -4,7 +4,7 @@ package Excecoes;
 public class PersistenciaException extends GiroBluException {
 
     // ==================== CONSTRUTOR ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public PersistenciaException(String mensagem) {
         super(mensagem);
