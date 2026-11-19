@@ -10,29 +10,29 @@ public class LinhaExtrato {
     private final MovimentacaoFinanceira movimentacao;
     private final double saldoApos;
 
-
     // ==================== CONSTRUTOR ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public LinhaExtrato(MovimentacaoFinanceira movimentacao, double saldoApos) {
+        if (movimentacao == null) {
+            throw new IllegalArgumentException("A movimentação não pode ser nula.");
+        }
+
         this.movimentacao = movimentacao;
         this.saldoApos = saldoApos;
     }
 
-
     // ==================== CONSULTAR MOVIMENTAÇÃO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public MovimentacaoFinanceira consultarMovimentacao() {
-        return null;
+        return this.movimentacao;
     }
-
 
     // ==================== CONSULTAR SALDO APÓS MOVIMENTAÇÃO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public double consultarSaldoApos() {
-        return 0;
+        return this.saldoApos;
     }
-
 }
