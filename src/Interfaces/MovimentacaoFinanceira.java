@@ -9,11 +9,9 @@ public interface MovimentacaoFinanceira {
 
     LocalDateTime consultarDataHoraMovimentacao();
 
-
     // ==================== CONSULTAR VALOR DA MOVIMENTAÇÃO ====================
 
     double consultarValorMovimentacao();
-
 
     // ==================== CONSULTAR TIPO DA MOVIMENTAÇÃO ====================
 

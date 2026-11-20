@@ -8,7 +8,7 @@ import Excecoes.ValorInvalidoException;
 import Excecoes.ViagemEmAndamentoException;
 
 import Financeiro.LinhaExtrato;
-
+import Financeiro.Recarga;
 import Interfaces.Plano;
 
 public class Usuario {
@@ -21,108 +21,99 @@ public class Usuario {
     private Plano planoContratado;
     private Carteira carteira;
 
-
     // ==================== CONSTRUTOR ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public Usuario(String nome, String email, Plano planoContratado) {
-
+        this.nome = nome;
+        this.email = email;
+        this.planoContratado = planoContratado;
+        this.carteira = new Carteira();
     }
-
 
     // ==================== CONSULTAR NOME ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public String consultarNome() {
-        return null;
+        return nome;
     }
-
 
     // ==================== CONSULTAR E-MAIL ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public String consultarEmail() {
-        return null;
+        return email;
     }
-
 
     // ==================== CONSULTAR PLANO CONTRATADO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public Plano consultarPlanoContratado() {
-        return null;
+        return planoContratado;
     }
-
 
     // ==================== CONSULTAR VIAGEM ATIVA ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public Viagem consultarViagemAtiva() {
-        return null;
+        return viagemAtiva;
     }
-
 
     // ==================== VERIFICAR VIAGEM EM ANDAMENTO ====================
-    // Status: NÃO INICIADO
-
+    // Status: IMPLEMENTADO
     public boolean possuiViagemEmAndamento() {
-        return false;
+        return viagemAtiva != null;
     }
-
 
     // ==================== VERIFICAR SALDO MÍNIMO ====================
-    // Status: NÃO INICIADO
-
+    // Status: IMPLEMENTADO
     public boolean temSaldoMinimo() {
-        return false;
+        return carteira.temSaldoMinimo();
     }
-
 
     // ==================== REGISTRAR VIAGEM ATIVA ====================
-    // Status: NÃO INICIADO
-
+    // Status: IMPLEMENTADO
     public void registrarViagemAtiva(Viagem viagem) throws ViagemEmAndamentoException {
-
+        if(!possuiViagemEmAndamento()){
+            throw new ViagemEmAndamentoException("O usuário " + nome + " já possui uma viagem em andamento");
+        }
+        this.viagemAtiva = viagem;
     }
-
 
     // ==================== FINALIZAR VIAGEM ATIVA ====================
-    // Status: NÃO INICIADO
-
+    // Status: IMPLEMENTADO
     public void finalizarViagemAtiva(Viagem viagem) throws SemViagemEmAndamentoException {
-
+        if(!possuiViagemEmAndamento() || viagemAtiva != viagem ){
+            throw new SemViagemEmAndamentoException("O usuário " + nome + " não possui esta viagem em andamento.");
+        }
+        this.viagemAtiva = null;
     }
-
 
     // ==================== RECARREGAR CARTEIRA ====================
-    // Status: NÃO INICIADO
-
+    // Status: IMPLEMENTADO
     public void recarregarCarteira(double valor, LocalDateTime dataHora)
             throws ValorInvalidoException {
-
+        Recarga recarga = new Recarga(valor, dataHora);
+        carteira.adicionarSaldo(recarga);
     }
-
 
     // ==================== PAGAR VIAGEM ====================
-    // Status: NÃO INICIADO
-
+    // Status: IMPLEMENTADO
     public void pagarViagem(Viagem viagem) {
-
+        carteira.debitarValor(viagem);
     }
 
-
     // ==================== CONSULTAR SALDO ====================
-    // Status: NÃO INICIADO
-
+    // Status: IMPLEMENTADO
     public double consultarSaldo() {
-        return 0;
+        return carteira.consultarSaldoAtual();
     }
 
     // ==================== CONSULTAR EXTRATO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public List<LinhaExtrato> consultarExtrato() {
-        return null;
+        return carteira.consultarExtrato();
     }
 
 }
