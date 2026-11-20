@@ -257,10 +257,10 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 
 ⚠ **Antes:** 7, 1.2.
 
-### 9.1 Construtor `BicicletaMecanica(String, Estacao)` · [ ] implementado
-### 9.2 `consultarTarifaDeDesbloqueio()` · [ ] implementado [ ] testado → R$ 1,00
-### 9.3 `consultarTarifaPorMinuto()` · [ ] implementado [ ] testado → R$ 0,15
-### 9.4 `consultarTipo()` · [ ] implementado → `BICICLETA_MECANICA`
+### 9.1 Construtor `BicicletaMecanica(String, Estacao)` · [X] implementado
+### 9.2 `consultarTarifaDeDesbloqueio()` · [X] implementado [ ] testado → R$ 1,00
+### 9.3 `consultarTarifaPorMinuto()` · [X] implementado [ ] testado → R$ 0,15
+### 9.4 `consultarTipo()` · [X] implementado → `BICICLETA_MECANICA`
 
 📌 **Não** sobrescreva `recarregarBateria()` nem `aceitaDescontoUniversitario()`: o padrão da base já está certo para ela.
 ✅ **Agora rode os testes do item 7.**
@@ -271,11 +271,11 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 
 ⚠ **Antes:** 8.
 
-### 10.1 Construtor `(String, Estacao, int) throws ValorInvalidoException` · [ ] implementado [ ] testado (repassa para `super`)
-### 10.2 `consultarTarifaDeDesbloqueio()` · [ ] implementado [ ] testado → R$ 2,00
-### 10.3 `consultarTarifaPorMinuto()` · [ ] implementado [ ] testado → R$ 0,30
-### 10.4 `consultarTipo()` · [ ] implementado → `BICICLETA_ELETRICA`
-### 10.5 `consultarConsumoPorMinuto()` · [ ] implementado [ ] testado → 1
+### 10.1 Construtor `(String, Estacao, int) throws ValorInvalidoException` · [X] implementado [ ] testado (repassa para `super`)
+### 10.2 `consultarTarifaDeDesbloqueio()` · [X] implementado [ ] testado → R$ 2,00
+### 10.3 `consultarTarifaPorMinuto()` · [X] implementado [ ] testado → R$ 0,30
+### 10.4 `consultarTipo()` · [X] implementado → `BICICLETA_ELETRICA`
+### 10.5 `consultarConsumoPorMinuto()` · [X] implementado [ ] testado → 1
 
 ---
 
@@ -283,12 +283,12 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 
 ⚠ **Antes:** 8.
 
-### 11.1 Construtor `(String, Estacao, int) throws ValorInvalidoException` · [ ] implementado [ ] testado
-### 11.2 `consultarTarifaDeDesbloqueio()` · [ ] implementado [ ] testado → R$ 3,00
-### 11.3 `consultarTarifaPorMinuto()` · [ ] implementado [ ] testado → R$ 0,40
-### 11.4 `consultarTipo()` · [ ] implementado → `PATINETE_ELETRICO`
-### 11.5 `consultarConsumoPorMinuto()` · [ ] implementado [ ] testado → 2
-### 11.6 `@Override aceitaDescontoUniversitario()` · [ ] implementado [ ] testado → `false`
+### 11.1 Construtor `(String, Estacao, int) throws ValorInvalidoException` · [X] implementado [ ] testado
+### 11.2 `consultarTarifaDeDesbloqueio()` · [X] implementado [ ] testado → R$ 3,00
+### 11.3 `consultarTarifaPorMinuto()` · [X] implementado [ ] testado → R$ 0,40
+### 11.4 `consultarTipo()` · [X] implementado → `PATINETE_ELETRICO`
+### 11.5 `consultarConsumoPorMinuto()` · [X] implementado [ ] testado → 2
+### 11.6 `@Override aceitaDescontoUniversitario()` · [X] implementado [ ] testado → `false`
 
 ✅ **Agora rode os testes do item 8** (use as duas elétricas).
 
@@ -329,11 +329,11 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 
 ⚠ **Antes:** 4, 9 a 11.
 
-### 13.1 `calcularValor(Veiculo, long minutos)` · [ ] implementado [ ] testado
+### 13.1 `calcularValor(Veiculo, long minutos)` · [X] implementado [ ] testado
 - Desbloqueio + minutos × tarifa por minuto.
 - ✅ Teste: Carla (mecânica, 12 min) = 2,80.
 
-### 13.2 `consultarNome()` · [ ] implementado
+### 13.2 `consultarNome()` · [X] implementado
 - Escolham o texto (por exemplo, "Avulso"); a tela o usa para listar os planos.
 
 📌 Sem atributos. Um único objeto é compartilhado por todos os usuários do plano. Não compara tipo de veículo e **não arredonda** (isso é da `Viagem`). Nos testes com `double`, use margem de tolerância.
@@ -344,12 +344,12 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 
 ⚠ **Antes:** 4, 9 a 11.
 
-### 14.1 `calcularValor(Veiculo, long minutos)` · [ ] implementado [ ] testado
-- **Sem desbloqueio.** Os 15 primeiros minutos são grátis; cobra só o excedente.
+### 14.1 `calcularValor(Veiculo, long minutos)` · [X] implementado [ ] testado
+- **Sem desbloqueio.** Os 15 primeiros minutos são grátis; cobra só o excedente. (long minutosCobrados -  Math.Max serve para trazer o maior número, nunca fica menos que 0)
 - 📌 Menos de 15 minutos custa zero (nunca negativo).
 - ✅ Teste: Bruno (patinete, 20 min) = 2,00; Eva (mecânica, 10 min) = 0,00.
 
-### 14.2 `consultarNome()` · [ ] implementado
+### 14.2 `consultarNome()` · [X] implementado
 
 ---
 
@@ -357,13 +357,13 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 
 ⚠ **Antes:** 4, 9 a 11 (principalmente 11.6).
 
-### 15.1 `calcularValor(Veiculo, long minutos)` · [ ] implementado [ ] testado
+### 15.1 `calcularValor(Veiculo, long minutos)` · [X] implementado [ ] testado
 - Valor integral = desbloqueio + minutos × tarifa por minuto.
 - Se `veiculo.aceitaDescontoUniversitario()` for `true`, aplica 50% **sobre o total** (inclui o desbloqueio).
 - 📌 Não compare tipo de veículo; só pergunte ao veículo.
 - ✅ Teste: Ana (bicicleta elétrica, 25 min) = 4,75; Diego (patinete, 10 min) = 7,00.
 
-### 15.2 `consultarNome()` · [ ] implementado
+### 15.2 `consultarNome()` · [X] implementado
 
 ---
 

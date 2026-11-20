@@ -5,52 +5,47 @@ import Excecoes.ValorInvalidoException;
 public class PatineteEletrico extends VeiculoEletrico {
 
     // ==================== CONSTRUTOR ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public PatineteEletrico(String modelo, Estacao estacaoAtual, int nivelBateria)
             throws ValorInvalidoException {
-                super(modelo, estacaoAtual, nivelBateria);
+        super(modelo, estacaoAtual, nivelBateria);
     }
 
-
     // ==================== CONSULTAR TARIFA DE DESBLOQUEIO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     @Override
     public double consultarTarifaDeDesbloqueio() {
-        return 0;
+        return 3.0;
     }
 
-
     // ==================== CONSULTAR TARIFA POR MINUTO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     @Override
     public double consultarTarifaPorMinuto() {
-        return 0;
+        return 0.40;
     }
 
-
     // ==================== CONSULTAR TIPO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     @Override
     public TipoVeiculo consultarTipo() {
-        return null;
+        return TipoVeiculo.PATINETE_ELETRICO;
     }
 
-
     // ==================== CONSULTAR CONSUMO POR MINUTO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     @Override
     public int consultarConsumoPorMinuto() {
-        return 0;
+        return 2;
     }
 
-
     // ==================== VERIFICAR DESCONTO UNIVERSITÁRIO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     @Override
     public boolean aceitaDescontoUniversitario() {

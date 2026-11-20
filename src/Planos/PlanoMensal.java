@@ -5,20 +5,21 @@ import Interfaces.Plano;
 public class PlanoMensal implements Plano {
 
     // ==================== CALCULAR VALOR DA VIAGEM ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     @Override
     public double calcularValor(Veiculo veiculo, long minutos) {
-        return 0;
+        long minutosCobrados = Math.max(0, minutos - 15);
+        return (veiculo.consultarTarifaPorMinuto() * minutosCobrados);
     }
 
 
     // ==================== CONSULTAR NOME DO PLANO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     @Override
     public String consultarNome() {
-        return null;
+        return "Mensal";
     }
 
 }
