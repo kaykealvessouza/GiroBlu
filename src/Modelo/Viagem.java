@@ -26,9 +26,11 @@ public class Viagem implements MovimentacaoFinanceira {
     // ==================== CONSTRUTOR ====================
     // Status: NÃO INICIADO
 
-    public Viagem(Usuario usuario, Veiculo veiculo, Estacao estacaoOrigem,
-                  LocalDateTime dataHoraInicio) {
-
+    public Viagem(Usuario usuario, Veiculo veiculo, Estacao estacaoOrigem, LocalDateTime dataHoraInicio) {
+        this.usuario = usuario;
+        this.veiculo = veiculo;
+        this.estacaoOrigem = estacaoOrigem;
+        this.dataHoraInicio = dataHoraInicio;
     }
 
 
