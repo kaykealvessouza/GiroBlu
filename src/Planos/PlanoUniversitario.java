@@ -5,20 +5,27 @@ import Interfaces.Plano;
 public class PlanoUniversitario implements Plano {
 
     // ==================== CALCULAR VALOR DA VIAGEM ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
+
 
     @Override
     public double calcularValor(Veiculo veiculo, long minutos) {
-        return 0;
+
+        double valorIntegral = (veiculo.consultarTarifaDeDesbloqueio() + veiculo.consultarTarifaPorMinuto() * minutos);
+
+        if (veiculo.aceitaDescontoUniversitario()) {
+            return valorIntegral * 0.50;
+        }
+        return valorIntegral;
     }
 
 
     // ==================== CONSULTAR NOME DO PLANO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     @Override
     public String consultarNome() {
-        return null;
+        return "Universitário";
     }
 
 }

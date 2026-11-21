@@ -1,4 +1,5 @@
 package Modelo;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,9 +15,8 @@ public class Estacao {
     private int capacidadeMaxima;
     private ArrayList<Veiculo> veiculosEstacionados;
 
-
     // ==================== CONSTRUTOR ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public Estacao(String nome, int capacidadeMaxima) {
         this.nome = nome;
@@ -24,48 +24,60 @@ public class Estacao {
         this.veiculosEstacionados = new ArrayList<>();
     }
 
-
     // ==================== ADICIONAR VEÍCULO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public void adicionarVeiculo(Veiculo veiculo) throws EstacaoLotadaException {
-
+        if (consultarVagasDisponiveis() <= 0) {
+            throw new EstacaoLotadaException("A estação " + nome + " está lotada");
+        }
+        veiculosEstacionados.add(veiculo);
     }
-
 
     // ==================== REMOVER VEÍCULO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public void removerVeiculo(Veiculo veiculo) throws VeiculoNaoEncontradoException {
+        boolean removido = veiculosEstacionados.remove(veiculo);
 
+        if (!removido) {
+            throw new VeiculoNaoEncontradoException(
+                    "O veículo " + veiculo.consultarCodigo() + " não está na estação " + nome + ".");
+        }
     }
-
 
     // ==================== CONSULTAR VAGAS DISPONÍVEIS ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public int consultarVagasDisponiveis() {
-        return 0;
+        return capacidadeMaxima - consultarQuantidadeVeiculosEstacionados();
     }
-
 
     // ==================== CONSULTAR VEÍCULOS DISPONÍVEIS ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public List<Veiculo> consultarVeiculosDisponiveis() {
-        return Collections.emptyList();
+        List<Veiculo> disponiveis = new ArrayList<>();
+
+        for (Veiculo veiculo : veiculosEstacionados) {
+            if (veiculo.consultarEstadoAtual() == EstadoVeiculo.DISPONIVEL) {
+                disponiveis.add(veiculo);
+            }
+        }
+
+        return Collections.unmodifiableList(disponiveis);
     }
 
-
-    // ==================== CONSULTAR QUANTIDADE DE VEÍCULOS ESTACIONADOS ====================
-    // Status: NÃO INICIADO
+    // ==================== CONSULTAR QUANTIDADE DE VEÍCULOS ESTACIONADOS
+    // ====================
+    // Status: IMPLEMENTADO
 
     public int consultarQuantidadeVeiculosEstacionados() {
-        return 0;
+        return veiculosEstacionados.size();
     }
 
-    public String consultarNome(){
-        return "";
+    public String consultarNome() {
+        return nome;
     };
 
 }

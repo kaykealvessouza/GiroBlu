@@ -3,37 +3,34 @@ package Modelo;
 public class BicicletaMecanica extends Veiculo {
 
     // ==================== CONSTRUTOR ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public BicicletaMecanica(String modelo, Estacao estacaoAtual) {
         super(modelo, estacaoAtual);
     }
 
-
     // ==================== CONSULTAR TARIFA DE DESBLOQUEIO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     @Override
     public double consultarTarifaDeDesbloqueio() {
-        return 0;
+        return 1.0;
     }
 
-
     // ==================== CONSULTAR TARIFA POR MINUTO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     @Override
     public double consultarTarifaPorMinuto() {
-        return 0;
+        return 0.15;
     }
 
-
     // ==================== CONSULTAR TIPO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     @Override
     public TipoVeiculo consultarTipo() {
-        return null;
+        return TipoVeiculo.BICICLETA_MECANICA;
     }
 
 }

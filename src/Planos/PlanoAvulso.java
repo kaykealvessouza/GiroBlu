@@ -5,20 +5,20 @@ import Interfaces.Plano;
 public class PlanoAvulso implements Plano {
 
     // ==================== CALCULAR VALOR DA VIAGEM ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     @Override
     public double calcularValor(Veiculo veiculo, long minutos) {
-        return 0;
+        return veiculo.consultarTarifaDeDesbloqueio() + veiculo.consultarTarifaPorMinuto() * minutos;
     }
 
 
     // ==================== CONSULTAR NOME DO PLANO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     @Override
     public String consultarNome() {
-        return null;
+        return "Avulso";
     }
 
 }

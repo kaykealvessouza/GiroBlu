@@ -5,47 +5,43 @@ import Excecoes.ValorInvalidoException;
 public class BicicletaEletrica extends VeiculoEletrico {
 
     // ==================== CONSTRUTOR ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public BicicletaEletrica(String modelo, Estacao estacaoAtual, int nivelBateria)
             throws ValorInvalidoException {
-                super(modelo, estacaoAtual, nivelBateria);
+        super(modelo, estacaoAtual, nivelBateria);
     }
 
-
     // ==================== CONSULTAR TARIFA DE DESBLOQUEIO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     @Override
     public double consultarTarifaDeDesbloqueio() {
-        return 0;
+        return 2.0;
     }
 
-
     // ==================== CONSULTAR TARIFA POR MINUTO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     @Override
     public double consultarTarifaPorMinuto() {
-        return 0;
+        return 0.30;
     }
 
-
     // ==================== CONSULTAR TIPO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     @Override
     public TipoVeiculo consultarTipo() {
-        return null;
+        return TipoVeiculo.BICICLETA_ELETRICA;
     }
 
-
     // ==================== CONSULTAR CONSUMO POR MINUTO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     @Override
     public int consultarConsumoPorMinuto() {
-        return 0;
+        return 1;
     }
 
 }

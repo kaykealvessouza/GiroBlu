@@ -257,10 +257,10 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 
 ⚠ **Antes:** 7, 1.2.
 
-### 9.1 Construtor `BicicletaMecanica(String, Estacao)` · [ ] implementado
-### 9.2 `consultarTarifaDeDesbloqueio()` · [ ] implementado [ ] testado → R$ 1,00
-### 9.3 `consultarTarifaPorMinuto()` · [ ] implementado [ ] testado → R$ 0,15
-### 9.4 `consultarTipo()` · [ ] implementado → `BICICLETA_MECANICA`
+### 9.1 Construtor `BicicletaMecanica(String, Estacao)` · [X] implementado
+### 9.2 `consultarTarifaDeDesbloqueio()` · [X] implementado [ ] testado → R$ 1,00
+### 9.3 `consultarTarifaPorMinuto()` · [X] implementado [ ] testado → R$ 0,15
+### 9.4 `consultarTipo()` · [X] implementado → `BICICLETA_MECANICA`
 
 📌 **Não** sobrescreva `recarregarBateria()` nem `aceitaDescontoUniversitario()`: o padrão da base já está certo para ela.
 ✅ **Agora rode os testes do item 7.**
@@ -271,11 +271,11 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 
 ⚠ **Antes:** 8.
 
-### 10.1 Construtor `(String, Estacao, int) throws ValorInvalidoException` · [ ] implementado [ ] testado (repassa para `super`)
-### 10.2 `consultarTarifaDeDesbloqueio()` · [ ] implementado [ ] testado → R$ 2,00
-### 10.3 `consultarTarifaPorMinuto()` · [ ] implementado [ ] testado → R$ 0,30
-### 10.4 `consultarTipo()` · [ ] implementado → `BICICLETA_ELETRICA`
-### 10.5 `consultarConsumoPorMinuto()` · [ ] implementado [ ] testado → 1
+### 10.1 Construtor `(String, Estacao, int) throws ValorInvalidoException` · [X] implementado [ ] testado (repassa para `super`)
+### 10.2 `consultarTarifaDeDesbloqueio()` · [X] implementado [ ] testado → R$ 2,00
+### 10.3 `consultarTarifaPorMinuto()` · [X] implementado [ ] testado → R$ 0,30
+### 10.4 `consultarTipo()` · [X] implementado → `BICICLETA_ELETRICA`
+### 10.5 `consultarConsumoPorMinuto()` · [X] implementado [ ] testado → 1
 
 ---
 
@@ -283,12 +283,12 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 
 ⚠ **Antes:** 8.
 
-### 11.1 Construtor `(String, Estacao, int) throws ValorInvalidoException` · [ ] implementado [ ] testado
-### 11.2 `consultarTarifaDeDesbloqueio()` · [ ] implementado [ ] testado → R$ 3,00
-### 11.3 `consultarTarifaPorMinuto()` · [ ] implementado [ ] testado → R$ 0,40
-### 11.4 `consultarTipo()` · [ ] implementado → `PATINETE_ELETRICO`
-### 11.5 `consultarConsumoPorMinuto()` · [ ] implementado [ ] testado → 2
-### 11.6 `@Override aceitaDescontoUniversitario()` · [ ] implementado [ ] testado → `false`
+### 11.1 Construtor `(String, Estacao, int) throws ValorInvalidoException` · [X] implementado [ ] testado
+### 11.2 `consultarTarifaDeDesbloqueio()` · [X] implementado [ ] testado → R$ 3,00
+### 11.3 `consultarTarifaPorMinuto()` · [X] implementado [ ] testado → R$ 0,40
+### 11.4 `consultarTipo()` · [X] implementado → `PATINETE_ELETRICO`
+### 11.5 `consultarConsumoPorMinuto()` · [X] implementado [ ] testado → 2
+### 11.6 `@Override aceitaDescontoUniversitario()` · [X] implementado [ ] testado → `false`
 
 ✅ **Agora rode os testes do item 8** (use as duas elétricas).
 
@@ -299,27 +299,27 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 ⚠ **Antes:** 7, 9 a 11 (os testes usam veículos reais), 2 (`EstacaoLotadaException`, `VeiculoNaoEncontradoException`).
 **Atributos:** `private String nome`, `private int capacidadeMaxima`, `private ArrayList<Veiculo> veiculosEstacionados`.
 
-### 12.1 Construtor `Estacao(String nome, int capacidadeMaxima)` · [ ] implementado
+### 12.1 Construtor `Estacao(String nome, int capacidadeMaxima)` · [X] implementado
 - Lista de veículos começa vazia.
 
-### 12.2 `consultarNome()` · [ ] implementado
+### 12.2 `consultarNome()` · [X] implementado
 - 📌 Necessário para `Sistema.consultarEstacao(nome)` e para a tela.
 
-### 12.3 `consultarVagasDisponiveis()` · [ ] implementado [ ] testado
+### 12.3 `consultarVagasDisponiveis()` · [X] implementado [ ] testado
 - Capacidade menos veículos estacionados.
 - 📌 Veículo em **manutenção ocupa vaga**; veículo em uso não está na lista.
 
-### 12.4 `consultarQuantidadeVeiculosEstacionados()` · [ ] implementado [ ] testado
+### 12.4 `consultarQuantidadeVeiculosEstacionados()` · [X] implementado [ ] testado
 
-### 12.5 `adicionarVeiculo(Veiculo) throws EstacaoLotadaException` · [ ] implementado [ ] testado
+### 12.5 `adicionarVeiculo(Veiculo) throws EstacaoLotadaException` · [X] implementado [ ] testado
 - Usa `consultarVagasDisponiveis()` para decidir (a regra de capacidade fica em um lugar só).
 - 📌 Não altera `estacaoAtual` do veículo.
 - ✅ Teste: lotar a estação e tentar mais um.
 
-### 12.6 `removerVeiculo(Veiculo) throws VeiculoNaoEncontradoException` · [ ] implementado [ ] testado
+### 12.6 `removerVeiculo(Veiculo) throws VeiculoNaoEncontradoException` · [X] implementado [ ] testado
 - Lança se o veículo não está nesta estação.
 
-### 12.7 `consultarVeiculosDisponiveis()` · [ ] implementado [ ] testado
+### 12.7 `consultarVeiculosDisponiveis()` · [X] implementado [ ] testado
 - Só veículos com estado `DISPONIVEL` (sem manutenção).
 - 📌 Devolve lista que não permite alterar a coleção interna.
 
@@ -329,11 +329,11 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 
 ⚠ **Antes:** 4, 9 a 11.
 
-### 13.1 `calcularValor(Veiculo, long minutos)` · [ ] implementado [ ] testado
+### 13.1 `calcularValor(Veiculo, long minutos)` · [X] implementado [ ] testado
 - Desbloqueio + minutos × tarifa por minuto.
 - ✅ Teste: Carla (mecânica, 12 min) = 2,80.
 
-### 13.2 `consultarNome()` · [ ] implementado
+### 13.2 `consultarNome()` · [X] implementado
 - Escolham o texto (por exemplo, "Avulso"); a tela o usa para listar os planos.
 
 📌 Sem atributos. Um único objeto é compartilhado por todos os usuários do plano. Não compara tipo de veículo e **não arredonda** (isso é da `Viagem`). Nos testes com `double`, use margem de tolerância.
@@ -344,12 +344,12 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 
 ⚠ **Antes:** 4, 9 a 11.
 
-### 14.1 `calcularValor(Veiculo, long minutos)` · [ ] implementado [ ] testado
-- **Sem desbloqueio.** Os 15 primeiros minutos são grátis; cobra só o excedente.
+### 14.1 `calcularValor(Veiculo, long minutos)` · [X] implementado [ ] testado
+- **Sem desbloqueio.** Os 15 primeiros minutos são grátis; cobra só o excedente. (long minutosCobrados -  Math.Max serve para trazer o maior número, nunca fica menos que 0)
 - 📌 Menos de 15 minutos custa zero (nunca negativo).
 - ✅ Teste: Bruno (patinete, 20 min) = 2,00; Eva (mecânica, 10 min) = 0,00.
 
-### 14.2 `consultarNome()` · [ ] implementado
+### 14.2 `consultarNome()` · [X] implementado
 
 ---
 
@@ -357,13 +357,13 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 
 ⚠ **Antes:** 4, 9 a 11 (principalmente 11.6).
 
-### 15.1 `calcularValor(Veiculo, long minutos)` · [ ] implementado [ ] testado
+### 15.1 `calcularValor(Veiculo, long minutos)` · [X] implementado [ ] testado
 - Valor integral = desbloqueio + minutos × tarifa por minuto.
 - Se `veiculo.aceitaDescontoUniversitario()` for `true`, aplica 50% **sobre o total** (inclui o desbloqueio).
 - 📌 Não compare tipo de veículo; só pergunte ao veículo.
 - ✅ Teste: Ana (bicicleta elétrica, 25 min) = 4,75; Diego (patinete, 10 min) = 7,00.
 
-### 15.2 `consultarNome()` · [ ] implementado
+### 15.2 `consultarNome()` · [X] implementado
 
 ---
 
@@ -373,28 +373,28 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 ⚠ Os testes de 16.6 e 16.7 só podem ser feitos **depois do item 18** (precisam de uma `Viagem` encerrada).
 **Atributos:** `private double saldoAtual`, `private List<MovimentacaoFinanceira> historicoMovimentacoes`, `private static final double SALDO_MINIMO = 5.0`.
 
-### 16.1 Construtor `Carteira()` · [ ] implementado [ ] testado
+### 16.1 Construtor `Carteira()` · [X] implementado [ ] testado
 - Saldo zero e histórico vazio.
 
-### 16.2 `consultarSaldoAtual()` · [ ] implementado
+### 16.2 `consultarSaldoAtual()` · [X] implementado
 
-### 16.3 `temSaldoMinimo()` · [ ] implementado [ ] testado
+### 16.3 `temSaldoMinimo()` · [X] implementado [ ] testado
 - `true` com R$ 5,00 ou mais. Usa a constante.
 - ✅ Teste: 4,99 não, 5,00 sim.
 
-### 16.4 `adicionarSaldo(Recarga)` · [ ] implementado [ ] testado
+### 16.4 `adicionarSaldo(Recarga)` · [X] implementado [ ] testado
 - Guarda no histórico e soma o valor ao saldo.
 - 📌 Não declara exceção: a recarga já nasceu validada.
 
 ### 16.5 `consultarHistoricoMovimentacoes()` · [ ] implementado [ ] testado
 - 📌 Não permite alterar a coleção interna.
 
-### 16.6 `debitarValor(Viagem)` · [ ] implementado [ ] testado
+### 16.6 `debitarValor(Viagem)` · [X] implementado [ ] testado
 - ⚠ **Antes:** 18 (a viagem precisa estar **encerrada**, com valor e data).
 - Guarda no histórico e **subtrai sem checar** (o saldo pode ficar negativo).
 - ✅ Teste: débito maior que o saldo deixa o saldo negativo.
 
-### 16.7 `consultarExtrato()` · [ ] implementado [ ] testado
+### 16.7 `consultarExtrato()` · [X] implementado [ ] testado
 - ⚠ **Antes:** 6 e 18 (para testar).
 - Passo a passo:
   1. Trabalhe numa **cópia** do histórico (o original não muda).
@@ -411,35 +411,35 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 ⚠ **Antes:** 4, 13 (para ter um plano real nos testes), 16, 5, 6 e o esqueleto de `Viagem`.
 **Atributos:** `nome`, `email`, `viagemAtiva`, `planoContratado`, `carteira`.
 
-### 17.1 Construtor `Usuario(String nome, String email, Plano plano)` · [ ] implementado [ ] testado
+### 17.1 Construtor `Usuario(String nome, String email, Plano plano)` · [X] implementado [ ] testado
 - Cria a `Carteira` (saldo zero). Começa sem viagem ativa.
 
-### 17.2 Getters · [ ] implementado
+### 17.2 Getters · [X] implementado
 - `consultarNome()`, `consultarEmail()`, `consultarPlanoContratado()`, `consultarViagemAtiva()`.
 
-### 17.3 `possuiViagemEmAndamento()` · [ ] implementado [ ] testado
+### 17.3 `possuiViagemEmAndamento()` · [X] implementado [ ] testado
 
-### 17.4 `registrarViagemAtiva(Viagem) throws ViagemEmAndamentoException` · [ ] implementado [ ] testado
+### 17.4 `registrarViagemAtiva(Viagem) throws ViagemEmAndamentoException` · [X] implementado [ ] testado
 - Lança se já existe viagem ativa; senão guarda.
 
-### 17.5 `finalizarViagemAtiva(Viagem) throws SemViagemEmAndamentoException` · [ ] implementado [ ] testado
+### 17.5 `finalizarViagemAtiva(Viagem) throws SemViagemEmAndamentoException` · [X] implementado [ ] testado
 - Lança se não há viagem ativa **ou** se a viagem recebida não é a ativa (o mesmo objeto). Senão limpa a referência.
 - 📌 Não calcula nem debita (o `Sistema` chama `pagarViagem` antes).
 
-### 17.6 `temSaldoMinimo()` · [ ] implementado [ ] testado
+### 17.6 `temSaldoMinimo()` · [X] implementado [ ] testado
 - **Delega à carteira** (a regra de R$ 5,00 mora lá).
 
-### 17.7 `recarregarCarteira(double valor, LocalDateTime dataHora) throws ValorInvalidoException` · [ ] implementado [ ] testado
+### 17.7 `recarregarCarteira(double valor, LocalDateTime dataHora) throws ValorInvalidoException` · [X] implementado [ ] testado
 - Cria a `Recarga` (que valida o valor) e entrega para `carteira.adicionarSaldo`.
 - ✅ Teste: valor inválido lança e o saldo não muda.
 
-### 17.8 `pagarViagem(Viagem)` · [ ] implementado [ ] testado
+### 17.8 `pagarViagem(Viagem)` · [X] implementado [ ] testado
 - Delega a `carteira.debitarValor`. Sem exceção (saldo pode ficar negativo).
 - ⚠ A viagem precisa estar encerrada (item 18).
 
-### 17.9 `consultarSaldo()` · [ ] implementado
+### 17.9 `consultarSaldo()` · [X] implementado
 
-### 17.10 `consultarExtrato()` · [ ] implementado [ ] testado
+### 17.10 `consultarExtrato()` · [X] implementado [ ] testado
 - Delega à carteira (16.7). **Não** existe mais `consultarHistoricoMovimentacoes()` aqui.
 
 ---
