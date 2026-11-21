@@ -25,6 +25,18 @@ public class Usuario {
     // Status: IMPLEMENTADO
 
     public Usuario(String nome, String email, Plano planoContratado) {
+        if (nome == null || nome.isBlank()) {
+            throw new IllegalArgumentException("O nome não pode ser nulo ou vazio.");
+        }
+
+        if (email == null || email.isBlank()) {
+            throw new IllegalArgumentException("O e-mail não pode ser nulo ou vazio.");
+        }
+
+        if (planoContratado == null) {
+            throw new IllegalArgumentException("O plano contratado não pode ser nulo.");
+        }
+
         this.nome = nome;
         this.email = email;
         this.planoContratado = planoContratado;
@@ -74,7 +86,7 @@ public class Usuario {
     // ==================== REGISTRAR VIAGEM ATIVA ====================
     // Status: IMPLEMENTADO
     public void registrarViagemAtiva(Viagem viagem) throws ViagemEmAndamentoException {
-        if(!possuiViagemEmAndamento()){
+        if (possuiViagemEmAndamento()) {
             throw new ViagemEmAndamentoException("O usuário " + nome + " já possui uma viagem em andamento");
         }
         this.viagemAtiva = viagem;
@@ -83,7 +95,7 @@ public class Usuario {
     // ==================== FINALIZAR VIAGEM ATIVA ====================
     // Status: IMPLEMENTADO
     public void finalizarViagemAtiva(Viagem viagem) throws SemViagemEmAndamentoException {
-        if(!possuiViagemEmAndamento() || viagemAtiva != viagem ){
+        if (!possuiViagemEmAndamento() || viagemAtiva != viagem) {
             throw new SemViagemEmAndamentoException("O usuário " + nome + " não possui esta viagem em andamento.");
         }
         this.viagemAtiva = null;
@@ -100,6 +112,10 @@ public class Usuario {
     // ==================== PAGAR VIAGEM ====================
     // Status: IMPLEMENTADO
     public void pagarViagem(Viagem viagem) {
+        if (viagem == null) {
+            throw new IllegalArgumentException("A viagem não pode ser nula.");
+        }
+
         carteira.debitarValor(viagem);
     }
 

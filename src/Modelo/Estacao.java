@@ -19,6 +19,14 @@ public class Estacao {
     // Status: IMPLEMENTADO
 
     public Estacao(String nome, int capacidadeMaxima) {
+        if (nome == null || nome.isBlank()) {
+            throw new IllegalArgumentException("O nome da estação não pode ser vazio.");
+        }
+
+        if (capacidadeMaxima <= 0) {
+            throw new IllegalArgumentException("A capacidade máxima deve ser maior que zero.");
+        }
+
         this.nome = nome;
         this.capacidadeMaxima = capacidadeMaxima;
         this.veiculosEstacionados = new ArrayList<>();
@@ -31,6 +39,13 @@ public class Estacao {
         if (consultarVagasDisponiveis() <= 0) {
             throw new EstacaoLotadaException("A estação " + nome + " está lotada");
         }
+        if (veiculo == null) {
+            throw new IllegalArgumentException("O veículo não pode ser nulo.");
+        }
+        if (veiculosEstacionados.contains(veiculo)) {
+            throw new IllegalArgumentException("O veículo " + veiculo.consultarModelo() + " já está nesta estação.");
+        }
+
         veiculosEstacionados.add(veiculo);
     }
 
@@ -38,6 +53,10 @@ public class Estacao {
     // Status: IMPLEMENTADO
 
     public void removerVeiculo(Veiculo veiculo) throws VeiculoNaoEncontradoException {
+        if (veiculo == null) {
+            throw new IllegalArgumentException("O veículo não pode ser nulo.");
+        }
+        
         boolean removido = veiculosEstacionados.remove(veiculo);
 
         if (!removido) {

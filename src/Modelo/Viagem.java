@@ -27,6 +27,18 @@ public class Viagem implements MovimentacaoFinanceira {
     // Status: NÃO INICIADO
 
     public Viagem(Usuario usuario, Veiculo veiculo, Estacao estacaoOrigem, LocalDateTime dataHoraInicio) {
+        if (usuario == null) {
+            throw new IllegalArgumentException("O usuário não pode ser nulo!");
+        }
+
+        if (veiculo == null) {
+            throw new IllegalArgumentException("O veículo não pode ser nulo!");
+        }
+        
+        if (estacaoOrigem == null) {
+            throw new IllegalArgumentException("A estação inicial não pode ser nulo!");
+        }
+
         this.usuario = usuario;
         this.veiculo = veiculo;
         this.estacaoOrigem = estacaoOrigem;

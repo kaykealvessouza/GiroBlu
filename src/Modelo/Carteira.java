@@ -32,6 +32,10 @@ public class Carteira {
     // Status: IMPLEMENTADO
 
     public void adicionarSaldo(Recarga recarga) {
+        if (recarga == null) {
+            throw new IllegalArgumentException("A recarga não pode ser nula.");
+        }
+
         historicoMovimentacoes.add(recarga);
         saldoAtual += recarga.consultarValorMovimentacao();
     }
@@ -40,6 +44,10 @@ public class Carteira {
     // Status: IMPLEMENTADO
 
     public void debitarValor(Viagem viagem) {
+        if (viagem == null) {
+            throw new IllegalArgumentException("A viagem não pode ser nula.");
+        }
+
         historicoMovimentacoes.add(viagem);
         saldoAtual -= viagem.consultarValorMovimentacao();
     }
@@ -51,21 +59,19 @@ public class Carteira {
         return saldoAtual;
     }
 
-    // ==================== CONSULTAR HISTÓRICO DE MOVIMENTAÇÕES ====================
+    // ==================== CONSULTAR HISTÓRICO DE MOVIMENTAÇÕES
+    // ====================
     // Status: IMPLEMENTADO
 
     public List<MovimentacaoFinanceira> consultarHistoricoMovimentacoes() {
-        return Collections.unmodifiableList(historicoMovimentacoes);
+        return Collections.unmodifiableList(new ArrayList<>(historicoMovimentacoes));
     }
 
     // ==================== VERIFICAR SALDO MÍNIMO ====================
     // Status: IMPLEMENTADO
 
     public boolean temSaldoMinimo() {
-        if (saldoAtual >= SALDO_MINIMO) {
-            return true;
-        }
-        return false;
+        return saldoAtual >= SALDO_MINIMO;
     }
 
     // ==================== CONSULTAR EXTRATO ====================
@@ -91,6 +97,15 @@ public class Carteira {
 
         return Collections.unmodifiableList(extrato);
 
+        /**
+         * Consulta o extrato financeiro da carteira, contendo as movimentações
+         * ordenadas cronologicamente e o saldo resultante após cada movimentação.
+         *
+         * O extrato é reconstruído a partir do histórico, iniciando com saldo zero
+         * e aplicando os créditos e débitos na ordem de suas datas e horários.
+         *
+         * @return lista imutável de linhas do extrato, contendo a movimentação
+         *         e o saldo após sua aplicação.
+         */
     }
-
 }
