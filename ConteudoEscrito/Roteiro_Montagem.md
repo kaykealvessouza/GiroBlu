@@ -183,7 +183,7 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 
 ### 7.4 `finalizarUtilizacao(Estacao estacaoDestino, long minutos)` · [ X ] implementado [ ] testado
 - Estado volta para `DISPONIVEL` e `estacaoAtual = estacaoDestino`.
-- 📌 A base **ignora** `minutos` (quem usa é o elétrico, 8.7).
+- 📌 A base **ignora** `minutos` (quem usa é o elétrico, 8.7). A base rejeita duração ≤ 0 com IllegalArgumentException (não acontece em viagem válida, pois a duração é arredondada para cima)
 - 📌 Não adiciona na lista da estação (o `Sistema` chama `estacaoDestino.adicionarVeiculo`).
 
 ### 7.5 `enviarParaManutencao() throws OperacaoInvalidaException` · [ X ] implementado [ ] testado
@@ -386,7 +386,7 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 - Guarda no histórico e soma o valor ao saldo.
 - 📌 Não declara exceção: a recarga já nasceu validada.
 
-### 16.5 `consultarHistoricoMovimentacoes()` · [ ] implementado [ ] testado
+### 16.5 `consultarHistoricoMovimentacoes()` · [X] implementado [ ] testado
 - 📌 Não permite alterar a coleção interna.
 
 ### 16.6 `debitarValor(Viagem)` · [X] implementado [ ] testado
@@ -462,7 +462,7 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 ### 18.4 `calcularDuracao()` · [X] implementado [ ] testado
 - Minutos entre início e fim.
 - 📌 Pré-condição (registre no Javadoc): só chamar **depois de encerrar**.
-- 📌 Premissa provisória: minutos inteiros (ponto em aberto 2). Mantenha essa regra isolada neste método.
+- 📌 Premissa provisória: minutos inteiros (ponto em aberto 2). Mantenha essa regra isolada neste método. (A duração é arredondada para cima: qualquer fração de minuto conta como minuto inteiro. Evita duração zero em viagens curtas.)
 
 ### 18.5 `calcularValor()` · [X] implementado [ ] testado
 - Usa `usuario.consultarPlanoContratado().calcularValor(veiculo, duração)`.

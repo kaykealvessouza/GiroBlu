@@ -22,6 +22,9 @@ public class Recarga implements MovimentacaoFinanceira {
         if (valor <= 0) {
             throw new ValorInvalidoException("Valor inválido, precisa ser maior que 0!");
         }
+        if (dataHora == null){
+            throw new IllegalArgumentException("A data e hora não podem ser vazias.");
+        }
 
         this.valor = valor;
         this.dataHora = dataHora;

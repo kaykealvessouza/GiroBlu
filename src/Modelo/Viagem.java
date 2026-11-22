@@ -54,6 +54,15 @@ public class Viagem implements MovimentacaoFinanceira {
 
     public void finalizarViagem(Estacao estacaoDestino, LocalDateTime dataHoraFim)
             throws SemViagemEmAndamentoException, DataInvalidaException {
+
+        if (dataHoraFim == null) {
+            throw new IllegalArgumentException("Data e hora de fim não devem ser vazias");
+        }
+
+        if (estacaoDestino == null) {
+            throw new IllegalArgumentException("Estação de destino não deve ser vazia");
+        }
+
         if (!estaEmAndamento()) {
             throw new SemViagemEmAndamentoException("Esta viagem já foi encerrada.");
         }
@@ -70,9 +79,23 @@ public class Viagem implements MovimentacaoFinanceira {
     // ==================== CALCULAR DURAÇÃO ====================
     // Status: IMPLEMENTADO
 
+    /**
+     * Calcula a duração da viagem em minutos, arredondando para cima.
+     * Qualquer fração de minuto conta como um minuto inteiro
+     * (ex.: 12 min 40 s = 13 minutos; 40 s = 1 minuto).
+     * <p>
+     * Pré-condição: só deve ser chamado depois que a viagem for encerrada.
+     *
+     * @return duração da viagem em minutos, sempre maior ou igual a 1
+     */
     public long calcularDuracao() {
-        Duration intervalo = Duration.between(dataHoraInicio, dataHoraFim); // o intervalo entre as duas
-        return intervalo.toMinutes(); // esse intervalo, em minutosF
+        Duration intervalo = Duration.between(dataHoraInicio, dataHoraFim);
+        long minutos = intervalo.toMinutes();
+
+        if (!intervalo.minusMinutes(minutos).isZero()) {
+            minutos++;
+        }
+        return minutos;
     }
 
     // ==================== CALCULAR VALOR ====================

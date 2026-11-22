@@ -894,14 +894,14 @@ A classe `BicicletaMecanica` passa a herdar diretamente de `Veiculo`.
 
 **Atualização 14/11 — Ajustes**
 
-**UML CRIADO? --> [ ]**
+**UML CRIADO? --> [X]**
 
 **Ajustes**
 - `finalizarViagem()` valida primeiro (viagem em andamento e data de término posterior ao início) e só depois altera os atributos. Se lançar exceção, a viagem continua como estava.
 - `calcularDuracao()` e `calcularValor()` só devem ser chamados depois de encerrar a viagem (pré-condição registrada no Javadoc).
 - `consultarDataHoraMovimentacao()` devolve `null` enquanto a viagem está em andamento. A `Carteira` só recebe viagens encerradas.
 
-**Pendente com o professor:** a duração desconsidera os segundos restantes? Premissa provisória: minutos inteiros.
+**Pendente com o professor:** a duração desconsidera os segundos restantes? Premissa provisória: minutos inteiros. (Pedro: Eu coloquei para arredondar no calcularDuracao())
 
 ### 2.10. RelatorioFaturamento
 
