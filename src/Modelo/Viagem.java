@@ -3,6 +3,7 @@ package Modelo;
 import Interfaces.MovimentacaoFinanceira;
 import Financeiro.TipoMovimentacao;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 import Excecoes.DataInvalidaException;
@@ -22,9 +23,8 @@ public class Viagem implements MovimentacaoFinanceira {
 
     private double valorCobrado;
 
-
     // ==================== CONSTRUTOR ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public Viagem(Usuario usuario, Veiculo veiculo, Estacao estacaoOrigem, LocalDateTime dataHoraInicio) {
         if (usuario == null) {
@@ -34,9 +34,13 @@ public class Viagem implements MovimentacaoFinanceira {
         if (veiculo == null) {
             throw new IllegalArgumentException("O veículo não pode ser nulo!");
         }
-        
+
         if (estacaoOrigem == null) {
-            throw new IllegalArgumentException("A estação inicial não pode ser nulo!");
+            throw new IllegalArgumentException("A estação inicial não pode ser nula!");
+        }
+
+        if (dataHoraInicio == null) {
+            throw new IllegalArgumentException("A data e hora de início não podem ser nulas!");
         }
 
         this.usuario = usuario;
@@ -45,120 +49,122 @@ public class Viagem implements MovimentacaoFinanceira {
         this.dataHoraInicio = dataHoraInicio;
     }
 
-
     // ==================== FINALIZAR VIAGEM ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public void finalizarViagem(Estacao estacaoDestino, LocalDateTime dataHoraFim)
             throws SemViagemEmAndamentoException, DataInvalidaException {
+        if (!estaEmAndamento()) {
+            throw new SemViagemEmAndamentoException("Esta viagem já foi encerrada.");
+        }
 
+        if (dataHoraFim.isAfter(dataHoraInicio) == false) {
+            throw new DataInvalidaException("A data e hora de término precisa ser posterior ao início da viagem.");
+        }
+
+        this.estacaoDestino = estacaoDestino;
+        this.dataHoraFim = dataHoraFim;
+        this.valorCobrado = Math.round(calcularValor() * 100) / 100.0;
     }
-
 
     // ==================== CALCULAR DURAÇÃO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public long calcularDuracao() {
-        return 0;
+        Duration intervalo = Duration.between(dataHoraInicio, dataHoraFim); // o intervalo entre as duas
+        return intervalo.toMinutes(); // esse intervalo, em minutosF
     }
-
 
     // ==================== CALCULAR VALOR ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public double calcularValor() {
-        return 0;
+        return usuario.consultarPlanoContratado().calcularValor(veiculo, calcularDuracao());
     }
 
-
     // ==================== CONSULTAR SITUAÇÃO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public boolean estaEmAndamento() {
+        if (dataHoraFim == null) {
+            return true;
+        }
         return false;
     }
 
-
     // ==================== CONSULTAR USUÁRIO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public Usuario consultarUsuario() {
-        return null;
+        return usuario;
     }
-
 
     // ==================== CONSULTAR VEÍCULO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public Veiculo consultarVeiculo() {
-        return null;
+        return veiculo;
     }
-
 
     // ==================== CONSULTAR ESTAÇÃO DE ORIGEM ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public Estacao consultarEstacaoOrigem() {
-        return null;
+        return estacaoOrigem;
     }
-
 
     // ==================== CONSULTAR ESTAÇÃO DE DESTINO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public Estacao consultarEstacaoDestino() {
-        return null;
+        return estacaoDestino;
     }
-
 
     // ==================== CONSULTAR DATA E HORA DE INÍCIO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public LocalDateTime consultarDataHoraInicio() {
-        return null;
+        return dataHoraInicio;
     }
 
-
-    // ==================== CONSULTAR DATA E HORA DE ENCERRAMENTO ====================
-    // Status: NÃO INICIADO
+    // ==================== CONSULTAR DATA E HORA DE ENCERRAMENTO
+    // ====================
+    // Status: IMPLEMENTADO
 
     public LocalDateTime consultarDataHoraFim() {
-        return null;
+        return dataHoraFim;
     }
-
 
     // ==================== CONSULTAR VALOR COBRADO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     public double consultarValorCobrado() {
-        return 0;
+        return valorCobrado;
     }
 
-
-    // ==================== CONSULTAR DATA E HORA DA MOVIMENTAÇÃO ====================
-    // Status: NÃO INICIADO
+    // ==================== CONSULTAR DATA E HORA DA MOVIMENTAÇÃO
+    // ====================
+    // Status: IMPLEMENTADO
 
     @Override
     public LocalDateTime consultarDataHoraMovimentacao() {
-        return null;
+        return dataHoraFim;
     }
 
-
     // ==================== CONSULTAR VALOR DA MOVIMENTAÇÃO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     @Override
     public double consultarValorMovimentacao() {
-        return 0;
+        return valorCobrado;
     }
 
-
     // ==================== CONSULTAR TIPO DA MOVIMENTAÇÃO ====================
-    // Status: NÃO INICIADO
+    // Status: IMPLEMENTADO
 
     @Override
     public TipoMovimentacao consultarTipoMovimentacao() {
-        return null;
+        return TipoMovimentacao.DEBITO;
     }
 
 }
