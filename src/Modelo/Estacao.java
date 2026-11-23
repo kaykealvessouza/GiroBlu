@@ -36,11 +36,13 @@ public class Estacao {
     // Status: IMPLEMENTADO
 
     public void adicionarVeiculo(Veiculo veiculo) throws EstacaoLotadaException {
-        if (consultarVagasDisponiveis() <= 0) {
-            throw new EstacaoLotadaException("A estação " + nome + " está lotada");
-        }
+
         if (veiculo == null) {
             throw new IllegalArgumentException("O veículo não pode ser nulo.");
+        }
+
+        if (consultarVagasDisponiveis() <= 0) {
+            throw new EstacaoLotadaException("A estação " + nome + " está lotada");
         }
         if (veiculosEstacionados.contains(veiculo)) {
             throw new IllegalArgumentException("O veículo " + veiculo.consultarModelo() + " já está nesta estação.");
@@ -56,7 +58,7 @@ public class Estacao {
         if (veiculo == null) {
             throw new IllegalArgumentException("O veículo não pode ser nulo.");
         }
-        
+
         boolean removido = veiculosEstacionados.remove(veiculo);
 
         if (!removido) {
@@ -97,6 +99,6 @@ public class Estacao {
 
     public String consultarNome() {
         return nome;
-    };
+    }
 
 }

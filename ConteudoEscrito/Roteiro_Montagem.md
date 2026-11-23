@@ -183,7 +183,7 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 
 ### 7.4 `finalizarUtilizacao(Estacao estacaoDestino, long minutos)` · [ X ] implementado [ ] testado
 - Estado volta para `DISPONIVEL` e `estacaoAtual = estacaoDestino`.
-- 📌 A base **ignora** `minutos` (quem usa é o elétrico, 8.7).
+- 📌 A base **ignora** `minutos` (quem usa é o elétrico, 8.7). A base rejeita duração ≤ 0 com IllegalArgumentException (não acontece em viagem válida, pois a duração é arredondada para cima)
 - 📌 Não adiciona na lista da estação (o `Sistema` chama `estacaoDestino.adicionarVeiculo`).
 
 ### 7.5 `enviarParaManutencao() throws OperacaoInvalidaException` · [ X ] implementado [ ] testado
@@ -386,7 +386,7 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 - Guarda no histórico e soma o valor ao saldo.
 - 📌 Não declara exceção: a recarga já nasceu validada.
 
-### 16.5 `consultarHistoricoMovimentacoes()` · [ ] implementado [ ] testado
+### 16.5 `consultarHistoricoMovimentacoes()` · [X] implementado [ ] testado
 - 📌 Não permite alterar a coleção interna.
 
 ### 16.6 `debitarValor(Viagem)` · [X] implementado [ ] testado
@@ -449,25 +449,26 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 ⚠ **Antes:** 3, 7 a 12, 13 a 15, 17, 2 (`SemViagemEmAndamentoException`, `DataInvalidaException`).
 **Atributos:** `usuario`, `veiculo`, `estacaoOrigem`, `estacaoDestino`, `dataHoraInicio`, `dataHoraFim`, `double valorCobrado`.
 
-### 18.1 Construtor `Viagem(Usuario, Veiculo, Estacao estacaoOrigem, LocalDateTime dataHoraInicio)` · [ ] implementado [ ] testado
+### 18.1 Construtor `Viagem(Usuario, Veiculo, Estacao estacaoOrigem, LocalDateTime dataHoraInicio)` · [X] implementado [ ] testado
 - A viagem nasce **em andamento**: sem destino, sem fim e sem valor.
+- 📌 Rejeita `usuario`, `veiculo`, `estacaoOrigem` e `dataHoraInicio` nulos com `IllegalArgumentException` (erro de programação, não regra de negócio; não aparece no UML por ser exceção não checada).
 
-### 18.2 Getters · [ ] implementado
+### 18.2 Getters · [X] implementado
 - `consultarUsuario()`, `consultarVeiculo()`, `consultarEstacaoOrigem()`, `consultarEstacaoDestino()`, `consultarDataHoraInicio()`, `consultarDataHoraFim()`, `consultarValorCobrado()`.
 
-### 18.3 `estaEmAndamento()` · [ ] implementado [ ] testado
+### 18.3 `estaEmAndamento()` · [X] implementado [ ] testado
 - Verdadeiro enquanto `dataHoraFim` não foi definida (sem atributo extra).
 
-### 18.4 `calcularDuracao()` · [ ] implementado [ ] testado
+### 18.4 `calcularDuracao()` · [X] implementado [ ] testado
 - Minutos entre início e fim.
 - 📌 Pré-condição (registre no Javadoc): só chamar **depois de encerrar**.
-- 📌 Premissa provisória: minutos inteiros (ponto em aberto 2). Mantenha essa regra isolada neste método.
+- 📌 Premissa provisória: minutos inteiros (ponto em aberto 2). Mantenha essa regra isolada neste método. (A duração é arredondada para cima: qualquer fração de minuto conta como minuto inteiro. Evita duração zero em viagens curtas.)
 
-### 18.5 `calcularValor()` · [ ] implementado [ ] testado
+### 18.5 `calcularValor()` · [X] implementado [ ] testado
 - Usa `usuario.consultarPlanoContratado().calcularValor(veiculo, duração)`.
 - 📌 A regra de cobrança fica **nos planos**, não aqui. Mesma pré-condição de 18.4.
 
-### 18.6 `finalizarViagem(Estacao, LocalDateTime) throws SemViagemEmAndamentoException, DataInvalidaException` · [ ] implementado [ ] testado
+### 18.6 `finalizarViagem(Estacao, LocalDateTime) throws SemViagemEmAndamentoException, DataInvalidaException` · [X] implementado [ ] testado
 - Ordem obrigatória:
   1. Se a viagem já foi encerrada → `SemViagemEmAndamentoException`.
   2. Se o fim **não for posterior** ao início → `DataInvalidaException`.
@@ -476,13 +477,13 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 - 📌 **Não** mexe em veículo, estação nem carteira (quem coordena é o `Sistema`).
 - ✅ Teste: encerrar duas vezes; fim igual ou anterior ao início; os 5 exemplos do enunciado (tabela no fim).
 
-### 18.7 `consultarDataHoraMovimentacao()` · [ ] implementado [ ] testado
+### 18.7 `consultarDataHoraMovimentacao()` · [X] implementado [ ] testado
 - Devolve `dataHoraFim` (é `null` enquanto em andamento; a carteira só recebe viagens encerradas).
 
-### 18.8 `consultarValorMovimentacao()` · [ ] implementado
+### 18.8 `consultarValorMovimentacao()` · [X] implementado
 - Devolve `valorCobrado`.
 
-### 18.9 `consultarTipoMovimentacao()` · [ ] implementado [ ] testado
+### 18.9 `consultarTipoMovimentacao()` · [X] implementado [ ] testado
 - Sempre `DEBITO`.
 
 ✅ **Agora termine os testes de 16.6, 16.7 e 17.8.**
@@ -494,19 +495,19 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 ⚠ **Antes:** 1.2.
 **Atributos:** `dataInicial`, `dataFinal`, `Map<TipoVeiculo, Integer> quantidadeViagens`, `Map<TipoVeiculo, Double> faturamentoPorTipo`.
 
-### 19.1 Construtor `(LocalDate, LocalDate, Map<TipoVeiculo,Integer>, Map<TipoVeiculo,Double>)` · [ ] implementado [ ] testado
+### 19.1 Construtor `(LocalDate, LocalDate, Map<TipoVeiculo,Integer>, Map<TipoVeiculo,Double>)` · [X] implementado [ ] testado
 - 📌 **Copia** os mapas (alterar o mapa original depois não muda o relatório).
 
-### 19.2 `consultarQuantidadeViagens(TipoVeiculo)` · [ ] implementado [ ] testado
+### 19.2 `consultarQuantidadeViagens(TipoVeiculo)` · [X] implementado [ ] testado
 - Tipo sem viagens devolve **0**.
 
-### 19.3 `consultarFaturamento(TipoVeiculo)` · [ ] implementado [ ] testado
+### 19.3 `consultarFaturamento(TipoVeiculo)` · [X] implementado [ ] testado
 - Tipo sem viagens devolve **0**.
 
-### 19.4 `consultarQuantidadeTotalViagens()` e `consultarFaturamentoTotal()` · [ ] implementados [ ] testados
+### 19.4 `consultarQuantidadeTotalViagens()` e `consultarFaturamentoTotal()` · [X] implementados [ ] testados
 - Calculados a partir dos mapas (sem atributo próprio).
 
-### 19.5 `consultarDataInicial()` e `consultarDataFinal()` · [ ] implementados
+### 19.5 `consultarDataInicial()` e `consultarDataFinal()` · [X] implementados
 
 ---
 

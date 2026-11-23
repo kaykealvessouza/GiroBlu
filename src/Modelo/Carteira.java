@@ -77,6 +77,17 @@ public class Carteira {
     // ==================== CONSULTAR EXTRATO ====================
     // Status: IMPLEMENTADO
 
+    /**
+     * Consulta o extrato financeiro da carteira, contendo as movimentações
+     * ordenadas cronologicamente e o saldo resultante após cada movimentação.
+     *
+     * O extrato é reconstruído a partir do histórico, iniciando com saldo zero
+     * e aplicando os créditos e débitos na ordem de suas datas e horários.
+     *
+     * @return lista imutável de linhas do extrato, contendo a movimentação
+     *         e o saldo após sua aplicação.
+     */
+
     public List<LinhaExtrato> consultarExtrato() {
         List<MovimentacaoFinanceira> ordenadas = new ArrayList<>(historicoMovimentacoes);
 
@@ -97,15 +108,5 @@ public class Carteira {
 
         return Collections.unmodifiableList(extrato);
 
-        /**
-         * Consulta o extrato financeiro da carteira, contendo as movimentações
-         * ordenadas cronologicamente e o saldo resultante após cada movimentação.
-         *
-         * O extrato é reconstruído a partir do histórico, iniciando com saldo zero
-         * e aplicando os créditos e débitos na ordem de suas datas e horários.
-         *
-         * @return lista imutável de linhas do extrato, contendo a movimentação
-         *         e o saldo após sua aplicação.
-         */
     }
 }
