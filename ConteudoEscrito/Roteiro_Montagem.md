@@ -517,37 +517,37 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 📌 O `Sistema` **coordena**; não concentra regra de veículo, estação, plano ou carteira.
 **Atributos:** `ArrayList<Estacao> estacoes`, `ArrayList<Veiculo> veiculos`, `ArrayList<Usuario> usuarios`, `ArrayList<Viagem> viagens`, `ArrayList<Plano> planosDisponiveis`.
 
-### 20.1 Construtor `Sistema()` · [ ] implementado [ ] testado
+### 20.1 Construtor `Sistema()` · [ X ] implementado [ ] testado
 - Listas vazias e os **3 planos** criados uma única vez, compartilhados por todos.
 - ⚠ **Antes:** 13 a 15.
 
-### 20.2 `consultarEstacoes()`, `consultarVeiculos()`, `consultarUsuarios()`, `consultarViagens()` · [ ] implementados [ ] testados
+### 20.2 `consultarEstacoes()`, `consultarVeiculos()`, `consultarUsuarios()`, `consultarViagens()` · [ X ] implementados [ ] testados
 - 📌 Listas que não permitem alterar a coleção interna.
 
-### 20.3 `consultarPlanos()` · [ ] implementado [ ] testado
+### 20.3 `consultarPlanos()` · [ X ] implementado [ ] testado
 - Lista não modificável.
 
-### 20.4 `cadastrarEstacao(Estacao) throws RegistroJaExistenteException` · [ ] implementado [ ] testado
+### 20.4 `cadastrarEstacao(Estacao) throws RegistroJaExistenteException` · [ X ] implementado [ ] testado
 - ⚠ **Antes:** 12.2.
 - Lança se já existe estação com o mesmo nome, **ignorando maiúsculas/minúsculas e espaços nas pontas**.
 
-### 20.5 `cadastrarUsuario(Usuario) throws RegistroJaExistenteException` · [ ] implementado [ ] testado
+### 20.5 `cadastrarUsuario(Usuario) throws RegistroJaExistenteException` · [ X ] implementado [ ] testado
 - Mesma regra de comparação, aplicada ao e-mail.
 
-### 20.6 `cadastrarVeiculo(Veiculo) throws EstacaoLotadaException` · [ ] implementado [ ] testado
+### 20.6 `cadastrarVeiculo(Veiculo) throws EstacaoLotadaException` · [ X ] implementado [ ] testado
 - Assume que a estação (`veiculo.consultarEstacaoAtual()`) já está cadastrada: a tela só oferece estações de `consultarEstacoes()`.
 - Ordem: `estacao.adicionarVeiculo(veiculo)` **primeiro**; só depois inclui o veículo em `veiculos`. Se a estação estiver lotada, o veículo **não** entra na lista.
 - ✅ Teste: estação lotada não inclui o veículo.
 
-### 20.7 `consultarEstacao(String) throws RegistroNaoEncontradoException` · [ ] implementado [ ] testado
+### 20.7 `consultarEstacao(String) throws RegistroNaoEncontradoException` · [ X ] implementado [ ] testado
 - Mesma comparação de 20.4.
 
-### 20.8 `consultarVeiculo(int codigo) throws RegistroNaoEncontradoException` · [ ] implementado [ ] testado
+### 20.8 `consultarVeiculo(int codigo) throws RegistroNaoEncontradoException` · [ X ] implementado [ ] testado
 
-### 20.9 `consultarUsuario(String email) throws RegistroNaoEncontradoException` · [ ] implementado [ ] testado
+### 20.9 `consultarUsuario(String email) throws RegistroNaoEncontradoException` · [ X ] implementado [ ] testado
 - Mesma comparação de 20.5.
 
-### 20.10 `iniciarViagem(Usuario, Veiculo, LocalDateTime) throws ViagemEmAndamentoException, SaldoInsuficienteException, VeiculoIndisponivelException, VeiculoNaoEncontradoException` · [ ] implementado [ ] testado
+### 20.10 `iniciarViagem(Usuario, Veiculo, LocalDateTime) throws ViagemEmAndamentoException, SaldoInsuficienteException, VeiculoIndisponivelException, VeiculoNaoEncontradoException` · [ X ] implementado [ ] testado
 - Regra geral: **primeiro só leitura (lançando exceção); só depois alterar.** Se qualquer exceção ocorrer, nada pode ter mudado.
 - Passo a passo:
   1. Validações: `usuario.possuiViagemEmAndamento()` → `ViagemEmAndamentoException`; `usuario.temSaldoMinimo()` → `SaldoInsuficienteException`; `veiculo.podeSerLiberado()` → `VeiculoIndisponivelException`.
@@ -557,7 +557,7 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
   5. Devolva a viagem.
 - ✅ Teste: cada exceção deixa tudo como estava (veículo ainda na estação, usuário sem viagem ativa).
 
-### 20.11 `finalizarViagem(Viagem, Estacao, LocalDateTime) throws SemViagemEmAndamentoException, DataInvalidaException, EstacaoLotadaException` · [ ] implementado [ ] testado
+### 20.11 `finalizarViagem(Viagem, Estacao, LocalDateTime) throws SemViagemEmAndamentoException, DataInvalidaException, EstacaoLotadaException` · [ X ] implementado [ ] testado
 - Passo a passo:
   1. Validações de leitura: a viagem está em andamento e é a ativa do usuário → `SemViagemEmAndamentoException`; a estação de destino tem vaga → `EstacaoLotadaException`.
   2. `viagem.finalizarViagem(destino, fim)`: valida as datas (`DataInvalidaException`) antes de alterar a si mesma.
@@ -566,9 +566,9 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
   5. `usuario.pagarViagem(viagem)` e depois `usuario.finalizarViagemAtiva(viagem)`.
 - ✅ Teste: os 5 exemplos do enunciado de ponta a ponta; saldo ficando negativo; estação lotada **não** encerra a viagem; data de fim inválida não altera veículo nem estação.
 
-### 20.12 `consultarViagensDoUsuario(Usuario)` · [ ] implementado [ ] testado
+### 20.12 `consultarViagensDoUsuario(Usuario)` · [ X ] implementado [ ] testado
 
-### 20.13 `consultarFaturamento(LocalDate, LocalDate) throws DataInvalidaException` · [ ] implementado [ ] testado
+### 20.13 `consultarFaturamento(LocalDate, LocalDate) throws DataInvalidaException` · [ X ] implementado [ ] testado
 - Lança se a data final for anterior à inicial.
 - Considera só viagens **encerradas** com a data de `dataHoraFim` dentro do período (**inclusivo**, premissa provisória: ponto em aberto 2).
 - Agrupa por `viagem.consultarVeiculo().consultarTipo()`; devolve um `RelatorioFaturamento`.
@@ -579,8 +579,8 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 
 ⚠ **Antes:** decidir o ponto em aberto 1 e ter o item 20 funcionando.
 
-### 21.1 `salvarDados() throws PersistenciaException` · [ ] implementado [ ] testado
-### 21.2 `carregarDados() throws PersistenciaException` · [ ] implementado [ ] testado
+### 21.1 `salvarDados() throws PersistenciaException` · [ X ] implementado [ ] testado
+### 21.2 `carregarDados() throws PersistenciaException` · [ X ] implementado [ ] testado
 
 📌 Pasta `dados-gb26` na raiz do projeto.
 📌 Arquivo inexistente na primeira execução **não é erro**: começa vazio, com os 3 planos.
@@ -588,7 +588,7 @@ Todas são **checadas**, herdam de `GiroBluException` e têm construtor `(String
 📌 Depois de carregar, restaure o contador de códigos dos veículos.
 📌 Quem chama `salvarDados()`: a **tela**, depois de cada operação bem-sucedida (`Veiculo` e `Usuario` mudam de estado sem passar pelo `Sistema`).
 
-### 21.3 Arquivos de dados de exemplo · [ ] criados
+### 21.3 Arquivos de dados de exemplo · [ X ] criados
 - Exigidos na entrega, para o sistema já abrir com informações.
 
 ---

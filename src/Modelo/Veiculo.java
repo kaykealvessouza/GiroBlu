@@ -139,6 +139,12 @@ public abstract class Veiculo {
         return codigoIdentificador;
     }
 
+    // ==================== CONSULTAR BATERIA ====================
+    // Status: IMPLEMENTADO
+
+    public int consultarNivelBateria() {
+        return -1;
+    }
     // ==================== CONSULTAR TARIFA DE DESBLOQUEIO ====================
     // Status: DECLARADO
 

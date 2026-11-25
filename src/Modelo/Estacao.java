@@ -101,4 +101,7 @@ public class Estacao {
         return nome;
     }
 
+    public int consultarCapacidadeMaxima(){
+        return capacidadeMaxima;
+    }
 }

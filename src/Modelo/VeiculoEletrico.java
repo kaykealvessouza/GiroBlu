@@ -26,9 +26,10 @@ public abstract class VeiculoEletrico extends Veiculo {
     // ==================== CONSULTAR NÍVEL DA BATERIA ====================
     // Status: IMPLEMENTADO
 
+    @Override 
     public int consultarNivelBateria() {
         return nivelBateria;
-    }
+    }   
 
     // ==================== VERIFICAR CARGA MÍNIMA PARA VIAGEM ====================
     // Status: IMPLEMENTADO
