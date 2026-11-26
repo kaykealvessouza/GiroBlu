@@ -1,12 +1,15 @@
 package Apresentacao.Telas.Estacoes;
 
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -33,10 +36,12 @@ public class PainelConsultaEstacoes extends JPanel {
     private JLabel lblMensagem;
 
     private Sistema sistema;
+    private PainelEstacoes painelEstacoes;
 
-    public PainelConsultaEstacoes(Sistema sistema) {
+    public PainelConsultaEstacoes(Sistema sistema, PainelEstacoes painelEstacoes) {
 
         this.sistema = sistema;
+        this.painelEstacoes = painelEstacoes;
 
         setLayout(new BorderLayout());
         setBackground(new Color(237, 241, 244));
@@ -112,6 +117,28 @@ public class PainelConsultaEstacoes extends JPanel {
 
         tabelaEstacoes.getTableHeader().setFont(
                 new Font("Segoe UI", Font.BOLD, 14));
+
+        tabelaEstacoes.addMouseListener(new MouseAdapter() {
+            
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+                if (e.getClickCount() == 2) {
+
+                    int linhaSelecionada = tabelaEstacoes.getSelectedRow();
+
+                    if (linhaSelecionada >= 0) {
+
+                        int linhaModelo = tabelaEstacoes.convertRowIndexToModel(
+                                linhaSelecionada);
+
+                        Estacao estacao = sistema.consultarEstacoes().get(linhaModelo);
+
+                        painelEstacoes.abrirConsultaVeiculos(estacao);
+                    }
+                }
+            }
+        });
 
         // O JScrollPane adiciona a rolagem à tabela
         JScrollPane scrollTabela = new JScrollPane(tabelaEstacoes);
@@ -223,6 +250,14 @@ public class PainelConsultaEstacoes extends JPanel {
             // Exibe mensagem de erro
             lblMensagem.setText("Nenhuma estação encontrada.");
             lblMensagem.setVisible(true);
+        } finally {
+            limparMensagem();
         }
+    }
+
+    private void limparMensagem() {
+        Timer timer = new Timer(3000, e -> lblMensagem.setText(" "));
+        timer.setRepeats(false);
+        timer.start();
     }
 }

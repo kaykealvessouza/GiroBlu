@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 
 import Aplicacao.Sistema;
 import Modelo.Estacao;
@@ -162,6 +163,14 @@ public class PainelCadastroEstacao extends JPanel {
         } catch (RegistroJaExistenteException e) {
             lblMensagem.setForeground(Color.RED);
             lblMensagem.setText(e.getMessage());
+        } finally{
+            limparMensagem();
         }
+    }
+
+    private void limparMensagem() {
+        Timer timer = new Timer(3000, e -> lblMensagem.setText(" "));
+        timer.setRepeats(false);
+        timer.start();
     }
 }

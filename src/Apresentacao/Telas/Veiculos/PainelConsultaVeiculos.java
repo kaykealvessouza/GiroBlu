@@ -1,11 +1,17 @@
 package Apresentacao.Telas.Veiculos;
 
 import javax.swing.JTextField;
+import javax.swing.Timer;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 
 import javax.swing.table.DefaultTableModel;
@@ -13,23 +19,28 @@ import javax.swing.table.DefaultTableModel;
 import Aplicacao.Sistema;
 import Modelo.Estacao;
 import Modelo.Veiculo;
+import Modelo.TipoVeiculo;
 import Modelo.EstadoVeiculo;
-import Excecoes.RegistroNaoEncontradoException;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.util.List;
 
-//IMPLEMENTANDO - COM ERRO AINDA
 public class PainelConsultaVeiculos extends JPanel {
 
     private JTextField txtPesquisa;
     private JTable tabelaVeiculos;
     private DefaultTableModel modeloTabela;
+
+    private JComboBox<Estacao> cmbEstacao;
+    private JComboBox<EstadoVeiculo> cmbEstado;
+    private JComboBox<TipoVeiculo> cmbTipo;
 
     private JButton btnPesquisar;
 
@@ -131,11 +142,30 @@ public class PainelConsultaVeiculos extends JPanel {
 
     private void configurarPesquisa() {
 
-        JPanel painelPesquisa = new JPanel(new BorderLayout(5, 0));
+        JPanel painelPesquisa = new JPanel(new BorderLayout(5, 10));
 
         painelPesquisa.setBackground(new Color(237, 241, 244));
         painelPesquisa.setBorder(
                 BorderFactory.createEmptyBorder(15, 15, 15, 15));
+
+        // Configura os combos
+        configurarFiltros();
+        configurarRenderizadores();
+
+        // Linha de pesquisa
+        JPanel painelCampoPesquisa = new JPanel(new BorderLayout(5, 0));
+        painelCampoPesquisa.setBackground(new Color(237, 241, 244));
+
+        // Painel dos filtros
+        JPanel painelFiltros = new JPanel(new GridLayout(1, 3, 10, 0));
+        painelFiltros.setBackground(new Color(237, 241, 244));
+
+        // Adiciona cada combo com seu respectivo título
+        painelFiltros.add(criarPainelFiltro("Estação", cmbEstacao));
+        painelFiltros.add(criarPainelFiltro("Estado", cmbEstado));
+        painelFiltros.add(criarPainelFiltro("Tipo", cmbTipo));
+
+        // Continua a configuração do botão e mensagem...
 
         btnPesquisar = new JButton("Pesquisar");
 
@@ -173,19 +203,139 @@ public class PainelConsultaVeiculos extends JPanel {
         lblMensagem = new JLabel(" ");
         lblMensagem.setForeground(Color.RED);
         lblMensagem.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        lblMensagem.setVisible(false);
 
-        painelPesquisa.add(txtPesquisa, BorderLayout.CENTER);
-        painelPesquisa.add(btnPesquisar, BorderLayout.EAST);
+        painelCampoPesquisa.add(txtPesquisa, BorderLayout.CENTER);
+        painelCampoPesquisa.add(btnPesquisar, BorderLayout.EAST);
+
+        painelPesquisa.add(painelCampoPesquisa, BorderLayout.NORTH);
+        painelPesquisa.add(painelFiltros, BorderLayout.CENTER);
         painelPesquisa.add(lblMensagem, BorderLayout.SOUTH);
 
         add(painelPesquisa, BorderLayout.NORTH);
     }
 
-    private void consultarVeiculos(
-            String modelo,
-            Estacao estacao,
-            EstadoVeiculo estado) {
+    private JPanel criarPainelFiltro(String titulo, JComboBox<?> combo) {
+
+        JPanel painel = new JPanel(new BorderLayout(0, 5));
+        painel.setBackground(new Color(237, 241, 244));
+
+        JLabel lblTitulo = new JLabel(titulo);
+        lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 13));
+
+        combo.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        combo.setPreferredSize(new Dimension(150, 30));
+
+        painel.add(lblTitulo, BorderLayout.NORTH);
+        painel.add(combo, BorderLayout.CENTER);
+
+        return painel;
+    }
+
+    private void configurarFiltros() {
+
+        // Filtro de estação
+        cmbEstacao = new JComboBox<>();
+        cmbEstacao.addItem(null);
+
+        cmbEstacao.addPopupMenuListener(new PopupMenuListener() {
+            @Override
+            public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+                atualizarEstacoes();
+            }
+
+            @Override
+            public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+            }
+
+            @Override
+            public void popupMenuCanceled(PopupMenuEvent e) {
+            }
+        });
+
+        // Filtro de estado
+        cmbEstado = new JComboBox<>();
+        cmbEstado.addItem(null);
+
+        cmbEstado.addPopupMenuListener(new PopupMenuListener() {
+            @Override
+            public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+                atualizarEstado();
+            }
+
+            @Override
+            public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+            }
+
+            @Override
+            public void popupMenuCanceled(PopupMenuEvent e) {
+            }
+        });
+
+        // Filtro de tipo
+        cmbTipo = new JComboBox<>();
+        cmbTipo.addItem(null);
+
+        for (TipoVeiculo tipo : TipoVeiculo.values()) {
+            cmbTipo.addItem(tipo);
+        }
+    }
+
+    private void configurarRenderizadores() {
+        // Transforma e arruma os dados que estão no cmb
+        cmbEstacao.setRenderer(new DefaultListCellRenderer() {
+
+            @Override
+            public Component getListCellRendererComponent(
+                    JList<?> lista, Object valor, int indice,
+                    boolean selecionado, boolean foco) {
+
+                super.getListCellRendererComponent(
+                        lista, valor, indice, selecionado, foco);
+
+                if (valor == null) {
+                    setText("Todas as estações");
+                } else {
+                    setText(((Estacao) valor).consultarNome());
+                }
+
+                return this;
+            }
+        });
+
+        cmbEstado.setRenderer(new DefaultListCellRenderer() {
+
+            @Override
+            public Component getListCellRendererComponent(
+                    JList<?> lista, Object valor, int indice,
+                    boolean selecionado, boolean foco) {
+
+                super.getListCellRendererComponent(
+                        lista, valor, indice, selecionado, foco);
+
+                setText(valor == null ? "Todos os estados" : valor.toString());
+
+                return this;
+            }
+        });
+
+        cmbTipo.setRenderer(new DefaultListCellRenderer() {
+
+            @Override
+            public Component getListCellRendererComponent(
+                    JList<?> lista, Object valor, int indice,
+                    boolean selecionado, boolean foco) {
+
+                super.getListCellRendererComponent(
+                        lista, valor, indice, selecionado, foco);
+
+                setText(valor == null ? "Todos os tipos" : valor.toString());
+
+                return this;
+            }
+        });
+    }
+
+    private void consultarVeiculos() {
 
         List<Veiculo> veiculos = sistema.consultarVeiculos();
 
@@ -238,15 +388,49 @@ public class PainelConsultaVeiculos extends JPanel {
 
         EstadoVeiculo estado = (EstadoVeiculo) cmbEstado.getSelectedItem();
 
+        TipoVeiculo tipo = (TipoVeiculo) cmbTipo.getSelectedItem();
+
         List<Veiculo> veiculos = sistema.consultarVeiculos(
                 modelo,
                 estacao,
-                estado);
+                estado,
+                tipo);
 
         exibirRegistrosTabela(veiculos);
 
         if (veiculos.isEmpty()) {
             lblMensagem.setText("Nenhum veículo encontrado.");
+            limparMensagem();
         }
+    }
+
+    public void filtrarPorEstacao(Estacao estacao) {
+        atualizarEstacoes();
+        cmbEstacao.setSelectedItem(estacao);
+        pesquisarVeiculo();
+    }
+
+    private void atualizarEstacoes() {
+        cmbEstacao.removeAllItems();
+        cmbEstacao.addItem(null);
+
+        for (Estacao estacao : sistema.consultarEstacoes()) {
+            cmbEstacao.addItem(estacao);
+        }
+    }
+
+    private void atualizarEstado() {
+        cmbEstado.removeAllItems();
+        cmbEstado.addItem(null);
+
+        for (EstadoVeiculo estado : EstadoVeiculo.values()) {
+            cmbEstado.addItem(estado);
+        }
+    }
+
+    private void limparMensagem() {
+        Timer timer = new Timer(3000, e -> lblMensagem.setText(" "));
+        timer.setRepeats(false);
+        timer.start();
     }
 }

@@ -181,3 +181,37 @@ Essas setas funcionam visualmente, mas não acompanham as classes caso sejam mov
 
 - Não é necessário criar uma associação permanente entre `Carteira` e `LinhaExtrato`, pois as linhas são objetos temporários gerados durante a consulta. Uma dependência de criação é suficiente.
 - A ordem das operações, as regras de cadastro, a observação sobre `estacaoAtual` (o `0..1` já está), o estado inicial e a manutenção repetida não exigem alterações no UML.
+
+# SUA ULTIMA PARTE
+
+### O que precisa fazer
+
+1) PERSISTÊNCIA (primeiro)
+- Sistema.salvarDados() e carregarDados(), ambos com throws PersistenciaException.
+- Sugestão - Binário com Serializable, um único arquivo fixo em dados-gb26/giroblu.dat (pasta na raiz do projeto).
+- Carrega ao abrir o programa. Se o arquivo não existir, começa vazio.
+- A tela chama salvarDados() depois de cada operação que deu certo. Regrave o Sistema inteiro (não faça append).
+- O contadorCodigo do Veiculo é static e não é salvo: depois de carregar, restaure para (maior código + 1).
+- Se mudar nome ou assinatura de método, tem que atualiza md e uml.
+
+2) TESTES JUNIT
+- Seguir o Plano_Testes.md que já tá pronto, numa pasta test/.
+- A lib é JUnit 4.13.2, mas o plano diz JUnit 5: ajustar o texto do plano que você fez.
+- double sempre com tolerância; após exceção, conferir que nada mudou.
+- A duração da viagem arredonda para cima.
+- Exportar o plano de testes em PDF.
+- Da pra automatizar com o claude muita coisa, só confere se fez certinho.
+
+3) JAVADOC
+- Todas as classes e métodos públicos do negócio, com @param, @return e @throws batendo com a tabela de exceções do md. Que alias precisaria atualizar o md.
+- Gerar o HTML e conferir que não sai erro nem aviso.
+
+4) UML
+- Aplicar alterações, conferir as classe.
+- Exportar em PDF.
+
+Cuidados:
+- Ordem: persistência, depois Javadoc (os dois mexem no cabeçalho das classes e dá conflito).
+- Não mexer no pacote das telas. Pode deixar essa parte comigo.
+
+Cronograma: Vou tentar terminar as telas até sexta, ai persistência seria bom até sabado, testes e Javadoc seria bom terminar pelo menos sabado de manhã no máximo, UML e PDFs até domingo, domingo geramos o zip e entregamos.

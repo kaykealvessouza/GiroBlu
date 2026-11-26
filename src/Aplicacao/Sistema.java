@@ -8,6 +8,7 @@ import Interfaces.*;
 import Modelo.*;
 import Planos.*;
 import Relatorios.*;
+
 public class Sistema {
 
     // ==================== ATRIBUTOS ====================
@@ -41,7 +42,8 @@ public class Sistema {
      *
      * @param estacao estação a cadastrar
      * @throws RegistroJaExistenteException se já existir estação com o mesmo
-     *         nome (ignorando maiúsculas/minúsculas e espaços nas pontas)
+     *                                      nome (ignorando maiúsculas/minúsculas e
+     *                                      espaços nas pontas)
      */
     public void cadastrarEstacao(Estacao estacao) throws RegistroJaExistenteException {
         if (estacao == null) {
@@ -93,7 +95,8 @@ public class Sistema {
      *
      * @param usuario usuário a cadastrar
      * @throws RegistroJaExistenteException se o e-mail já estiver em uso
-     *         (ignorando maiúsculas/minúsculas e espaços nas pontas)
+     *                                      (ignorando maiúsculas/minúsculas e
+     *                                      espaços nas pontas)
      */
     public void cadastrarUsuario(Usuario usuario) throws RegistroJaExistenteException {
         if (usuario == null) {
@@ -165,6 +168,53 @@ public class Sistema {
 
         throw new RegistroNaoEncontradoException(
                 "Nenhum veículo encontrado com o código " + codigo + ".");
+    }
+
+    // ==================== CONSULTA DE VEÍCULOS COM FILTROS ====================
+    // Status: IMPLEMENTADO
+
+    /**
+     * Consulta veículos aplicando os filtros informados.
+     * Os parâmetros nulos ou vazios são ignorados.
+     *
+     * @param modelo  parte do modelo do veículo a ser pesquisado
+     * @param estacao estação atual do veículo
+     * @param estado  estado atual do veículo
+     * @param tipo    tipo do veículo
+     * @return lista de veículos que correspondem aos filtros informados
+     */
+    public List<Veiculo> consultarVeiculos(
+            String modelo,
+            Estacao estacao,
+            EstadoVeiculo estado,
+            TipoVeiculo tipo) {
+
+        List<Veiculo> resultado = new ArrayList<>();
+
+        for (Veiculo veiculo : veiculos) {
+
+            if (modelo != null && !modelo.isBlank()
+                    && !veiculo.consultarModelo().toLowerCase()
+                            .contains(modelo.toLowerCase())) {
+                continue;
+            }
+
+            if (estacao != null && veiculo.consultarEstacaoAtual() != estacao) {
+                continue;
+            }
+
+            if (estado != null && veiculo.consultarEstadoAtual() != estado) {
+                continue;
+            }
+
+            if (tipo != null && veiculo.consultarTipo() != tipo) {
+                continue;
+            }
+
+            resultado.add(veiculo);
+        }
+
+        return resultado;
     }
 
     /**
@@ -261,9 +311,9 @@ public class Sistema {
      * @param veiculo        veículo a ser liberado
      * @param dataHoraInicio data e hora de início
      * @return a viagem criada
-     * @throws ViagemEmAndamentoException   se o usuário já tiver viagem ativa
-     * @throws SaldoInsuficienteException   se o saldo for menor que o mínimo
-     * @throws VeiculoIndisponivelException se o veículo não puder ser liberado
+     * @throws ViagemEmAndamentoException    se o usuário já tiver viagem ativa
+     * @throws SaldoInsuficienteException    se o saldo for menor que o mínimo
+     * @throws VeiculoIndisponivelException  se o veículo não puder ser liberado
      * @throws VeiculoNaoEncontradoException se o veículo não estiver na estação
      */
     public Viagem iniciarViagem(Usuario usuario, Veiculo veiculo, LocalDateTime dataHoraInicio)
@@ -314,9 +364,11 @@ public class Sistema {
      * @param estacaoDestino estação onde o veículo será devolvido
      * @param dataHoraFim    data e hora de término
      * @throws SemViagemEmAndamentoException se a viagem não estiver em
-     *         andamento ou não for a viagem ativa do usuário
-     * @throws DataInvalidaException  se o término não for posterior ao início
-     * @throws EstacaoLotadaException se a estação de destino não tiver vaga
+     *                                       andamento ou não for a viagem ativa do
+     *                                       usuário
+     * @throws DataInvalidaException         se o término não for posterior ao
+     *                                       início
+     * @throws EstacaoLotadaException        se a estação de destino não tiver vaga
      */
     public void finalizarViagem(Viagem viagem, Estacao estacaoDestino, LocalDateTime dataHoraFim)
             throws SemViagemEmAndamentoException,

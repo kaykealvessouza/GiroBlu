@@ -4,6 +4,8 @@ package Apresentacao.Telas.Estacoes;
 import javax.swing.JPanel;
 
 import Aplicacao.Sistema;
+import Apresentacao.Telas.Veiculos.PainelConsultaVeiculos;
+import Modelo.Estacao;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -27,12 +29,16 @@ public class PainelEstacoes extends JPanel {
     // Guarda a referência do botão atualmente selecionado
     private JButton botaoSelecionado;
 
+    private JButton btnVoltar;
+
     // Painéis que organizam a navegação e o conteúdo
     private JPanel painelNavegacao;
     private JPanel painelConteudo;
 
     // Controla a alternância entre os conteúdos
     private CardLayout cardLayout;
+
+    private PainelConsultaVeiculos painelConsultaVeiculos;
 
     private Sistema sistema;
 
@@ -56,23 +62,26 @@ public class PainelEstacoes extends JPanel {
 
         // Organiza os botões horizontalmente
         painelNavegacao.setLayout(
-            new BoxLayout(painelNavegacao, BoxLayout.X_AXIS)
-        );
+                new BoxLayout(painelNavegacao, BoxLayout.X_AXIS));
 
         painelNavegacao.setBackground(new Color(237, 241, 244));
 
         // Define o espaçamento interno da barra
         painelNavegacao.setBorder(
-            BorderFactory.createEmptyBorder(10, 15, 10, 15)
-        );
+                BorderFactory.createEmptyBorder(10, 15, 10, 15));
 
         // Cria os botões utilizando o mesmo padrão visual da estrutura principal
         btnConsultar = criarBotaoAba("Consultar estações");
         btnCadastrar = criarBotaoAba("Cadastrar estação");
 
+        btnVoltar = criarBotaoAba("← Voltar para estações");
+
         painelNavegacao.add(btnConsultar);
         painelNavegacao.add(Box.createHorizontalStrut(10));
         painelNavegacao.add(btnCadastrar);
+        painelNavegacao.add(Box.createHorizontalStrut(10));
+        painelNavegacao.add(btnVoltar);
+        btnVoltar.setVisible(false);
 
         // Adiciona a navegação na parte superior do painel
         add(painelNavegacao, BorderLayout.NORTH);
@@ -93,8 +102,8 @@ public class PainelEstacoes extends JPanel {
         botao.setOpaque(false);
 
         // Define as dimensões do botão
-        botao.setPreferredSize(new Dimension(160, 40));
-        botao.setMaximumSize(new Dimension(160, 40));
+        botao.setPreferredSize(new Dimension(200, 40));
+        botao.setMaximumSize(new Dimension(200, 40));
 
         // Controla o mouse hover tbm
         botao.addMouseListener(new MouseAdapter() {
@@ -149,8 +158,15 @@ public class PainelEstacoes extends JPanel {
         cardLayout = new CardLayout();
         painelConteudo = new JPanel(cardLayout);
 
-        painelConteudo.add(new PainelConsultaEstacoes(sistema), "consulta");
-        painelConteudo.add(new PainelCadastroEstacao(sistema), "cadastro");
+        PainelConsultaEstacoes painelConsultaEstacoes = new PainelConsultaEstacoes(sistema, this);
+
+        PainelCadastroEstacao painelCadastroEstacao = new PainelCadastroEstacao(sistema);
+
+        painelConsultaVeiculos = new PainelConsultaVeiculos(sistema);
+
+        painelConteudo.add(painelConsultaEstacoes, "consulta");
+        painelConteudo.add(painelCadastroEstacao, "cadastro");
+        painelConteudo.add(painelConsultaVeiculos, "veiculos");
 
         add(painelConteudo, BorderLayout.CENTER);
 
@@ -166,8 +182,42 @@ public class PainelEstacoes extends JPanel {
             selecionarAba(btnCadastrar);
         });
 
+        // Volta pra tela
+        btnVoltar.addActionListener(e -> voltarParaEstacoes());
+
         // Define a consulta como conteúdo inicial
         cardLayout.show(painelConteudo, "consulta");
         selecionarAba(btnConsultar);
+    }
+
+    public void abrirConsultaVeiculos(Estacao estacao) {
+        painelNavegacao.removeAll();
+
+        painelNavegacao.add(btnVoltar);
+        btnVoltar.setVisible(true);
+
+        selecionarAba(btnVoltar);
+
+        cardLayout.show(painelConteudo, "veiculos");
+
+        painelConsultaVeiculos.filtrarPorEstacao(estacao);
+
+        painelNavegacao.revalidate();
+        painelNavegacao.repaint();
+    }
+
+    private void voltarParaEstacoes() {
+        painelNavegacao.removeAll();
+
+        painelNavegacao.add(btnConsultar);
+        painelNavegacao.add(Box.createHorizontalStrut(10));
+        painelNavegacao.add(btnCadastrar);
+
+        cardLayout.show(painelConteudo, "consulta");
+
+        selecionarAba(btnConsultar);
+
+        painelNavegacao.revalidate();
+        painelNavegacao.repaint();
     }
 }
