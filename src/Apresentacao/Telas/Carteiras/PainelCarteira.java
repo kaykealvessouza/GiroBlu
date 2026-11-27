@@ -1,4 +1,4 @@
-package Apresentacao.Telas;
+package Apresentacao.Telas.Carteiras;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;

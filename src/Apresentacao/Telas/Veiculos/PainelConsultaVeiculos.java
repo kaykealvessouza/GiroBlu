@@ -354,7 +354,7 @@ public class PainelConsultaVeiculos extends JPanel {
                     ? "Em utilização"
                     : veiculo.consultarEstacaoAtual().consultarNome();
 
-            String nivelBateria = bateria == -1
+            String nivelBateria = bateria == -1 // -1 = Classe veículo = Sem Bateria
                     ? "N/A"
                     : bateria + "%";
 

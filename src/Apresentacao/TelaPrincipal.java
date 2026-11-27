@@ -16,11 +16,11 @@ import java.awt.Font;
 
 import Aplicacao.Sistema;
 import Apresentacao.Telas.PainelInicio;
-import Apresentacao.Telas.PainelUsuarios;
 import Apresentacao.Telas.PainelViagens;
+import Apresentacao.Telas.Carteiras.PainelCarteira;
 import Apresentacao.Telas.Estacoes.PainelEstacoes;
+import Apresentacao.Telas.Usuarios.PainelUsuarios;
 import Apresentacao.Telas.Veiculos.PainelVeiculos;
-import Apresentacao.Telas.PainelCarteira;
 import Apresentacao.Telas.PainelRelatorios;
 
 public class TelaPrincipal extends JFrame {
@@ -168,7 +168,7 @@ public class TelaPrincipal extends JFrame {
         painelConteudo.add(new PainelInicio(), "inicio");
         painelConteudo.add(new PainelEstacoes(sistema), "estacoes");
         painelConteudo.add(new PainelVeiculos(sistema), "veiculos");
-        painelConteudo.add(new PainelUsuarios(), "usuarios");
+        painelConteudo.add(new PainelUsuarios(sistema), "usuarios");
         painelConteudo.add(new PainelViagens(), "viagens");
         painelConteudo.add(new PainelCarteira(), "carteiras");
         painelConteudo.add(new PainelRelatorios(), "relatorios");

@@ -8,8 +8,6 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -27,7 +25,6 @@ import javax.swing.event.PopupMenuListener;
 import Aplicacao.Sistema;
 import Modelo.Veiculo;
 import Excecoes.OperacaoInvalidaException;
-import Modelo.Estacao;
 
 public class PainelGerenciarVeiculos extends JPanel {
 
