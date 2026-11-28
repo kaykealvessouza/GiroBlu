@@ -1,5 +1,6 @@
 package Modelo;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import Financeiro.Recarga;
 import Interfaces.Plano;
 import Excecoes.OperacaoInvalidaException;
 
-public class Usuario {
+public class Usuario implements Serializable{
 
     // ==================== ATRIBUTOS ====================
 
@@ -21,6 +22,7 @@ public class Usuario {
     private Viagem viagemAtiva;
     private Plano planoContratado;
     private Carteira carteira;
+    private static final long serialVersionUID = 1L;
 
     // ==================== CONSTRUTOR ====================
     // Status: IMPLEMENTADO

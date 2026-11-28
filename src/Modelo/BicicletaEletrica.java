@@ -4,6 +4,10 @@ import Excecoes.ValorInvalidoException;
 
 public class BicicletaEletrica extends VeiculoEletrico {
 
+    // ==================== ATRIBUTOS ====================
+    
+    private static final long serialVersionUID = 1L;
+
     // ==================== CONSTRUTOR ====================
     // Status: IMPLEMENTADO
 

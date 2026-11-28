@@ -1,8 +1,16 @@
 package Planos;
 import Modelo.Veiculo;
+
+import java.io.Serializable;
+
 import Interfaces.Plano;
 
-public class PlanoMensal implements Plano {
+public class PlanoMensal implements Plano, Serializable {
+
+    // ==================== ATRIBUTOS ====================
+    
+    private static final long serialVersionUID = 1L;
+
 
     // ==================== CALCULAR VALOR DA VIAGEM ====================
     // Status: IMPLEMENTADO

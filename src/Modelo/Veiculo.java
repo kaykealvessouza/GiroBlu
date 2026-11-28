@@ -1,14 +1,17 @@
 package Modelo;
 
+import java.io.Serializable;
+
 import Excecoes.OperacaoInvalidaException;
 import Excecoes.VeiculoIndisponivelException;
 
-public abstract class Veiculo {
+public abstract class Veiculo implements Serializable {
 
     // ==================== ATRIBUTOS ====================
 
     private static int contadorCodigo = 1;
     private final int codigoIdentificador;
+    private static final long serialVersionUID = 1L;
 
     private String modelo;
     private EstadoVeiculo estadoAtual;
@@ -31,6 +34,19 @@ public abstract class Veiculo {
         contadorCodigo++;
     }
 
+    // ==================== RESTAURAR CONTADOR ====================
+    // Status: IMPLEMENTADO
+
+    /**
+     * Ajusta o contador de códigos depois de carregar os dados do disco,
+     * para que novos veículos não repitam códigos já existentes.
+     *
+     * @param maiorCodigo maior código entre os veículos carregados
+     */
+    public static void restaurarContador(int maiorCodigo) {
+        contadorCodigo = maiorCodigo + 1;
+    }
+    
     // ==================== CONSULTAR DISPONIBILIDADE ====================
     // Status: IMPLEMENTADO
 

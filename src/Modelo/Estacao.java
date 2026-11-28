@@ -1,5 +1,6 @@
 package Modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -7,13 +8,14 @@ import java.util.List;
 import Excecoes.EstacaoLotadaException;
 import Excecoes.VeiculoNaoEncontradoException;
 
-public class Estacao {
+public class Estacao implements Serializable{
 
     // ==================== ATRIBUTOS ====================
 
     private String nome;
     private int capacidadeMaxima;
     private ArrayList<Veiculo> veiculosEstacionados;
+    private static final long serialVersionUID = 1L;
 
     // ==================== CONSTRUTOR ====================
     // Status: IMPLEMENTADO

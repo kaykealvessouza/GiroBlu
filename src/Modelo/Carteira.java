@@ -5,12 +5,13 @@ import Financeiro.Recarga;
 import Financeiro.TipoMovimentacao;
 import Financeiro.LinhaExtrato;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class Carteira {
+public class Carteira implements Serializable {
 
     // ==================== CONSTANTES ====================
 
@@ -20,6 +21,7 @@ public class Carteira {
 
     private double saldoAtual;
     private List<MovimentacaoFinanceira> historicoMovimentacoes;
+    private static final long serialVersionUID = 1L;
 
     // ==================== CONSTRUTOR ====================
     // Status: IMPLEMENTADO
