@@ -557,13 +557,13 @@ public class Sistema {
         try (ObjectInputStream entrada = new ObjectInputStream(
                 new FileInputStream(arquivo))) {
 
-            estacoes = (ArrayList<Estacao>) entrada.readObject(); 
-            veiculos = (ArrayList<Veiculo>) entrada.readObject(); 
-            usuarios = (ArrayList<Usuario>) entrada.readObject(); 
-            viagens = (ArrayList<Viagem>) entrada.readObject(); 
-            planosDisponiveis = (ArrayList<Plano>) entrada.readObject(); 
+            estacoes = (ArrayList<Estacao>) entrada.readObject();
+            veiculos = (ArrayList<Veiculo>) entrada.readObject();
+            usuarios = (ArrayList<Usuario>) entrada.readObject();
+            viagens = (ArrayList<Viagem>) entrada.readObject();
+            planosDisponiveis = (ArrayList<Plano>) entrada.readObject();
 
-        } catch (IOException | ClassNotFoundException e) { 
+        } catch (IOException | ClassNotFoundException e) {
             throw new PersistenciaException("Não foi possível carregar os dados: " + e.getMessage());
         }
 

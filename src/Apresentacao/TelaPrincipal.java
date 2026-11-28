@@ -16,12 +16,12 @@ import java.awt.Font;
 
 import Aplicacao.Sistema;
 import Apresentacao.Telas.PainelInicio;
-import Apresentacao.Telas.PainelViagens;
 import Apresentacao.Telas.Carteiras.PainelCarteira;
 import Apresentacao.Telas.Estacoes.PainelEstacoes;
+import Apresentacao.Telas.Relatorio.PainelRelatorioFaturamento;
 import Apresentacao.Telas.Usuarios.PainelUsuarios;
 import Apresentacao.Telas.Veiculos.PainelVeiculos;
-import Apresentacao.Telas.PainelRelatorios;
+import Apresentacao.Telas.Viagens.PainelViagens;
 
 public class TelaPrincipal extends JFrame {
 
@@ -59,6 +59,8 @@ public class TelaPrincipal extends JFrame {
     // Referência ao botão atualmente selecionado
     private JButton botaoSelecionado;
 
+    private PainelInicio painelInicio;
+
     Sistema sistema;
 
     // ========================================
@@ -80,6 +82,9 @@ public class TelaPrincipal extends JFrame {
         painelCabecalho = new JPanel(new BorderLayout());
         painelConteudo = new JPanel(cardLayout);
         painelDireita = new JPanel(new BorderLayout());
+
+        painelInicio = new PainelInicio(sistema, this);
+        painelConteudo.add(painelInicio, "inicio");
 
         // ========================================
         // CONFIGURAÇÃO DO CABEÇALHO
@@ -165,13 +170,12 @@ public class TelaPrincipal extends JFrame {
         // INICIALIZAÇÃO DAS TELAS
         // ========================================
 
-        painelConteudo.add(new PainelInicio(), "inicio");
         painelConteudo.add(new PainelEstacoes(sistema), "estacoes");
         painelConteudo.add(new PainelVeiculos(sistema), "veiculos");
         painelConteudo.add(new PainelUsuarios(sistema), "usuarios");
-        painelConteudo.add(new PainelViagens(), "viagens");
+        painelConteudo.add(new PainelViagens(sistema), "viagens");
         painelConteudo.add(new PainelCarteira(sistema), "carteiras");
-        painelConteudo.add(new PainelRelatorios(), "relatorios");
+        painelConteudo.add(new PainelRelatorioFaturamento(sistema), "relatorios");
 
         // Exibe a tela inicial
         cardLayout.show(painelConteudo, "inicio");
@@ -270,6 +274,10 @@ public class TelaPrincipal extends JFrame {
 
         botao.addActionListener(e -> {
 
+            if (nomePainel.equals("inicio")) {
+                painelInicio.atualizarResumo();
+            }
+
             // Troca a tela exibida
             cardLayout.show(painelConteudo, nomePainel);
 
@@ -279,5 +287,46 @@ public class TelaPrincipal extends JFrame {
             // Atualiza o botão selecionado
             selecionarBotao(botao);
         });
+    }
+
+    public void navegarPara(String nomePainel, String titulo) {
+
+        if (nomePainel.equals("inicio")) {
+            painelInicio.atualizarResumo();
+        }
+
+        cardLayout.show(painelConteudo, nomePainel);
+
+        lblTituloTela.setText(titulo);
+
+        switch (nomePainel) {
+            case "inicio":
+                selecionarBotao(btnInicio);
+                break;
+
+            case "estacoes":
+                selecionarBotao(btnEstacoes);
+                break;
+
+            case "veiculos":
+                selecionarBotao(btnVeiculos);
+                break;
+
+            case "usuarios":
+                selecionarBotao(btnUsuarios);
+                break;
+
+            case "viagens":
+                selecionarBotao(btnViagens);
+                break;
+
+            case "carteiras":
+                selecionarBotao(btnCarteiras);
+                break;
+
+            case "relatorios":
+                selecionarBotao(btnRelatorios);
+                break;
+        }
     }
 }

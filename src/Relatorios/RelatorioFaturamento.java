@@ -3,7 +3,7 @@ package Relatorios;
 import Modelo.TipoVeiculo;
 
 import java.time.LocalDate;
-import java.util.HashMap;   
+import java.util.HashMap;
 import java.util.Map;
 
 public class RelatorioFaturamento {
@@ -25,8 +25,8 @@ public class RelatorioFaturamento {
                                 Map<TipoVeiculo, Double> faturamentoPorTipo) {
         this.dataInicial = dataInicial;
         this.dataFinal = dataFinal;
-        this.quantidadeViagens = new HashMap<>(quantidadeViagens);     
-        this.faturamentoPorTipo = new HashMap<>(faturamentoPorTipo);   
+        this.quantidadeViagens = new HashMap<>(quantidadeViagens);
+        this.faturamentoPorTipo = new HashMap<>(faturamentoPorTipo);
     }
 
 
