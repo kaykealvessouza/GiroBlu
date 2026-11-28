@@ -10,7 +10,6 @@ import Modelo.*;
 import Planos.*;
 import Relatorios.*;
 
-
 public class Sistema {
 
     // ==================== ATRIBUTOS ====================
@@ -261,7 +260,8 @@ public class Sistema {
         return Collections.unmodifiableList(usuarios);
     }
 
-    // ==================== CONSULTA DE USUÁRIOS POR NOME OU E-MAIL ====================
+    // ==================== CONSULTA DE USUÁRIOS POR NOME OU E-MAIL
+    // ====================
     // Status: IMPLEMENTADO
 
     /**
@@ -483,99 +483,78 @@ public class Sistema {
         return new RelatorioFaturamento(dataInicial, dataFinal, quantidadeViagens, faturamentoPorTipo);
     }
 
-        // ==================== PERSISTÊNCIA ====================
-    // Status: NÃO INICIADO
-
+    // ==================== PERSISTÊNCIA ====================
+    // Status: IMPLEMENTADO
+    //
     // ORDEM DE GRAVAÇÃO/LEITURA (não mudar!):
-    // 1. estacoes  2. veiculos  3. usuarios  4. viagens  5. planosDisponiveis
+    // 1. estacoes 2. veiculos 3. usuarios 4. viagens 5. planosDisponiveis
 
-    // public void salvarDados() throws PersistenciaException {
-    //     File arquivo = new File(ARQUIVO_DADOS);
-    //     File pasta = arquivo.getParentFile();
-    //
-    //     if (!pasta.___()) {           // verifica se a pasta existe
-    //         pasta.___();              // cria a pasta
-    //     }
-    //
-    //     try (ObjectOutputStream saida = new ObjectOutputStream(
-    //             new FileOutputStream(arquivo))) {
-    //
-    //         saida.writeObject(___);   // 1
-    //         saida.writeObject(___);   // 2
-    //         saida.writeObject(___);   // 3
-    //         saida.writeObject(___);   // 4
-    //         saida.writeObject(___);   // 5
-    //
-    //     } catch (___ e) {
-    //         throw new PersistenciaException("Não foi possível salvar os dados: " + e.getMessage());
-    //     }
-    // }
+    /**
+     * Grava todos os dados do sistema em disco, em um único arquivo,
+     * preservando as ligações entre os objetos (inclusive viagens em andamento).
+     * Cria a pasta de dados se ela ainda não existir.
+     *
+     * @throws PersistenciaException se não for possível gravar o arquivo
+     */
+    public void salvarDados() throws PersistenciaException {
+        File arquivo = new File(ARQUIVO_DADOS);
+        File pasta = arquivo.getParentFile();
 
-    // @SuppressWarnings("unchecked")
-    // public void carregarDados() throws PersistenciaException {
-    //     File arquivo = new File(ARQUIVO_DADOS);
-    //
-    //     if (!arquivo.___()) {         // primeira execução: nada para carregar
-    //         return;
-    //     }
-    //
-    //     try (ObjectInputStream entrada = new ObjectInputStream(
-    //             new FileInputStream(arquivo))) {
-    //
-    //         estacoes = (ArrayList<Estacao>) entrada.readObject();   // 1
-    //         // 2, 3, 4 e 5 na mesma ordem do salvar
-    //
-    //     } catch (___ | ___ e) {       // as duas exceções da leitura
-    //         throw new PersistenciaException("Não foi possível carregar os dados: " + e.getMessage());
-    //     }
-    //
-    //     // Restaurar o contador de códigos dos veículos:
-    //     // percorrer "veiculos", achar o maior código e ajustar o contador no Veiculo
-    // }
+        if (!pasta.exists()) { // verifica se a pasta existe
+            pasta.mkdirs(); // cria a pasta
+        }
 
+        try (ObjectOutputStream saida = new ObjectOutputStream(
+                new FileOutputStream(arquivo))) {
 
-    // ==================== CARREGAR DADOS ====================
-    // Status: NÃO INICIADO
+            saida.writeObject(estacoes); 
+            saida.writeObject(veiculos);
+            saida.writeObject(usuarios); 
+            saida.writeObject(viagens); 
+            saida.writeObject(planosDisponiveis); 
 
-    // /**
-    //  * Carrega os dados gravados em disco. Se o arquivo ainda não existir
-    //  * (primeira execução), mantém o sistema vazio. Depois de carregar,
-    //  * restaura o contador de códigos dos veículos para não repetir código.
-    //  *
-    //  * @throws PersistenciaException se o arquivo existir mas não puder ser lido
-    //  */
-    // @SuppressWarnings("unchecked")
-    // public void carregarDados() throws PersistenciaException {
-    //     File arquivo = new File(ARQUIVO_DADOS);
-    //
-    //     // Primeira execução: nada para carregar
-    //     if (!arquivo.exists()) {
-    //         return;
-    //     }
-    //
-    //     // Ler na MESMA ORDEM do salvarDados()
-    //     try (ObjectInputStream entrada = new ObjectInputStream(
-    //             new FileInputStream(arquivo))) {
-    //
-    //         estacoes = (ArrayList<Estacao>) entrada.readObject();
-    //         veiculos = (ArrayList<Veiculo>) entrada.readObject();
-    //         usuarios = (ArrayList<Usuario>) entrada.readObject();
-    //         viagens = (ArrayList<Viagem>) entrada.readObject();
-    //         planosDisponiveis = (ArrayList<Plano>) entrada.readObject();
-    //
-    //     } catch (IOException | ClassNotFoundException e) {
-    //         throw new PersistenciaException("Não foi possível carregar os dados: " + e.getMessage());
-    //     }
-    //
-    //     // Restaurar o contador: achar o maior código entre os veículos carregados
-    //     int maiorCodigo = 0;
-    //     for (Veiculo veiculo : veiculos) {
-    //         if (veiculo.consultarCodigo() > maiorCodigo) {
-    //             maiorCodigo = veiculo.consultarCodigo();
-    //         }
-    //     }
-    //     Veiculo.restaurarContador(maiorCodigo);   // método static a criar no Veiculo
-    // }
+        } catch (IOException e) {
+            throw new PersistenciaException("Não foi possível salvar os dados: " + e.getMessage());
+        }
+    }
 
+    /**
+     * Carrega os dados gravados em disco. Se o arquivo ainda não existir
+     * (primeira execução), mantém o sistema vazio. Depois de carregar,
+     * restaura o contador de códigos dos veículos para não repetir código.
+     *
+     * @throws PersistenciaException se o arquivo existir mas não puder ser lido
+     */
+    @SuppressWarnings("unchecked")
+    public void carregarDados() throws PersistenciaException {
+        File arquivo = new File(ARQUIVO_DADOS);
 
+        if (!arquivo.exists()) { // primeira execução: nada para carregar
+            return;
+        }
+
+        try (ObjectInputStream entrada = new ObjectInputStream(
+                new FileInputStream(arquivo))) {
+
+            estacoes = (ArrayList<Estacao>) entrada.readObject(); 
+            veiculos = (ArrayList<Veiculo>) entrada.readObject(); 
+            usuarios = (ArrayList<Usuario>) entrada.readObject(); 
+            viagens = (ArrayList<Viagem>) entrada.readObject(); 
+            planosDisponiveis = (ArrayList<Plano>) entrada.readObject(); 
+
+        } catch (IOException | ClassNotFoundException e) { 
+            throw new PersistenciaException("Não foi possível carregar os dados: " + e.getMessage());
+        }
+
+        //Não repetir código quando reabrir o programa
+        int maiorCodigo = 0;
+
+        for (Veiculo veiculo : veiculos) {
+            if (veiculo.consultarCodigo() > maiorCodigo) {
+                maiorCodigo = veiculo.consultarCodigo();
+            }
+        }
+
+        Veiculo.restaurarContador(maiorCodigo);
+    }
 }
