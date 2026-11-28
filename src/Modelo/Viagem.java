@@ -3,15 +3,18 @@ package Modelo;
 import Interfaces.MovimentacaoFinanceira;
 import Financeiro.TipoMovimentacao;
 
+import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
 import Excecoes.DataInvalidaException;
 import Excecoes.SemViagemEmAndamentoException;
 
-public class Viagem implements MovimentacaoFinanceira {
+public class Viagem implements MovimentacaoFinanceira, Serializable {
 
     // ==================== ATRIBUTOS ====================
+
+    private static final long serialVersionUID = 1L;
 
     private Usuario usuario;
     private Veiculo veiculo;

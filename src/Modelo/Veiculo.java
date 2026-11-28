@@ -11,6 +11,7 @@ public abstract class Veiculo implements Serializable {
 
     private static int contadorCodigo = 1;
     private final int codigoIdentificador;
+    private static final long serialVersionUID = 1L;
 
     private String modelo;
     private EstadoVeiculo estadoAtual;

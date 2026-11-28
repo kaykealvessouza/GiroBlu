@@ -13,7 +13,7 @@ public class Recarga implements MovimentacaoFinanceira, Serializable {
 
     private double valor;
     private LocalDateTime dataHora;
-
+    private static final long serialVersionUID = 1L;
 
     // ==================== CONSTRUTOR ====================
     // Status: IMPLEMENTADO / NÃO TESTADO

@@ -2,6 +2,10 @@ package Modelo;
 
 public class BicicletaMecanica extends Veiculo {
 
+    // ==================== ATRIBUTOS ====================
+    
+    private static final long serialVersionUID = 1L;
+
     // ==================== CONSTRUTOR ====================
     // Status: IMPLEMENTADO
 

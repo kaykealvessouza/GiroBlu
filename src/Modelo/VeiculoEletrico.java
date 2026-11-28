@@ -8,6 +8,7 @@ public abstract class VeiculoEletrico extends Veiculo{
     // ==================== ATRIBUTOS ====================
 
     private int nivelBateria;
+    private static final long serialVersionUID = 1L;
 
     // ==================== CONSTRUTOR ====================
     // Status: IMPLEMENTADO
