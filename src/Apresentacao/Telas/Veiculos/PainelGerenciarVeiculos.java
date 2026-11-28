@@ -24,6 +24,7 @@ import javax.swing.event.PopupMenuListener;
 
 import Aplicacao.Sistema;
 import Modelo.Veiculo;
+import Apresentacao.Componentes.Persistir;
 import Excecoes.OperacaoInvalidaException;
 
 public class PainelGerenciarVeiculos extends JPanel {
@@ -195,6 +196,7 @@ public class PainelGerenciarVeiculos extends JPanel {
             veiculo.enviarParaManutencao();
             lblMensagem.setForeground(new Color(0, 128, 0));
             lblMensagem.setText("Veículo enviado para manutenção!");
+            Persistir.salvar(sistema, lblMensagem); // depois do sucesso
         } catch (OperacaoInvalidaException e) {
             lblMensagem.setForeground(Color.RED);
             lblMensagem.setText(e.getMessage());
@@ -215,6 +217,7 @@ public class PainelGerenciarVeiculos extends JPanel {
             veiculo.retornarDaManutencao();
             lblMensagem.setForeground(new Color(0, 128, 0));
             lblMensagem.setText("Veículo retirado da manutenção!");
+            Persistir.salvar(sistema, lblMensagem); // depois do sucesso
         } catch (OperacaoInvalidaException e) {
             lblMensagem.setForeground(Color.RED);
             lblMensagem.setText(e.getMessage());
@@ -236,6 +239,8 @@ public class PainelGerenciarVeiculos extends JPanel {
             veiculo.recarregarBateria();
             lblMensagem.setForeground(new Color(0, 128, 0));
             lblMensagem.setText("Veículo recarregado!");
+
+            Persistir.salvar(sistema, lblMensagem); // depois do sucesso
         } catch (OperacaoInvalidaException e) {
             lblMensagem.setForeground(Color.RED);
             lblMensagem.setText(e.getMessage());

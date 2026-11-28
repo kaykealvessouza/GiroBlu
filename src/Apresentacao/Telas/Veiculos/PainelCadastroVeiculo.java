@@ -28,6 +28,7 @@ import Aplicacao.Sistema;
 import Modelo.Estacao;
 import Modelo.TipoVeiculo;
 import Modelo.Veiculo;
+import Apresentacao.Componentes.Persistir;
 import Modelo.BicicletaMecanica;
 import Modelo.BicicletaEletrica;
 import Modelo.PatineteEletrico;
@@ -275,6 +276,8 @@ public class PainelCadastroVeiculo extends JPanel {
 
             txtModelo.setText("");
             txtNivelBateria.setText("");
+
+            Persistir.salvar(sistema, lblMensagem); // depois do sucesso
 
         } catch (NumberFormatException e) {
             lblMensagem.setForeground(Color.RED);

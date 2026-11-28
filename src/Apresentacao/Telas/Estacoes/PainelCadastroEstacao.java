@@ -21,6 +21,7 @@ import javax.swing.Timer;
 
 import Aplicacao.Sistema;
 import Modelo.Estacao;
+import Apresentacao.Componentes.Persistir;
 import Excecoes.RegistroJaExistenteException;
 
 public class PainelCadastroEstacao extends JPanel {
@@ -142,7 +143,7 @@ public class PainelCadastroEstacao extends JPanel {
         try {
             Estacao estacao = new Estacao(
                     txtNomeEstacao.getText(),
-                    Integer.parseInt(txtCapacidadeMaxima.getText()));
+                    Integer.parseInt(txtCapacidadeMaxima.getText().trim()));
 
             sistema.cadastrarEstacao(estacao);
 
@@ -151,6 +152,8 @@ public class PainelCadastroEstacao extends JPanel {
 
             txtNomeEstacao.setText("");
             txtCapacidadeMaxima.setText("");
+
+            Persistir.salvar(sistema, lblMensagem); // depois do sucesso
 
         } catch (NumberFormatException e) {
             lblMensagem.setForeground(Color.RED);
@@ -163,7 +166,7 @@ public class PainelCadastroEstacao extends JPanel {
         } catch (RegistroJaExistenteException e) {
             lblMensagem.setForeground(Color.RED);
             lblMensagem.setText(e.getMessage());
-        } finally{
+        } finally {
             limparMensagem();
         }
     }

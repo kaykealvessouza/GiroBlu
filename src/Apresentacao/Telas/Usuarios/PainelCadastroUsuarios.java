@@ -26,6 +26,7 @@ import javax.swing.event.PopupMenuListener;
 
 import Aplicacao.Sistema;
 import Modelo.Usuario;
+import Apresentacao.Componentes.Persistir;
 import Interfaces.Plano;
 import Excecoes.RegistroJaExistenteException;
 
@@ -242,6 +243,8 @@ public class PainelCadastroUsuarios extends JPanel {
 
             txtNome.setText("");
             txtEmail.setText("");
+
+            Persistir.salvar(sistema, lblMensagem); // depois do sucesso
 
         } catch (RegistroJaExistenteException | IllegalArgumentException e) {
 

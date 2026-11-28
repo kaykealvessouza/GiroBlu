@@ -167,7 +167,7 @@ public class PainelUsuarios extends JPanel {
 
         PainelGerenciarUsuarios painelGerenciarUsuarios = new PainelGerenciarUsuarios(sistema);
 
-        painelExtratoCarteira = new PainelExtratoCarteira();
+        painelExtratoCarteira = new PainelExtratoCarteira(sistema);
 
         painelConteudo.add(painelConsultaUsuarios, "consulta");
         painelConteudo.add(painelCadastroUsuarios, "cadastro");

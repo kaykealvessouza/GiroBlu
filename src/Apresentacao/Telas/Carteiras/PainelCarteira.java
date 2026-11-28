@@ -147,9 +147,9 @@ public class PainelCarteira extends JPanel {
         cardLayout = new CardLayout();
         painelConteudo = new JPanel(cardLayout);
 
-        PainelExtratoCarteira painelExtratoCarteira = new PainelExtratoCarteira();
+        PainelExtratoCarteira painelExtratoCarteira = new PainelExtratoCarteira(sistema);
 
-        PainelRecarregarCarteira painelRecarregarCarteira = new PainelRecarregarCarteira();
+        PainelRecarregarCarteira painelRecarregarCarteira = new PainelRecarregarCarteira(sistema);
 
         painelConteudo.add(painelExtratoCarteira, "extrato");
         painelConteudo.add(painelRecarregarCarteira, "recarregar");

@@ -25,6 +25,7 @@ import Aplicacao.Sistema;
 import Excecoes.OperacaoInvalidaException;
 import Interfaces.Plano;
 import Modelo.Usuario;
+import Apresentacao.Componentes.Persistir;
 
 public class PainelGerenciarUsuarios extends JPanel {
 
@@ -261,6 +262,8 @@ public class PainelGerenciarUsuarios extends JPanel {
 
             exibirMensagem(
                     "Plano do usuário alterado com sucesso!", true);
+
+            Persistir.salvar(sistema, lblMensagem); // depois do sucesso
 
         } catch (OperacaoInvalidaException | IllegalArgumentException e) {
 
