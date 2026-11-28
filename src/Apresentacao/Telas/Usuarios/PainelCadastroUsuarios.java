@@ -1,5 +1,5 @@
-package Apresentacao.Telas.Usuarios;
 
+package Apresentacao.Telas.Usuarios;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -25,27 +25,19 @@ import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 
 import Aplicacao.Sistema;
-import Modelo.Estacao;
-import Modelo.TipoVeiculo;
-import Modelo.Veiculo;
-import Modelo.BicicletaMecanica;
-import Modelo.BicicletaEletrica;
-import Modelo.PatineteEletrico;
-import Excecoes.ValorInvalidoException;
-import Excecoes.EstacaoLotadaException;
+import Modelo.Usuario;
+import Interfaces.Plano;
+import Excecoes.RegistroJaExistenteException;
 
 public class PainelCadastroUsuarios extends JPanel {
 
-    private JTextField txtModelo;
-    private JTextField txtNivelBateria;
+    private JTextField txtNome;
+    private JTextField txtEmail;
 
     private JButton btnCadastrar;
     private JLabel lblMensagem;
 
-    private JComboBox<Estacao> cmbEstacao;
-    private JComboBox<TipoVeiculo> cmbTipoVeiculo;
-
-    private JPanel painelBateria;
+    private JComboBox<Plano> cmbPlano;
 
     private Sistema sistema;
 
@@ -64,60 +56,43 @@ public class PainelCadastroUsuarios extends JPanel {
 
         Dimension tamanhoLabel = new Dimension(150, 35);
 
-        // Campo do modelo
-        JPanel painelModelo = criarPainelCampo("Modelo:", tamanhoLabel);
+        // Campo do nome
+        JPanel painelNome = criarPainelCampo("Nome:", tamanhoLabel);
 
-        txtModelo = new JTextField();
-        txtModelo.setPreferredSize(new Dimension(300, 35));
+        txtNome = new JTextField();
+        txtNome.setPreferredSize(new Dimension(300, 35));
 
-        painelModelo.add(txtModelo, BorderLayout.CENTER);
-        painelFormulario.add(painelModelo);
-
-        painelFormulario.add(Box.createVerticalStrut(12));
-
-        // Combo de tipo
-        JPanel painelTipo = criarPainelCampo("Tipo de veículo:", tamanhoLabel);
-
-        cmbTipoVeiculo = new JComboBox<>(TipoVeiculo.values());
-        cmbTipoVeiculo.setPreferredSize(new Dimension(300, 35));
-
-        painelTipo.add(cmbTipoVeiculo, BorderLayout.CENTER);
-        painelFormulario.add(painelTipo);
+        painelNome.add(txtNome, BorderLayout.CENTER);
+        painelFormulario.add(painelNome);
 
         painelFormulario.add(Box.createVerticalStrut(12));
 
-        // Combo de estação
-        JPanel painelEstacao = criarPainelCampo("Estação inicial:", tamanhoLabel);
+        // Campo do e-mail
+        JPanel painelEmail = criarPainelCampo("E-mail:", tamanhoLabel);
 
-        cmbEstacao = new JComboBox<>();
+        txtEmail = new JTextField();
+        txtEmail.setPreferredSize(new Dimension(300, 35));
 
-        for (Estacao estacao : sistema.consultarEstacoes()) {
-            cmbEstacao.addItem(estacao);
-        }
+        painelEmail.add(txtEmail, BorderLayout.CENTER);
+        painelFormulario.add(painelEmail);
 
-        cmbEstacao.setRenderer(new DefaultListCellRenderer() {
-            @Override
-            public Component getListCellRendererComponent(
-                    JList<?> lista, Object valor, int indice,
-                    boolean selecionado, boolean foco) {
+        painelFormulario.add(Box.createVerticalStrut(12));
 
-                super.getListCellRendererComponent(
-                        lista, valor, indice, selecionado, foco);
+        // Combo de plano
+        JPanel painelPlano = criarPainelCampo("Plano:", tamanhoLabel);
 
-                if (valor instanceof Estacao) {
-                    setText(((Estacao) valor).consultarNome());
-                }
+        cmbPlano = new JComboBox<>();
 
-                return this;
-            }
-        });
+        configurarRenderizadorPlano();
+        atualizarPlanos();
 
-        cmbEstacao.setPreferredSize(new Dimension(300, 35));
+        cmbPlano.setPreferredSize(new Dimension(300, 35));
 
-        cmbEstacao.addPopupMenuListener(new PopupMenuListener() {
+        cmbPlano.addPopupMenuListener(new PopupMenuListener() {
+
             @Override
             public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
-                atualizarEstacoes();
+                atualizarPlanos();
             }
 
             @Override
@@ -129,25 +104,8 @@ public class PainelCadastroUsuarios extends JPanel {
             }
         });
 
-        painelEstacao.add(cmbEstacao, BorderLayout.CENTER);
-        painelFormulario.add(painelEstacao);
-
-        painelFormulario.add(Box.createVerticalStrut(12));
-
-        // Campo de bateria
-        painelBateria = criarPainelCampo(
-                "Nível da bateria:", tamanhoLabel);
-
-        txtNivelBateria = new JTextField();
-        txtNivelBateria.setPreferredSize(new Dimension(300, 35));
-
-        painelBateria.add(txtNivelBateria, BorderLayout.CENTER);
-
-        painelFormulario.add(painelBateria);
-
-        // Configura a visibilidade inicial da bateria
-        cmbTipoVeiculo.addActionListener(e -> atualizarCampoBateria());
-        atualizarCampoBateria();
+        painelPlano.add(cmbPlano, BorderLayout.CENTER);
+        painelFormulario.add(painelPlano);
 
         painelFormulario.add(Box.createVerticalStrut(15));
 
@@ -166,6 +124,7 @@ public class PainelCadastroUsuarios extends JPanel {
         btnCadastrar.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         btnCadastrar.addMouseListener(new MouseAdapter() {
+
             @Override
             public void mouseEntered(MouseEvent e) {
                 btnCadastrar.setBackground(new Color(45, 115, 155));
@@ -177,7 +136,7 @@ public class PainelCadastroUsuarios extends JPanel {
             }
         });
 
-        btnCadastrar.addActionListener(e -> cadastrarVeiculo());
+        btnCadastrar.addActionListener(e -> cadastrarUsuario());
 
         painelFormulario.add(btnCadastrar);
 
@@ -197,6 +156,7 @@ public class PainelCadastroUsuarios extends JPanel {
     }
 
     private JPanel criarPainelCampo(String titulo, Dimension tamanhoLabel) {
+
         JPanel painel = new JPanel(new BorderLayout(10, 0));
         painel.setBackground(new Color(237, 241, 244));
         painel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 35));
@@ -209,93 +169,94 @@ public class PainelCadastroUsuarios extends JPanel {
         return painel;
     }
 
-    private void atualizarCampoBateria() {
-        TipoVeiculo tipo = (TipoVeiculo) cmbTipoVeiculo.getSelectedItem();
+    private void configurarRenderizadorPlano() {
 
-        boolean eletrico = tipo == TipoVeiculo.BICICLETA_ELETRICA
-                || tipo == TipoVeiculo.PATINETE_ELETRICO;
+        cmbPlano.setRenderer(new DefaultListCellRenderer() {
 
-        painelBateria.setVisible(eletrico);
+            @Override
+            public Component getListCellRendererComponent(
+                    JList<?> lista,
+                    Object valor,
+                    int indice,
+                    boolean selecionado,
+                    boolean foco) {
 
-        if (!eletrico) {
-            txtNivelBateria.setText("");
-        }
+                super.getListCellRendererComponent(
+                        lista, valor, indice, selecionado, foco);
 
-        painelBateria.revalidate();
-        painelBateria.repaint();
+                if (valor != null) {
+                    setText(((Plano) valor).consultarNome());
+                }
+
+                return this;
+            }
+        });
     }
 
-    private void atualizarEstacoes() {
-        cmbEstacao.removeAllItems();
+    private void atualizarPlanos() {
 
-        for (Estacao estacao : sistema.consultarEstacoes()) {
-            cmbEstacao.addItem(estacao);
+        Plano planoSelecionado = (Plano) cmbPlano.getSelectedItem();
+
+        cmbPlano.removeAllItems();
+
+        for (Plano plano : sistema.consultarPlanos()) {
+            cmbPlano.addItem(plano);
+        }
+
+        if (planoSelecionado != null) {
+            for (int i = 0; i < cmbPlano.getItemCount(); i++) {
+
+                if (cmbPlano.getItemAt(i) == planoSelecionado) {
+                    cmbPlano.setSelectedIndex(i);
+                    break;
+                }
+            }
         }
     }
 
-    private void cadastrarVeiculo() {
+    private void cadastrarUsuario() {
+
         try {
-            String modelo = txtModelo.getText();
-            Estacao estacao = (Estacao) cmbEstacao.getSelectedItem();
-            TipoVeiculo tipo = (TipoVeiculo) cmbTipoVeiculo.getSelectedItem();
 
-            Veiculo veiculo;
+            String nome = txtNome.getText().trim();
+            String email = txtEmail.getText().trim();
 
-            switch (tipo) {
+            Plano plano = (Plano) cmbPlano.getSelectedItem();
 
-                case BICICLETA_MECANICA:
-                    veiculo = new BicicletaMecanica(modelo, estacao);
-                    break;
-
-                case BICICLETA_ELETRICA:
-                    int bateriaBicicleta = Integer.parseInt(
-                            txtNivelBateria.getText());
-
-                    veiculo = new BicicletaEletrica(
-                            modelo, estacao, bateriaBicicleta);
-                    break;
-
-                case PATINETE_ELETRICO:
-                    int bateriaPatinete = Integer.parseInt(
-                            txtNivelBateria.getText());
-
-                    veiculo = new PatineteEletrico(
-                            modelo, estacao, bateriaPatinete);
-                    break;
-
-                default:
-                    throw new IllegalArgumentException(
-                            "Selecione um tipo de veículo válido.");
+            if (nome.isEmpty() || email.isEmpty()) {
+                throw new IllegalArgumentException(
+                        "Preencha todos os campos.");
             }
 
-            sistema.cadastrarVeiculo(veiculo);
+            if (plano == null) {
+                throw new IllegalArgumentException(
+                        "Selecione um plano.");
+            }
+
+            Usuario usuario = new Usuario(nome, email, plano);
+
+            sistema.cadastrarUsuario(usuario);
 
             lblMensagem.setForeground(new Color(39, 174, 96));
-            lblMensagem.setText("Veículo cadastrado com sucesso!");
+            lblMensagem.setText("Usuário cadastrado com sucesso!");
 
-            txtModelo.setText("");
-            txtNivelBateria.setText("");
+            txtNome.setText("");
+            txtEmail.setText("");
 
-        } catch (NumberFormatException e) {
-            lblMensagem.setForeground(Color.RED);
-            lblMensagem.setText("A bateria deve ser um número inteiro.");
+        } catch (RegistroJaExistenteException | IllegalArgumentException e) {
 
-        } catch (ValorInvalidoException | EstacaoLotadaException e) {
             lblMensagem.setForeground(Color.RED);
             lblMensagem.setText(e.getMessage());
 
-        } catch (IllegalArgumentException e) {
-            lblMensagem.setForeground(Color.RED);
-            lblMensagem.setText(e.getMessage());
-        } finally{
+        } finally {
             limparMensagem();
         }
     }
 
     private void limparMensagem() {
+
         Timer timer = new Timer(3000, e -> lblMensagem.setText(" "));
         timer.setRepeats(false);
         timer.start();
     }
 }
-

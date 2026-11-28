@@ -1,3 +1,4 @@
+
 package Apresentacao.Telas.Usuarios;
 
 import javax.swing.JTextField;
@@ -8,15 +9,12 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import javax.swing.ListSelectionModel;
 
 import javax.swing.table.DefaultTableModel;
 
 import Aplicacao.Sistema;
-import Modelo.Estacao;
-import Apresentacao.Telas.Estacoes.PainelEstacoes;
-import Excecoes.RegistroNaoEncontradoException;
+import Modelo.Usuario;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -24,6 +22,10 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class PainelConsultaUsuarios extends JPanel {
@@ -38,6 +40,8 @@ public class PainelConsultaUsuarios extends JPanel {
 
     private Sistema sistema;
     private PainelUsuarios painelUsuarios;
+
+    private List<Usuario> usuariosExibidos;
 
     public PainelConsultaUsuarios(Sistema sistema, PainelUsuarios painelUsuarios) {
 
@@ -54,15 +58,15 @@ public class PainelConsultaUsuarios extends JPanel {
         configurarPesquisa();
         configurarTabela();
 
-        // Carrega as estações existentes cadastradas na tabela
-        consultarEstacoes();
+        // Carrega os usuários cadastrados
+        consultarUsuarios();
     }
 
     private JTextField criarCampoPesquisa() {
 
         JTextField campo = new JTextField();
 
-        String placeholder = "Digite o nome da estação...";
+        String placeholder = "Digite o nome ou e-mail do usuário...";
 
         // Escrita que vai aparecer quando nada estiver digitado
         campo.setText(placeholder);
@@ -100,7 +104,8 @@ public class PainelConsultaUsuarios extends JPanel {
     private void configurarTabela() {
 
         modeloTabela = new DefaultTableModel(
-                new Object[] { "Nome", "Capacidade", "Ocupação" }, 0) {
+                new Object[] { "Nome", "E-mail", "Plano", "Saldo", "Viagem ativa" }, 0) {
+
             @Override
             public boolean isCellEditable(int linha, int coluna) {
                 return false;
@@ -112,15 +117,14 @@ public class PainelConsultaUsuarios extends JPanel {
         tabelaUsuarios.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         tabelaUsuarios.setRowHeight(35);
 
-        // Só da pra selecionar um registro
-        tabelaUsuarios.setSelectionMode(
-                javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        // Só permite selecionar um registro
+        tabelaUsuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         tabelaUsuarios.getTableHeader().setFont(
                 new Font("Segoe UI", Font.BOLD, 14));
 
         tabelaUsuarios.addMouseListener(new MouseAdapter() {
-            
+
             @Override
             public void mouseClicked(MouseEvent e) {
 
@@ -133,9 +137,9 @@ public class PainelConsultaUsuarios extends JPanel {
                         int linhaModelo = tabelaUsuarios.convertRowIndexToModel(
                                 linhaSelecionada);
 
-                        Estacao estacao = sistema.consultarEstacoes().get(linhaModelo);
+                        Usuario usuario = usuariosExibidos.get(linhaModelo);
 
-                        painelUsuarios.abrirConsultaVeiculos(estacao);
+                        painelUsuarios.abrirExtratoCarteira(usuario);
                     }
                 }
             }
@@ -166,32 +170,33 @@ public class PainelConsultaUsuarios extends JPanel {
         btnPesquisar.setContentAreaFilled(true);
         btnPesquisar.setOpaque(true);
 
-        btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPesquisar.setCursor(
+                new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         btnPesquisar.setPreferredSize(new Dimension(110, 35));
 
-        // Mouse hover lindo
-        btnPesquisar.addMouseListener(new java.awt.event.MouseAdapter() {
+        // Mouse hover
+        btnPesquisar.addMouseListener(new MouseAdapter() {
 
             @Override
-            public void mouseEntered(java.awt.event.MouseEvent e) {
+            public void mouseEntered(MouseEvent e) {
                 btnPesquisar.setBackground(new Color(45, 115, 155));
             }
 
             @Override
-            public void mouseExited(java.awt.event.MouseEvent e) {
+            public void mouseExited(MouseEvent e) {
                 btnPesquisar.setBackground(new Color(57, 143, 193));
             }
         });
 
-        btnPesquisar.addActionListener(e -> pesquisarEstacao());
+        btnPesquisar.addActionListener(e -> pesquisarUsuario());
 
-        txtPesquisa.addActionListener(e -> pesquisarEstacao());
+        txtPesquisa.addActionListener(e -> pesquisarUsuario());
 
         // Mensagem de erro
         lblMensagem = new JLabel(" ");
         lblMensagem.setForeground(Color.RED);
         lblMensagem.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        lblMensagem.setVisible(false);
 
         painelPesquisa.add(txtPesquisa, BorderLayout.CENTER);
         painelPesquisa.add(btnPesquisar, BorderLayout.EAST);
@@ -200,64 +205,76 @@ public class PainelConsultaUsuarios extends JPanel {
         add(painelPesquisa, BorderLayout.NORTH);
     }
 
-    private void consultarEstacoes() {
+    // ==================== CONSULTAR USUÁRIOS ====================
 
-        List<Estacao> estacoes = sistema.consultarEstacoes();
+    private void consultarUsuarios() {
 
-        exibirRegistrosTabela(estacoes);
+        usuariosExibidos = sistema.consultarUsuarios();
+
+        exibirRegistrosTabela(usuariosExibidos);
     }
 
-    private void exibirRegistrosTabela(List<Estacao> estacoes) {
+    // ==================== EXIBIR REGISTROS NA TABELA ====================
+
+    private void exibirRegistrosTabela(List<Usuario> usuarios) {
 
         modeloTabela.setRowCount(0);
 
-        for (Estacao estacao : estacoes) {
+        usuariosExibidos = new ArrayList<>(usuarios);
+
+        for (Usuario usuario : usuariosExibidos) {
+
+            String plano = usuario.consultarPlanoContratado().consultarNome();
+
+            String saldo = String.format("R$ %.2f", usuario.consultarSaldo());
+
+            String viagemAtiva = usuario.possuiViagemEmAndamento()
+                    ? "Sim"
+                    : "Não";
 
             modeloTabela.addRow(new Object[] {
-                    estacao.consultarNome(),
-                    estacao.consultarQuantidadeVeiculosEstacionados()
-                            + " / "
-                            + estacao.consultarCapacidadeMaxima(),
-                    estacao.consultarQuantidadeVeiculosEstacionados()
-                            + " veículos"
+                    usuario.consultarNome(),
+                    usuario.consultarEmail(),
+                    plano,
+                    saldo,
+                    viagemAtiva
             });
         }
     }
 
-    private void pesquisarEstacao() {
+    // ==================== PESQUISAR USUÁRIO ====================
 
-        lblMensagem.setVisible(false);
+    private void pesquisarUsuario() {
 
-        String nome = txtPesquisa.getText().trim();
+        lblMensagem.setText(" ");
 
-        // Se estiver vazio ou com o texto padrão, exibe todas
-        if (nome.isEmpty() || nome.equals("Digite o nome da estação...")) {
-            consultarEstacoes();
+        String pesquisa = txtPesquisa.getText().trim();
+
+        // Se estiver vazio ou com o texto padrão, exibe todos
+        if (pesquisa.isEmpty()
+                || pesquisa.equals("Digite o nome ou e-mail do usuário...")) {
+
+            consultarUsuarios();
             return;
         }
 
-        try {
+        List<Usuario> usuarios = sistema.consultarUsuarios(pesquisa);
 
-            Estacao estacao = sistema.consultarEstacao(nome);
+        exibirRegistrosTabela(usuarios);
 
-            // Exibe somente a estação encontrada
-            exibirRegistrosTabela(java.util.Collections.singletonList(estacao));
+        if (usuarios.isEmpty()) {
+            lblMensagem.setText("Nenhum usuário encontrado.");
 
-        } catch (RegistroNaoEncontradoException e) {
-
-            // Limpa a tabela quando não encontrar
-            modeloTabela.setRowCount(0);
-
-            // Exibe mensagem de erro
-            lblMensagem.setText("Nenhuma estação encontrada.");
-            lblMensagem.setVisible(true);
-        } finally {
             limparMensagem();
         }
     }
 
+    // ==================== LIMPAR MENSAGEM ====================
+
     private void limparMensagem() {
+
         Timer timer = new Timer(3000, e -> lblMensagem.setText(" "));
+
         timer.setRepeats(false);
         timer.start();
     }
