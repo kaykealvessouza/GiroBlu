@@ -3,7 +3,7 @@ package Modelo;
 import Excecoes.OperacaoInvalidaException;
 import Excecoes.ValorInvalidoException;
 
-public abstract class VeiculoEletrico extends Veiculo {
+public abstract class VeiculoEletrico extends Veiculo{
 
     // ==================== ATRIBUTOS ====================
 

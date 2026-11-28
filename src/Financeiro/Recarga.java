@@ -4,9 +4,10 @@ package Financeiro;
 import Interfaces.MovimentacaoFinanceira;
 import Excecoes.ValorInvalidoException;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Recarga implements MovimentacaoFinanceira {
+public class Recarga implements MovimentacaoFinanceira, Serializable {
 
     // ==================== ATRIBUTOS ====================
 

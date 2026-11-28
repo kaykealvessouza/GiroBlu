@@ -1,9 +1,11 @@
 package Modelo;
 
+import java.io.Serializable;
+
 import Excecoes.OperacaoInvalidaException;
 import Excecoes.VeiculoIndisponivelException;
 
-public abstract class Veiculo {
+public abstract class Veiculo implements Serializable {
 
     // ==================== ATRIBUTOS ====================
 
