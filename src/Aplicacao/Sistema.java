@@ -261,6 +261,40 @@ public class Sistema {
         return Collections.unmodifiableList(usuarios);
     }
 
+    // ==================== CONSULTA DE USUÁRIOS POR NOME OU E-MAIL ====================
+    // Status: IMPLEMENTADO
+
+    /**
+     * Consulta usuários pelo nome ou e-mail.
+     * A pesquisa ignora diferenças entre letras maiúsculas e minúsculas.
+     * Caso o parâmetro seja nulo ou vazio, retorna todos os usuários.
+     *
+     * @param pesquisa texto utilizado para pesquisar o nome ou e-mail do usuário
+     * @return lista não modificável com os usuários que correspondem à pesquisa
+     */
+    public List<Usuario> consultarUsuarios(String pesquisa) {
+
+        List<Usuario> resultado = new ArrayList<>();
+
+        String pesquisaNormalizada = pesquisa == null
+                ? ""
+                : pesquisa.trim().toLowerCase(Locale.ROOT);
+
+        for (Usuario usuario : usuarios) {
+
+            if (pesquisaNormalizada.isEmpty()
+                    || usuario.consultarNome().toLowerCase(Locale.ROOT)
+                            .contains(pesquisaNormalizada)
+                    || usuario.consultarEmail().toLowerCase(Locale.ROOT)
+                            .contains(pesquisaNormalizada)) {
+
+                resultado.add(usuario);
+            }
+        }
+
+        return Collections.unmodifiableList(resultado);
+    }
+
     // ==================== CONSULTA DE VIAGENS ====================
     // Status: IMPLEMENTADO
 
