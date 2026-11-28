@@ -24,6 +24,7 @@ public class PainelUsuarios extends JPanel {
     // Botões responsáveis pela navegação interna
     private JButton btnConsultar;
     private JButton btnCadastrar;
+    private JButton btnGerenciar;
 
     // Guarda a referência do botão atualmente selecionado
     private JButton botaoSelecionado;
@@ -72,12 +73,15 @@ public class PainelUsuarios extends JPanel {
         // Cria os botões utilizando o mesmo padrão visual da estrutura principal
         btnConsultar = criarBotaoAba("Consultar usuários");
         btnCadastrar = criarBotaoAba("Cadastrar usuários");
+        btnGerenciar = criarBotaoAba("Gerenciar usuários");
 
         btnVoltar = criarBotaoAba("← Voltar para usuários");
 
         painelNavegacao.add(btnConsultar);
         painelNavegacao.add(Box.createHorizontalStrut(10));
         painelNavegacao.add(btnCadastrar);
+        painelNavegacao.add(Box.createHorizontalStrut(10));
+        painelNavegacao.add(btnGerenciar);
         painelNavegacao.add(Box.createHorizontalStrut(10));
         painelNavegacao.add(btnVoltar);
         btnVoltar.setVisible(false);
@@ -161,10 +165,13 @@ public class PainelUsuarios extends JPanel {
 
         PainelCadastroUsuarios painelCadastroUsuarios = new PainelCadastroUsuarios(sistema);
 
+        PainelGerenciarUsuarios painelGerenciarUsuarios = new PainelGerenciarUsuarios(sistema);
+
         painelExtratoCarteira = new PainelExtratoCarteira();
 
         painelConteudo.add(painelConsultaUsuarios, "consulta");
         painelConteudo.add(painelCadastroUsuarios, "cadastro");
+        painelConteudo.add(painelGerenciarUsuarios, "gerenciar");
         painelConteudo.add(painelExtratoCarteira, "extrato");
 
         add(painelConteudo, BorderLayout.CENTER);
@@ -179,6 +186,11 @@ public class PainelUsuarios extends JPanel {
         btnCadastrar.addActionListener(e -> {
             cardLayout.show(painelConteudo, "cadastro");
             selecionarAba(btnCadastrar);
+        });
+
+        btnGerenciar.addActionListener(e -> {
+            cardLayout.show(painelConteudo, "gerenciar");
+            selecionarAba(btnGerenciar);
         });
 
         // Volta pra tela
@@ -199,7 +211,6 @@ public class PainelUsuarios extends JPanel {
 
         cardLayout.show(painelConteudo, "extrato");
 
-        
         painelNavegacao.revalidate();
         painelNavegacao.repaint();
     }

@@ -258,7 +258,8 @@ public class Sistema {
         return Collections.unmodifiableList(usuarios);
     }
 
-    // ==================== CONSULTA DE USUÁRIOS POR NOME OU E-MAIL ====================
+    // ==================== CONSULTA DE USUÁRIOS POR NOME OU E-MAIL
+    // ====================
     // Status: IMPLEMENTADO
 
     /**
@@ -332,6 +333,27 @@ public class Sistema {
      */
     public List<Plano> consultarPlanos() {
         return Collections.unmodifiableList(planosDisponiveis);
+    }
+
+    /**
+     * Altera o plano contratado de um usuário.
+     *
+     * @param usuario   usuário que terá o plano alterado
+     * @param novoPlano novo plano a ser contratado
+     * @throws IllegalArgumentException  se o usuário ou o novo plano for nulo,
+     *                                   ou se o usuário já possuir o plano
+     *                                   informado
+     * @throws OperacaoInvalidaException se o usuário possuir uma viagem em
+     *                                   andamento
+     */
+    public void alterarPlanoUsuario(Usuario usuario, Plano novoPlano)
+            throws OperacaoInvalidaException {
+
+        if (usuario == null) {
+            throw new IllegalArgumentException("O usuário não pode ser nulo.");
+        }
+
+        usuario.alterarPlanoContratado(novoPlano);
     }
 
     // ==================== INICIAR VIAGEM ====================

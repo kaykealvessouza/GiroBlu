@@ -170,7 +170,7 @@ public class TelaPrincipal extends JFrame {
         painelConteudo.add(new PainelVeiculos(sistema), "veiculos");
         painelConteudo.add(new PainelUsuarios(sistema), "usuarios");
         painelConteudo.add(new PainelViagens(), "viagens");
-        painelConteudo.add(new PainelCarteira(), "carteiras");
+        painelConteudo.add(new PainelCarteira(sistema), "carteiras");
         painelConteudo.add(new PainelRelatorios(), "relatorios");
 
         // Exibe a tela inicial

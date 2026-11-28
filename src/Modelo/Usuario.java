@@ -10,6 +10,7 @@ import Excecoes.ViagemEmAndamentoException;
 import Financeiro.LinhaExtrato;
 import Financeiro.Recarga;
 import Interfaces.Plano;
+import Excecoes.OperacaoInvalidaException;
 
 public class Usuario {
 
@@ -132,4 +133,24 @@ public class Usuario {
         return carteira.consultarExtrato();
     }
 
+    // ==================== ALTERAR PLANO CONTRATADO ====================
+
+    public void alterarPlanoContratado(Plano novoPlano)
+            throws OperacaoInvalidaException {
+
+        if (novoPlano == null) {
+            throw new IllegalArgumentException("O novo plano não pode ser nulo.");
+        }
+
+        if (planoContratado == novoPlano) {
+            throw new IllegalArgumentException("O usuário já possui este plano.");
+        }
+
+        if (possuiViagemEmAndamento()) {
+            throw new OperacaoInvalidaException(
+                    "Não é possível alterar o plano durante uma viagem.");
+        }
+
+        this.planoContratado = novoPlano;
+    }
 }
